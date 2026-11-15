@@ -1,0 +1,37 @@
+# Nutrition au fil des saisons — dossier PWA (version 8)
+
+Ce dossier contient le prototype HTML préparé pour être hébergé comme une application web installable (PWA).
+
+## Contenu
+- `index.html` : application
+- `manifest.webmanifest` : nom, icônes et paramètres d'installation
+- `sw.js` : mise en cache de l'application pour une utilisation hors ligne après le premier chargement
+- `icon.svg`, `icon-192.png`, `icon-512.png`, `apple-touch-icon.png` : icônes
+
+## Avant toute publication
+- Le site sera public si hébergé avec GitHub Pages sur un dépôt public.
+- Le questionnaire enregistre les réponses localement dans le navigateur de l'appareil ; ne pas y saisir de données médicales sensibles.
+- Les données nutritionnelles ne sont pas certifiées : les valeurs restent masquées/en attente de validation Ciqual 2020.
+- Cette application est un outil pédagogique et ne remplace pas un professionnel de santé.
+- Vérifier les contenus, allergènes, droits d'images et mentions légales avant ouverture au public.
+
+## Mise en ligne gratuite avec GitHub Pages
+1. Créer un compte GitHub si nécessaire.
+2. Créer un nouveau dépôt public, par exemple `nutrition-au-fil-des-saisons`.
+3. Ajouter tous les fichiers de ce dossier à la racine du dépôt.
+4. Dans le dépôt : `Settings` > `Pages`.
+5. Dans `Build and deployment`, choisir `Deploy from a branch`, sélectionner `main` et `/ (root)`, puis `Save`.
+6. Attendre la publication et ouvrir l'adresse fournie par GitHub Pages.
+
+GitHub Pages est public. Ne pas y placer de données personnelles ou de réponses de questionnaire.
+
+## Installation sur iPhone
+1. Ouvrir l'adresse publiée dans Safari.
+2. Toucher le bouton Partager.
+3. Choisir `Sur l'écran d'accueil`.
+4. Activer `Ouvrir comme app` si l'option apparaît, puis toucher `Ajouter`.
+
+L'installation PWA nécessite une adresse HTTPS (ou localhost pour les tests). L'ouverture directe du fichier HTML ne permet pas l'installation complète.
+
+
+Identité visuelle : le logo fourni par Isabelle Fanet est utilisé dans l'en-tête de l'application et comme icône de l'écran d'accueil.

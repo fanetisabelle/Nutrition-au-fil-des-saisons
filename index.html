@@ -1,299 +1,460 @@
-
-
-<!DOCTYPE html>
-
+<!doctype html>
 <html lang="fr">
-
 <head>
-
-<meta charset="UTF-8">
-
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#704052">
+<meta name="description" content="Découvrez les produits locaux et de saison des Pyrénées-Orientales, des recettes et des repères alimentaires pratiques.">
+<link rel="manifest" href="./manifest.webmanifest">
+<link rel="icon" type="image/png" sizes="192x192" href="./logo-isabelle-fanet-192.png">
+<link rel="apple-touch-icon" href="./apple-touch-icon.png">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="Nutrition saisons">
 
 <title>Nutrition au fil des saisons</title>
-
 <style>
+:root{--wine:#704052;--sage:#47765B;--ivory:#F5F0E8;--pink:#E9DADD;--terra:#C98261;--ink:#302a2d;--muted:#71676b;--white:#fff}
+*{box-sizing:border-box}body{margin:0;background:var(--ivory);color:var(--ink);font:16px/1.55 Inter,system-ui,-apple-system,Segoe UI,sans-serif}
+header{background:var(--wine);color:white;padding:22px 18px 24px;text-align:center}header .brand-logo{display:block;width:118px;height:118px;object-fit:contain;background:#fff;border-radius:16px;padding:4px;margin:0 auto 12px}
+header .eyebrow{letter-spacing:.14em;text-transform:uppercase;font-size:.72rem;opacity:.85}
+h1{font-family:Georgia,serif;font-weight:500;font-size:clamp(2rem,7vw,3rem);margin:8px 0 3px}
+header p{margin:0;color:#f5e9ec}
+main{max-width:820px;margin:24px auto;padding:0 14px 40px}
+.card{background:white;border-radius:18px;padding:clamp(18px,4vw,30px);box-shadow:0 5px 24px #49323b12;margin-bottom:16px}
+.intro h2,.section-title{font-family:Georgia,serif;color:var(--wine);font-size:1.65rem;font-weight:500;margin:0 0 8px}
+.muted{color:var(--muted);font-size:.92rem}
+.progress-wrap{height:8px;background:#eee5e7;border-radius:20px;overflow:hidden;margin:16px 0 8px}
+.progress{height:100%;width:0;background:var(--sage);transition:width .2s}
+.progress-label{display:flex;justify-content:space-between;color:var(--muted);font-size:.82rem}
+.question{padding:18px 0;border-bottom:1px solid #eee8e9}
+.question:last-child{border:0}.question h3{font-size:1rem;margin:0 0 11px;font-weight:650}
+.required{color:var(--terra);font-size:.8rem;margin-left:5px}
+.options{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:8px}
+.option{display:flex;gap:9px;align-items:flex-start;border:1px solid #e8dfe2;border-radius:11px;padding:10px 12px;cursor:pointer;background:#fff}
+.option:has(input:checked){border-color:var(--sage);background:#f1f6f1}
+.option input{margin-top:4px;accent-color:var(--sage)}
+input[type=text],input[type=number],textarea{width:100%;border:1px solid #d9cdd1;border-radius:10px;padding:12px;font:inherit;background:white;color:var(--ink)}
+textarea{min-height:86px;resize:vertical}
+.fields{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:12px}
+.field label{display:block;font-size:.88rem;font-weight:600;margin-bottom:6px}
+.actions{display:flex;gap:10px;justify-content:space-between;flex-wrap:wrap;margin-top:20px}
+button{border:0;border-radius:999px;padding:12px 20px;font:inherit;font-weight:650;cursor:pointer}
+.primary{background:var(--wine);color:white}.secondary{background:var(--pink);color:var(--wine)}.quiet{background:transparent;color:var(--wine);border:1px solid #d9c5cc}
+button:disabled{opacity:.4;cursor:not-allowed}
+.pill{display:inline-block;border-radius:99px;background:#f4eaed;color:var(--wine);padding:4px 10px;font-size:.78rem}
+.result{display:none}.result h2{font-family:Georgia,serif;color:var(--wine);font-weight:500}
+.summary-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:10px}
+.summary{background:#f8f5f2;border-radius:12px;padding:13px}.summary strong{display:block;color:var(--wine);margin-bottom:4px}
+.notice{border-left:4px solid var(--terra);padding:12px 14px;background:#fbf5f1;border-radius:6px;font-size:.9rem}
+.profile-card{background:#f8f5f2;border-radius:13px;padding:15px;margin:10px 0}.profile-card h3{margin:0 0 5px;color:var(--wine);font-size:1.02rem}.scoreline{display:flex;justify-content:space-between;gap:8px;font-size:.9rem}.scorebar{height:9px;background:#e8dfe2;border-radius:20px;overflow:hidden;margin:8px 0}.scorebar span{display:block;height:100%;background:var(--sage)}.small{font-size:.83rem;color:var(--muted)}
+.advice{border:1px solid #eee5e7;border-radius:12px;padding:14px;margin:10px 0}.advice h3{margin:0 0 7px;color:var(--wine);font-size:1.02rem}.advice ul{margin:7px 0 0;padding-left:20px}.tag{display:inline-block;background:#edf3ed;color:#355b43;border-radius:99px;padding:3px 9px;font-size:.78rem;margin:2px 4px 2px 0}
+.planner-controls{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:12px;margin:16px 0}
+.planner-controls label{display:block;font-weight:650;font-size:.88rem;margin-bottom:6px}
+.planner-controls select{width:100%;padding:11px;border:1px solid #d9cdd1;border-radius:10px;background:white;color:var(--ink);font:inherit}
+.menu-day{border:1px solid #eee5e7;border-radius:13px;padding:14px;margin:12px 0;background:#fff}
+.menu-day h3{color:var(--wine);margin:0 0 8px;font-family:Georgia,serif;font-size:1.15rem;font-weight:500}
+.menu-meal{padding:9px 0;border-top:1px solid #f0e9eb}
+.menu-meal:first-of-type{border-top:0}
+.menu-meal strong{color:var(--sage)}
+.menu-recipe{font-weight:650}
+.menu-meta{font-size:.82rem;color:var(--muted)}
+.shopping-list{background:#f8f5f2;border-radius:13px;padding:15px;margin-top:16px}
+.shopping-list ul{columns:2;column-gap:24px}
+@media(max-width:520px){.shopping-list ul{columns:1}}
 
-* { box-sizing: border-box; }
-
-body {
-
-  margin: 0;
-
-  font-family: Arial, sans-serif;
-
-  background: #f7f5ef;
-
-  color: #344b3b;
-
-}
-
-header {
-
-  background: #47765B;
-
-  color: white;
-
-  text-align: center;
-
-  padding: 35px 15px;
-
-}
-
-header h1 { margin: 0; font-size: 27px; }
-
-header p { margin-bottom: 0; }
-
-main { max-width: 850px; margin: auto; padding: 20px; }
-
-h2 { color: #47765B; }
-
-.intro {
-
-  background: white;
-
-  padding: 20px;
-
-  border-radius: 14px;
-
-  line-height: 1.6;
-
-}
-
-.grid {
-
-  display: grid;
-
-  grid-template-columns: repeat(auto-fit,minmax(140px,1fr));
-
-  gap: 12px;
-
-}
-
-.card {
-
-  background: white;
-
-  border-radius: 14px;
-
-  padding: 20px;
-
-  text-align: center;
-
-  box-shadow: 0 2px 8px #00000010;
-
-}
-
-.card button {
-
-  background: #47765B;
-
-  color: white;
-
-  border: 0;
-
-  border-radius: 8px;
-
-  padding: 10px;
-
-  cursor: pointer;
-
-}
-
-select {
-
-  padding: 12px;
-
-  width: 100%;
-
-  border-radius: 8px;
-
-  border: 1px solid #47765B;
-
-  background: white;
-
-}
-
-#details {
-
-  background: white;
-
-  padding: 20px;
-
-  margin-top: 20px;
-
-  border-radius: 14px;
-
-  line-height: 1.6;
-
-}
-
-footer {
-
-  text-align: center;
-
-  padding: 25px;
-
-  color: #47765B;
-
-}
-
+footer{text-align:center;color:var(--muted);font-size:.8rem;padding:8px 12px 28px}
+@media(max-width:520px){header{padding:23px 14px}.actions button{flex:1}.card{border-radius:14px}}
 </style>
-
 </head>
-
 <body>
-
 <header>
-
-  <h1>🌿 Nutrition au fil des saisons</h1>
-
-  <p>Les saveurs et les richesses des Pyrénées-Orientales</p>
-
+ <img class="brand-logo" src="./logo-isabelle-fanet-512.png" alt="Logo Isabelle Fanet">
+ <div class="eyebrow">Pyrénées-Orientales · 66</div>
+ <h1>Nutrition au fil des saisons</h1>
+ <p>Mieux manger, naturellement.</p>
 </header>
-
 <main>
-
-  <section class="intro">
-
-    <h2>Bienvenue !</h2>
-
-    <p>Découvrez les fruits, légumes et produits locaux de notre territoire.
-
-    Apprenez à mieux connaître leurs qualités nutritionnelles et profitez
-
-    des richesses de chaque saison.</p>
-
-  </section>
-
-  <h2>🍃 Découvrir les saisons</h2>
-
-  <select id="season" onchange="showSeason()">
-
-    <option value="printemps">Printemps</option>
-
-    <option value="ete">Été</option>
-
-    <option value="automne">Automne</option>
-
-    <option value="hiver">Hiver</option>
-
-  </select>
-
-  <div id="details"></div>
-
-  <h2>🥕 Nos produits du terroir</h2>
-
-  <div class="grid">
-
-    <div class="card">
-
-      <h3>🍒 Cerise de Céret</h3>
-
-      <p>Un fruit emblématique du territoire.</p>
-
-      <button onclick="showProduct('cerise')">Découvrir</button>
-
-    </div>
-
-    <div class="card">
-
-      <h3>🍑 Abricot du Roussillon</h3>
-
-      <p>Un fruit ensoleillé et savoureux.</p>
-
-      <button onclick="showProduct('abricot')">Découvrir</button>
-
-    </div>
-
-    <div class="card">
-
-      <h3>🌿 Artichaut</h3>
-
-      <p>Un légume de notre terroir.</p>
-
-      <button onclick="showProduct('artichaut')">Découvrir</button>
-
-    </div>
-
-    <div class="card">
-
-      <h3>🫒 Huile d'olive</h3>
-
-      <p>Un produit phare de la Méditerranée.</p>
-
-      <button onclick="showProduct('olive')">Découvrir</button>
-
-    </div>
-
+ <section class="card intro" id="welcome">
+  <span class="pill">Prototype gratuit · Version 8</span>
+  <h2>Apprenons à mieux connaître vos habitudes</h2>
+  <p>Ce questionnaire comporte 35 questions réparties en 7 étapes. Il permet de préparer des conseils pratiques autour de vos habitudes, de vos goûts, de votre organisation et des produits de saison.</p>
+  <div class="notice"><strong>Confidentialité :</strong> dans cette version de test, vos réponses restent enregistrées dans le navigateur de cet appareil. Elles ne sont envoyées à aucun serveur. Évitez d'y inscrire des informations médicales détaillées.</div>
+  <div class="actions"><button class="primary" id="start">Commencer le questionnaire</button><button class="secondary" id="openLibrary">Découvrir les produits et recettes</button></div>
+ </section>
+ <section class="card" id="quiz" hidden>
+  <div class="progress-label"><span id="stepName">Étape 1 sur 7</span><span id="progressText">0 %</span></div>
+  <div class="progress-wrap"><div class="progress" id="progress"></div></div>
+  <h2 class="section-title" id="sectionTitle"></h2>
+  <p class="muted" id="sectionDesc"></p>
+  <div id="questions"></div>
+  <div class="actions">
+   <button class="secondary" id="prev">Précédent</button>
+   <button class="primary" id="next">Continuer</button>
   </div>
-
-  <div id="details" aria-live="polite">
-
-    Sélectionnez un produit pour découvrir sa fiche.
-
+ </section>
+ <section class="card" id="library" hidden><span class="pill">Bibliothèque locale · 66</span><h2 class="section-title">Les produits du terroir et les recettes de saison</h2><p class="muted">Une première sélection éditoriale à enrichir et à valider avant publication.</p>
+  <div class="notice">Les valeurs chiffrées sont volontairement masquées tant que chaque aliment n’a pas été rapproché d’une référence Ciqual précise (variété si disponible, cru/cuit, préparation). Cette précaution évite de présenter des estimations comme des données officielles. Source de référence : <a href="https://ciqual.anses.fr/cms/fr/node/19" target="_blank" rel="noopener">Anses – Table Ciqual 2020</a>. Les données réutilisées porteront la mention « Anses. 2025. Table de composition nutritionnelle des aliments Ciqual ».</div><div id="libraryContent"></div><div class="actions"><button class="secondary" id="backHome">Retour à l’accueil</button></div></section>
+ <section class="card" id="planner" hidden>
+  <span class="pill">Suggestions personnalisées · Version 7</span>
+  <h2 class="section-title">Composer mes menus</h2>
+  <p class="muted">Des idées de repas à partir de vos réponses, de la saison et de produits faciles à trouver. Vous pouvez ajuster les critères avant de générer vos menus.</p>
+  <div class="planner-controls">
+   <div><label for="menuDays">Durée du menu</label><select id="menuDays"><option value="3">3 jours</option><option value="5">5 jours</option><option value="7" selected>7 jours</option></select></div>
+   <div><label for="menuPeople">Nombre de personnes</label><select id="menuPeople"><option value="1">1 personne</option><option value="2" selected>2 personnes</option><option value="3">3 personnes</option><option value="4">4 personnes</option><option value="5">5 personnes</option><option value="6">6 personnes</option></select></div>
+   <div><label for="menuBudget">Priorité budget</label><select id="menuBudget"><option value="all">Sans priorité particulière</option><option value="economy">Recettes économiques</option></select></div>
+   <div><label for="menuTime">Temps maximum par repas</label><select id="menuTime"><option value="15">15 minutes</option><option value="30" selected>30 minutes</option><option value="45">45 minutes</option><option value="60">Sans limite particulière</option></select></div>
   </div>
-
+  <div class="notice">Les menus sont des propositions pratiques, pas des prescriptions nutritionnelles. Les coûts sont des repères relatifs, variables selon les magasins, les saisons et les portions. En cas d'allergie ou d'intolérance, vérifiez toujours chaque ingrédient, chaque étiquette et les risques de contamination croisée.</div>
+  <div class="actions"><button class="primary" id="generateMenus">Générer mes menus</button><button class="secondary" id="backToResult">Retour à mon profil</button></div>
+  <div id="menuOutput" aria-live="polite"></div>
+ </section>
+ <section class="card result" id="result">
+  <span class="pill">Questionnaire terminé</span>
+  <h2>Votre questionnaire est prêt</h2>
+  <p>Vos réponses ont été enregistrées sur cet appareil. Les premières règles de calcul exploratoires sont intégrées ; elles devront être vérifiées avant toute utilisation publique.</p>
+  <div class="summary-grid" id="summary"></div><div id="personalAdvice" style="margin-top:18px"></div>
+  <div class="notice" style="margin-top:16px">Les informations nutritionnelles sont en cours de vérification à partir de la table Ciqual 2020. Aucune valeur chiffrée non validée ne doit être interprétée comme une donnée officielle. Ces fiches sont pédagogiques et ne constituent ni un diagnostic ni une évaluation médicale.</div>
+  <div class="actions">
+   <button class="secondary" id="edit">Modifier mes réponses</button>
+   <button class="primary" id="export">Télécharger mes réponses</button>
+   <button class="quiet" id="reset">Effacer les réponses</button><button class="primary" id="openPlanner">Composer mes menus</button>
+  </div>
+ </section>
 </main>
-
-<footer>
-
-  Nutrition locale • Saisonnalité • Terroir catalan
-
-</footer>
-
+<footer>Nutrition au fil des saisons · Prototype de travail non médical · Suggestions indicatives · Version 7</footer>
 <script>
-
-const seasons = {
-
-  printemps: "Le printemps met à l'honneur les asperges, les artichauts et les premières récoltes.",
-
-  ete: "L'été célèbre les cerises, les abricots rouges du Roussillon et les fruits gorgés de soleil.",
-
-  automne: "L'automne invite à découvrir les champignons de montagne, les châtaignes et le miel.",
-
-  hiver: "L'hiver permet de profiter des produits méditerranéens et des récoltes de saison."
-
-};
-
-const products = {
-
-  cerise: ["Cerise de Céret", "Fruit riche en eau, contenant des fibres et des composés antioxydants."],
-
-  abricot: ["Abricot rouge du Roussillon", "Source de bêta-carotène, de fibres et de vitamine C."],
-
-  artichaut: ["Artichaut", "Légume riche en fibres, notamment en inuline."],
-
-  olive: ["Huile d'olive", "Source de matières grasses majoritairement mono-insaturées."]
-
-};
-
-function showSeason() {
-
-  const season = document.getElementById("season").value;
-
-  document.getElementById("details").innerHTML =
-
-    "<h3>La saison sélectionnée</h3><p>" + seasons[season] + "</p>";
-
+const sections = [
+{title:"Mon profil et mon quotidien",desc:"Quelques repères pour comprendre votre rythme de vie.",qs:[
+{id:"q1",t:"Quel est votre âge ?",type:"radio",o:["Moins de 25 ans","25–34 ans","35–44 ans","45–54 ans","55–64 ans","65 ans et plus"]},
+{id:"q2",t:"Quelle est votre situation actuelle ?",type:"radio",o:["En activité professionnelle","Retraité(e)","Étudiant(e)","Sans activité professionnelle","Autre situation"]},
+{id:"q3",t:"Comment décririez-vous votre rythme quotidien ?",type:"radio",o:["Principalement sédentaire","Alternance de temps assis et de déplacements","Plutôt actif, avec de nombreux déplacements","Très actif physiquement"]},
+{id:"q4",t:"Quelle est la composition de votre foyer ?",type:"two",a:"Nombre de personnes dans le foyer",b:"Nombre de personnes pour lesquelles vous cuisinez"},
+{id:"q5",t:"Combien de repas prenez-vous habituellement ?",type:"radio",o:["2 repas par jour","3 repas par jour","3 repas et une collation","Plusieurs petits repas","Cela varie selon les jours"]}
+]},
+{title:"Mes habitudes alimentaires",desc:"Parlons de vos habitudes, sans jugement.",qs:[
+{id:"q6",t:"À quelle fréquence prenez-vous un petit-déjeuner ?",type:"radio",o:["Tous les jours","Plusieurs fois par semaine","Rarement","Jamais"]},
+{id:"q7",t:"Où prenez-vous habituellement votre déjeuner ?",type:"radio",o:["À domicile","Sur mon lieu de travail","Au restaurant ou à la cantine","À l'extérieur ou en déplacement","Cela varie"]},
+{id:"q8",t:"À quelle fréquence préparez-vous des repas maison ?",type:"radio",o:["Tous les jours","4 à 5 fois par semaine","2 à 3 fois par semaine","Rarement","Jamais"]},
+{id:"q9",t:"À quelle fréquence consommez-vous des plats préparés ou aliments transformés ?",type:"radio",o:["Tous les jours","Plusieurs fois par semaine","1 à 2 fois par semaine","Occasionnellement","Jamais ou presque"]},
+{id:"q10",t:"Quelle place occupent les fruits et légumes dans vos repas ?",type:"radio",o:["À chaque repas","Une fois par jour","Plusieurs fois par semaine","Occasionnellement","Rarement"]}
+]},
+{title:"Mes goûts et mes préférences",desc:"Vos choix et vos contraintes seront prioritaires dans les suggestions.",qs:[
+{id:"q11",t:"Quel type d'alimentation vous correspond ?",type:"radio",o:["Je mange de tout","Principalement végétarienne","Végétarienne","Végétalienne","Flexitarienne","Autre"]},
+{id:"q12",t:"Quels groupes d'aliments consommez-vous régulièrement et appréciez-vous ?",type:"multi",o:["Fruits et légumes","Poissons et produits de la mer","Viandes et volailles","Œufs et produits laitiers","Légumineuses","Céréales et féculents","Fruits à coque et graines"]},
+{id:"q13",t:"Quels aliments n'aimez-vous pas ou refusez-vous de manger ?",type:"textarea",ph:"Votre réponse…"},
+{id:"q14",t:"Avez-vous des allergies, intolérances ou exclusions alimentaires à signaler ?",type:"multi",o:["Aucune","Gluten","Lactose","Fruits à coque","Autres allergies ou intolérances","Autre choix alimentaire"],extra:true},
+{id:"q15",t:"Quelles cuisines appréciez-vous ?",type:"multi",o:["Méditerranéenne","Traditionnelle","Végétarienne","Cuisines du monde","Simple et rapide","Créative et gourmande","J'aime varier"]}
+]},
+{title:"Mon organisation et mon budget",desc:"Pour proposer des idées compatibles avec votre quotidien.",qs:[
+{id:"q16",t:"Combien de temps pouvez-vous consacrer à la préparation d'un repas ?",type:"radio",o:["Moins de 15 minutes","15 à 30 minutes","30 à 45 minutes","Plus de 45 minutes","Cela varie"]},
+{id:"q17",t:"Quel est votre budget alimentaire hebdomadaire approximatif par personne ?",type:"radio",o:["Moins de 40 €","40 à 60 €","60 à 80 €","80 à 100 €","Plus de 100 €","Je ne sais pas"]},
+{id:"q18",t:"Où faites-vous principalement vos courses alimentaires ?",type:"multi",o:["Supermarché ou hypermarché","Marché local","Producteurs locaux ou vente directe","Magasin bio","Petits commerces de proximité","Plusieurs de ces solutions"]},
+{id:"q19",t:"Comment organisez-vous vos repas ?",type:"radio",o:["Je planifie toute la semaine","Je prévois quelques jours à l'avance","Je planifie occasionnellement","Je décide au dernier moment"]},
+{id:"q20",t:"Quels équipements avez-vous dans votre cuisine ?",type:"multi",o:["Four","Micro-ondes","Plaques de cuisson","Robot de cuisine","Air fryer","Aucun équipement particulier","Autre"]}
+]},
+{title:"Ma consommation et la saisonnalité",desc:"Un repère sur vos habitudes et votre lien avec les produits de saison.",qs:[
+{id:"q21",t:"À quelle fréquence mangez-vous des fruits frais ?",type:"radio",o:["Plusieurs fois par jour","Une fois par jour","3 à 4 fois par semaine","1 à 2 fois par semaine","Rarement"]},
+{id:"q22",t:"À quelle fréquence mangez-vous des légumes ?",type:"radio",o:["À chaque repas","1 à 2 fois par jour","Plusieurs fois par semaine","1 à 2 fois par semaine","Rarement"]},
+{id:"q23",t:"À quelle fréquence consommez-vous des légumineuses (lentilles, pois chiches, haricots…) ?",type:"radio",o:["Plusieurs fois par semaine","Une fois par semaine","2 à 3 fois par mois","Rarement","Jamais"]},
+{id:"q24",t:"Quelle quantité d'eau buvez-vous généralement par jour ?",type:"radio",o:["Moins de 50 cl","50 cl à 1 litre","1 à 1,5 litre","1,5 à 2 litres","Plus de 2 litres","Je ne sais pas"]},
+{id:"q25",t:"Connaissez-vous les fruits et légumes de saison des Pyrénées-Orientales ?",type:"radio",o:["Oui, très bien","J'en connais quelques-uns","Très peu","Pas du tout","J'aimerais apprendre"]}
+]},
+{title:"Mes objectifs alimentaires",desc:"Ce que vous aimeriez faire évoluer, à votre rythme.",qs:[
+{id:"q26",t:"Quel est votre objectif alimentaire principal ?",type:"radio",o:["Équilibrer mon alimentation","Manger davantage de produits frais et naturels","Découvrir les produits locaux et de saison","Mieux organiser mes repas","Maîtriser mon budget alimentaire","Diversifier mon alimentation","Retrouver le plaisir de cuisiner","Autre"]},
+{id:"q27",t:"Quels autres objectifs vous intéressent ?",type:"multi",o:["Varier mes repas","Manger plus de fruits et légumes","Découvrir de nouvelles recettes","Mieux organiser mes courses","Cuisiner davantage maison","Réduire le gaspillage alimentaire","Acheter auprès de producteurs locaux"]},
+{id:"q28",t:"Qu'attendez-vous principalement de votre alimentation ?",type:"multi",o:["Plus de variété","Des solutions simples et pratiques","Une alimentation équilibrée","Des repas économiques","Des produits locaux et responsables","Du plaisir et de la convivialité"]},
+{id:"q29",t:"Quelle importance accordez-vous aux produits locaux et de saison ?",type:"radio",o:["Très importante","Importante","Moyenne","Faible","J'aimerais les découvrir"]},
+{id:"q30",t:"Quel changement aimeriez-vous avoir réalisé dans trois mois ?",type:"textarea",ph:"Votre réponse…"}
+]},
+{title:"Mes attentes envers l'application",desc:"Aidez-nous à construire un outil qui vous sera vraiment utile.",qs:[
+{id:"q31",t:"Quels contenus souhaitez-vous retrouver ?",type:"multi",o:["Fiches sur les fruits et légumes de saison","Produits locaux des Pyrénées-Orientales","Recettes simples et équilibrées","Informations nutritionnelles sur les aliments","Conseils pratiques","Conseils pour maîtriser le budget","Découverte des producteurs locaux"]},
+{id:"q32",t:"Quels outils vous seraient utiles ?",type:"multi",o:["Calendrier des produits de saison","Menus de la semaine","Listes de courses","Recettes adaptées à mon budget","Recettes selon les produits disponibles","Suggestions personnalisées"]},
+{id:"q33",t:"Quel niveau de personnalisation souhaitez-vous ?",type:"radio",o:["Des conseils généraux","Des conseils adaptés à mes goûts","Des conseils adaptés à mon budget et mon organisation","Des conseils fondés sur l'ensemble de mes réponses"]},
+{id:"q34",t:"À quelle fréquence souhaitez-vous recevoir ou consulter de nouveaux contenus ?",type:"radio",o:["Tous les jours","Chaque semaine","Deux fois par mois","Une fois par mois","Uniquement lorsque j'ouvre l'application"]},
+{id:"q35",t:"Qu'aimeriez-vous absolument trouver dans cette application ?",type:"textarea",ph:"Votre réponse…"}
+]}
+];
+let step=0, answers=JSON.parse(localStorage.getItem("nfs_answers")||"{}");
+const $=id=>document.getElementById(id);
+function save(){localStorage.setItem("nfs_answers",JSON.stringify(answers))}
+function esc(s){return String(s).replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]))}
+function render(){
+ const sec=sections[step];$("sectionTitle").textContent=sec.title;$("sectionDesc").textContent=sec.desc;
+ $("stepName").textContent=`Étape ${step+1} sur ${sections.length}`;let pct=Math.round(step/sections.length*100);$("progress").style.width=pct+"%";$("progressText").textContent=pct+" %";
+ $("prev").disabled=step===0;$("next").textContent=step===sections.length-1?"Terminer":"Continuer";
+ $("questions").innerHTML=sec.qs.map((q,i)=>questionHTML(q)).join("");
+ sec.qs.forEach(q=>wire(q));
+}
+function questionHTML(q){
+ let val=answers[q.id];let body="";
+ if(q.type==="radio"||q.type==="multi"){
+  body=`<div class="options">${q.o.map((o,i)=>`<label class="option"><input type="${q.type==="radio"?"radio":"checkbox"}" name="${q.id}" value="${esc(o)}" ${q.type==="radio"?(val===o?"checked":""):(Array.isArray(val)&&val.includes(o)?"checked":"")}> <span>${esc(o)}</span></label>`).join("")}</div>`;
+ }else if(q.type==="textarea"){body=`<textarea id="${q.id}" placeholder="${esc(q.ph||"")}">${esc(val||"")}</textarea>`}
+ else if(q.type==="two"){let a=val?.a??"",b=val?.b??"";body=`<div class="fields"><div class="field"><label>${esc(q.a)}</label><input id="${q.id}_a" type="number" min="1" max="30" value="${esc(a)}"></div><div class="field"><label>${esc(q.b)}</label><input id="${q.id}_b" type="number" min="1" max="30" value="${esc(b)}"></div></div>`}
+ if(q.extra){body+=`<div style="margin-top:10px"><input id="${q.id}_extra" type="text" placeholder="Précision facultative" value="${esc(answers[q.id+"_extra"]||"")}"></div>`}
+ return `<div class="question"><h3>${q.id.toUpperCase().replace("Q","")}. ${esc(q.t)}</h3>${body}</div>`;
+}
+function wire(q){
+ if(q.type==="radio"||q.type==="multi")document.querySelectorAll(`[name="${q.id}"]`).forEach(el=>el.addEventListener("change",()=>{if(q.type==="radio")answers[q.id]=el.value;else{let arr=[...document.querySelectorAll(`[name="${q.id}"]:checked`)].map(x=>x.value);answers[q.id]=arr;}save()}));
+ if(q.type==="textarea")$(q.id).addEventListener("input",e=>{answers[q.id]=e.target.value;save()});
+ if(q.type==="two"){[ "a","b" ].forEach(k=>$(q.id+"_"+k).addEventListener("input",e=>{answers[q.id]={...(answers[q.id]||{}),[k]:e.target.value};save()}))}
+ if(q.extra)$(q.id+"_extra").addEventListener("input",e=>{answers[q.id+"_extra"]=e.target.value;save()});
+}
+function showResult(){
+ $("quiz").hidden=true;$("result").style.display="block";$("progress").style.width="100%";$("progressText").textContent="100 %";
+ const answered=sections.flatMap(s=>s.qs).filter(q=>{let v=answers[q.id];return Array.isArray(v)?v.length>0:(v!==undefined&&v!==""&&!(typeof v==="object"&&!v.a&&!v.b))}).length;
+ const val=(id)=>answers[id];
+ const map=(id,dict, fallback=50)=>dict[val(id)]??fallback;
+ const avg=(parts)=>Math.round(parts.reduce((s,p)=>s+p[0]*p[1],0)/parts.reduce((s,p)=>s+p[1],0));
+ const multi=(id)=>Array.isArray(val(id))?val(id):[];
+ const q8=map("q8",{"Tous les jours":100,"4 à 5 fois par semaine":75,"2 à 3 fois par semaine":50,"Rarement":25,"Jamais":0},null);
+ const q9=map("q9",{"Tous les jours":0,"Plusieurs fois par semaine":25,"1 à 2 fois par semaine":50,"Occasionnellement":75,"Jamais ou presque":100},null);
+ const q10=map("q10",{"À chaque repas":100,"Une fois par jour":75,"Plusieurs fois par semaine":50,"Occasionnellement":25,"Rarement":0},null);
+ const q5=50; // Le nombre de repas seul ne permet pas de juger leur équilibre.
+ const scores={};
+ if([q8,q9,q10].every(x=>x!==null)) scores.d1=Math.round(q5*.20+q8*.30+q9*.25+q10*.25);
+ const q12=multi("q12"), q23=map("q23",{"Plusieurs fois par semaine":100,"Une fois par semaine":75,"2 à 3 fois par mois":50,"Rarement":25,"Jamais":0},null);
+ const q21=map("q21",{"Plusieurs fois par jour":100,"Une fois par jour":75,"3 à 4 fois par semaine":50,"1 à 2 fois par semaine":25,"Rarement":0},null);
+ const q22=map("q22",{"À chaque repas":100,"1 à 2 fois par jour":75,"Plusieurs fois par semaine":50,"1 à 2 fois par semaine":25,"Rarement":0},null);
+ const diet=val("q11")||"Je mange de tout";
+ const plantOnly=["Végétalienne"].includes(diet), vegetarian=["Végétarienne","Principalement végétarienne"].includes(diet);
+ const proteinGroups=["Poissons et produits de la mer","Viandes et volailles","Œufs et produits laitiers","Légumineuses","Fruits à coque et graines"];
+ let applicable=plantOnly?["Légumineuses","Fruits à coque et graines"]:vegetarian?["Œufs et produits laitiers","Légumineuses","Fruits à coque et graines"]:proteinGroups;
+ const chosen=applicable.filter(x=>q12.includes(x)).length;
+ const proteinScore=applicable.length?Math.round(chosen/applicable.length*100):50;
+ const allowedGroups=plantOnly?["Fruits et légumes","Légumineuses","Céréales et féculents","Fruits à coque et graines"]:vegetarian?["Fruits et légumes","Œufs et produits laitiers","Légumineuses","Céréales et féculents","Fruits à coque et graines"]:["Fruits et légumes","Poissons et produits de la mer","Viandes et volailles","Œufs et produits laitiers","Légumineuses","Céréales et féculents","Fruits à coque et graines"]; const groupScore=Math.round(allowedGroups.filter(x=>q12.includes(x)).length/allowedGroups.length*100);
+ const cuisineScore=Math.round(multi("q15").length/7*100);
+ if(q12.length&&q23!==null&&q21!==null&&q22!==null) scores.d2=Math.round(groupScore*.30+q23*.20+q21*.15+q22*.15+proteinScore*.15+cuisineScore*.05);
+ const q25=map("q25",{"Oui, très bien":100,"J'en connais quelques-uns":65,"Très peu":30,"Pas du tout":0,"J'aimerais apprendre":0},null);
+ const q29=map("q29",{"Très importante":100,"Importante":75,"Moyenne":50,"Faible":25,"J'aimerais les découvrir":50},null);
+ const localChannels=["Marché local","Producteurs locaux ou vente directe","Petits commerces de proximité"];
+ const localSelected=multi("q18").some(x=>localChannels.includes(x));
+ const sourcingScore=localSelected?100:50; // Le supermarché seul n'est pas considéré comme un mauvais choix.
+ if(q25!==null&&q21!==null&&q22!==null&&q29!==null&&multi("q18").length) scores.d3=Math.round(q25*.30+q21*.15+q22*.15+q29*.20+sourcingScore*.20);
+ const q19=map("q19",{"Je planifie toute la semaine":100,"Je prévois quelques jours à l'avance":75,"Je planifie occasionnellement":50,"Je décide au dernier moment":25},null);
+ if(q19!==null&&q8!==null) scores.d4=Math.round(q19*.60+q8*.40);
+ const levels=s=>s<25?"À découvrir":s<50?"En cours d'acquisition":s<75?"Déjà bien installé":"Point fort";
+ const names={d1:"Mon équilibre alimentaire",d2:"Ma diversité alimentaire",d3:"Ma connaissance des saisons et des produits locaux",d4:"Mon organisation alimentaire"};
+ const cards=Object.keys(names).map(k=>scores[k]===undefined?`<div class="profile-card"><h3>${names[k]}</h3><p class="small">Profil à compléter : certaines réponses nécessaires sont manquantes.</p></div>`:`<div class="profile-card"><h3>${names[k]}</h3><div class="scoreline"><strong>${levels(scores[k])}</strong><span>${scores[k]}/100</span></div><div class="scorebar"><span style="width:${scores[k]}%"></span></div></div>`).join("");
+ const prefs=multi("q12").length+multi("q15").length;
+ const d6=prefs<=3?"Mes préférences à découvrir":prefs<=6?"Mes préférences identifiées":prefs<=9?"Mes habitudes bien définies":"Mes envies diversifiées";
+ $("summary").innerHTML=`<div class="summary"><strong>${answered} / 35</strong>questions renseignées</div><div class="summary"><strong>${new Date().toLocaleDateString("fr-FR")}</strong>date du profil</div><div class="summary"><strong>${d6}</strong>goûts et préférences</div>${cards}<div class="profile-card"><h3>Mon budget alimentaire</h3><p class="small">Personnalisation sans note : le montant du budget, le temps de cuisine et le lieu d'achat ne sont pas utilisés pour vous pénaliser. Les conseils ci-dessous tiennent compte de vos contraintes déclarées.</p></div>`;
+ const levelTip=(k,good,work)=>scores[k]===undefined?"Répondez aux questions manquantes pour recevoir des pistes plus précises.":scores[k]>=75?good:work;
+ const tips=[];
+ tips.push(`<div class="advice"><h3>1. Mon équilibre alimentaire</h3><p>${levelTip("d1","Vos réponses font apparaître des habitudes déjà bien installées. L'objectif est de les maintenir avec souplesse.","Vous pouvez faire évoluer vos habitudes progressivement, sans chercher à tout changer en même temps.")}</p><ul><li>Ajoutez, lorsque cela vous convient, un fruit ou un légume à un repas qui en contient peu.</li><li>Gardez quelques préparations maison simples en réserve : soupe, légumes cuits ou légumineuses.</li><li>Les plats préparés peuvent dépanner ; regardez simplement leur composition et adaptez-les avec un accompagnement frais ou surgelé.</li></ul></div>`);
+ tips.push(`<div class="advice"><h3>2. Ma diversité alimentaire</h3><p>${levelTip("d2","Vous déclarez une palette alimentaire déjà variée. Continuez à alterner les familles d'aliments et les façons de les préparer.","Une petite découverte à la fois peut enrichir vos repas : une légumineuse, un légume ou une céréale que vous appréciez.")}</p><ul><li>Essayez les lentilles, pois chiches ou haricots dans une salade, une soupe ou un plat mijoté.</li><li>Variez les couleurs et les textures selon vos goûts.</li><li>La diversité se construit aussi dans le cadre d'une alimentation végétarienne ou végétalienne.</li></ul></div>`);
+ tips.push(`<div class="advice"><h3>3. Ma connaissance des saisons et des produits locaux</h3><p>${levelTip("d3","Vous avez déjà des repères sur les produits de saison et les circuits de proximité.","Le calendrier saisonnier peut vous aider à repérer les produits du moment et à découvrir les productions du département.")}</p><p>Pour la période actuelle, l'automne dans le guide départemental met notamment en avant les pommes, poires, raisins, blettes, choux, courges, fenouil et poireaux. La disponibilité locale varie selon les exploitations.</p></div>`);
+ tips.push(`<div class="advice"><h3>4. Mon organisation alimentaire</h3><p>${levelTip("d4","Votre planification et la fréquence des repas maison constituent des appuis utiles au quotidien.","Commencez par anticiper deux repas seulement, plutôt que de vouloir planifier toute la semaine.")}</p><ul><li>Préparez une base réutilisable : légumes cuits, céréales ou légumineuses.</li><li>Prévoyez un repas « solution rapide » pour les journées chargées.</li><li>Adaptez la préparation au temps dont vous disposez : il n'est pas nécessaire de cuisiner longuement.</li></ul></div>`);
+ const budget=val("q17")||"non précisé", time=val("q16")||"non précisé";
+ tips.push(`<div class="advice"><h3>5. Mes repères pour le budget</h3><p>Votre budget déclaré : <strong>${esc(budget)}</strong> par personne et par semaine. Temps disponible : <strong>${esc(time)}</strong>.</p><ul><li>Construisez plusieurs repas autour d'un même légume de saison.</li><li>Comparez le prix au kilo et privilégiez les produits bruts lorsque cela est pratique pour vous.</li><li>Les légumes secs, les œufs et les légumes surgelés nature peuvent compléter les repas à coût maîtrisé.</li><li>Choisissez une recette avec des ingrédients déjà présents chez vous pour limiter les achats supplémentaires.</li></ul></div>`);
+ const seasonMonth=new Date().getMonth()+1;
+ const season=seasonMonth>=3&&seasonMonth<=5?"printemps":seasonMonth>=6&&seasonMonth<=8?"été":seasonMonth>=9&&seasonMonth<=11?"automne":"hiver";
+ const seasonal={
+ printemps:{fruits:"abricot, cerise, fraise, framboise",veg:"artichaut, blette, fève, petit pois, radis, asperge",ideas:["Artichauts poêlés à l'huile d'olive et au citron","Salade de fèves et radis","Poêlée de légumes printaniers"]},
+ été:{fruits:"abricot, cerise, figue, melon, pêche, pastèque",veg:"aubergine, concombre, courgette, poivron, tomate",ideas:["Salade de tomates et concombre","Courgettes poêlées aux herbes","Clafoutis aux abricots du Roussillon"]},
+ automne:{fruits:"coing, figue, kiwi, poire, pomme, raisin",veg:"blette, brocoli, carotte, chou, courge, fenouil, poireau",ideas:["Velouté de courge et poireau","Poire rôtie aux épices","Gratin de blettes et pommes de terre"]},
+ hiver:{fruits:"kaki, pomme",veg:"artichaut, blette, brocoli, carotte, céleri, chou, courge, fenouil, navet, panais, poireau",ideas:["Soupe de légumes d'hiver","Poêlée de poireaux et carottes","Gratin de courge et pommes de terre"]}
+ }[season];
+ const dislikes=val("q13")||"aucune précision donnée";
+ const allergy=multi("q14");
+ const restrictions=allergy.filter(x=>x!=="Aucune");
+ const liked=multi("q12");
+ const cuisine=multi("q15");
+ const localRecipes=seasonal.ideas.filter(x=>!(/abricot/i.test(x)&&season!=="été"));
+ tips.push(`<div class="advice"><h3>6. Mes goûts et mes préférences</h3><p><strong>Alimentation :</strong> ${esc(diet)}. <strong>Cuisine appréciée :</strong> ${esc(cuisine.join(", ")||"à préciser")}.</p><p><strong>Groupes appréciés :</strong> ${esc(liked.join(", ")||"à préciser")}.</p><p><strong>Aliments refusés :</strong> ${esc(dislikes)}.</p><p><strong>Exclusions déclarées :</strong> ${esc(restrictions.join(", ")||"aucune déclarée")}.</p><p class="small">Les filtres sont des indications de personnalisation. Une recette ne peut pas être garantie sans allergène sans vérification complète des ingrédients, des étiquettes et des contaminations croisées.</p></div>`);
+ tips.push(`<div class="advice"><h3>Mes idées de saison dans les Pyrénées-Orientales</h3><p><span class="tag">${season[0].toUpperCase()+season.slice(1)}</span></p><p><strong>Fruits indicatifs :</strong> ${seasonal.fruits}.</p><p><strong>Légumes indicatifs :</strong> ${seasonal.veg}.</p><p><strong>Idées de recettes à développer :</strong></p><ul>${localRecipes.map(x=>`<li>${esc(x)}</li>`).join("")}</ul><p class="small">Calendrier saisonnier inspiré du guide fruits et légumes de la Chambre d'agriculture et du Département des Pyrénées-Orientales. Vérifier l'origine et la disponibilité chez les producteurs avant publication.</p></div>`);
+ $("personalAdvice").innerHTML=`<h2 class="section-title">Votre première lecture personnalisée</h2><p class="muted">Des pistes pédagogiques à adapter à votre quotidien, sans régime ni jugement.</p>${tips.join("")}`;
+ window.scrollTo({top:0,behavior:"smooth"});
 }
 
-function showProduct(id) {
+const products=[
+["Abricot rouge du Roussillon","Plaine du Roussillon","Fin du printemps et été, selon récolte","Fruit frais à la chair orangée, à consommer nature ou cuisiné. L'abricot rouge du Roussillon bénéficie d'une reconnaissance AOP ; vérifier le cahier des charges et l'origine sur l'étiquetage.","Données nutritionnelles détaillées en cours de vérification dans la table Ciqual 2020. Aucune valeur chiffrée n’est affichée tant que l’aliment de référence, son état (cru, cuit, égoutté, etc.) et les constituants correspondants ne sont pas confirmés.","Choisir un fruit souple mais non abîmé. Conserver quelques jours au frais lorsqu'il est mûr ; le sortir avant dégustation pour développer ses arômes.","Compote sans sucre ajouté ; abricots rôtis au romarin."],
+["Cerise de Céret","Vallespir – secteur de Céret","Printemps, généralement mai-juin, variable selon météo","Fruit emblématique du Vallespir, réputé pour sa précocité. À déguster frais, en salade de fruits ou en préparation maison.","Données nutritionnelles détaillées en cours de vérification dans la table Ciqual 2020. Aucune valeur chiffrée n’est affichée tant que l’aliment de référence, son état (cru, cuit, égoutté, etc.) et les constituants correspondants ne sont pas confirmés.","Garder les queues jusqu'au lavage. Conserver au réfrigérateur et laver juste avant consommation.","Cerises fraîches ; clafoutis maison ; compotée pour accompagner un fromage blanc."],
+["Artichaut du Roussillon","Plaine du Roussillon","Surtout printemps, avec variations locales","Légume-feuille dont on consomme le cœur et la base charnue des bractées. L'IGP Artichaut du Roussillon identifie une production répondant à un cahier des charges.","Données nutritionnelles détaillées en cours de vérification dans la table Ciqual 2020. Aucune valeur chiffrée n’est affichée tant que l’aliment de référence, son état (cru, cuit, égoutté, etc.) et les constituants correspondants ne sont pas confirmés.","Choisir des têtes fermes et lourdes, aux feuilles serrées. Conserver au frais et consommer rapidement après cuisson.","Artichauts vapeur citronnés ; fonds d'artichaut aux herbes ; salade de cœurs d'artichaut."],
+["Pomme de terre Béa du Roussillon","Roussillon","Primeur au printemps et début d'été, selon récolte","Pomme de terre primeur locale bénéficiant d'une AOP. Sa peau fine se prête à une cuisson simple, sans épluchage lorsqu'elle est bien lavée.","Données nutritionnelles détaillées en cours de vérification dans la table Ciqual 2020. Aucune valeur chiffrée n’est affichée tant que l’aliment de référence, son état (cru, cuit, égoutté, etc.) et les constituants correspondants ne sont pas confirmés.","Conserver à l'abri de la lumière, au frais modéré et au sec. La pomme de terre primeur se conserve moins longtemps que les pommes de terre de garde.","Béa vapeur à l'huile d'olive ; salade tiède aux herbes ; pommes de terre rôties."],
+["Châtaigne du Vallespir","Vallespir","Automne","Fruit à coque riche en amidon, traditionnellement présent dans les usages culinaires du Vallespir. À distinguer des fruits à coque oléagineux : sa composition est surtout glucidique.","Données nutritionnelles détaillées en cours de vérification dans la table Ciqual 2020. Aucune valeur chiffrée n’est affichée tant que l’aliment de référence, son état (cru, cuit, égoutté, etc.) et les constituants correspondants ne sont pas confirmés.","Garder les châtaignes fraîches au frais et les utiliser rapidement. Inciser la coque avant cuisson ; bien cuire avant consommation.","Châtaignes grillées ; velouté de potimarron et châtaigne ; purée de châtaignes."],
+["Huile d'olive du Roussillon","Terroirs oléicoles des Pyrénées-Orientales","Récolte des olives en automne-hiver ; huile disponible toute l'année","Matière grasse végétale emblématique du bassin méditerranéen. La qualité dépend de la variété, de la récolte, de l'extraction et des conditions de conservation.","Données nutritionnelles détaillées en cours de vérification dans la table Ciqual 2020. Aucune valeur chiffrée n’est affichée tant que l’aliment de référence, son état (cru, cuit, égoutté, etc.) et les constituants correspondants ne sont pas confirmés.","Conserver à l'abri de la lumière, de la chaleur et de l'air, bouteille bien fermée.","Assaisonnement de légumes ; filet sur une soupe ; cuisson douce adaptée à la recette."],
+["Anchois frais de Collioure","Collioure – Côte Vermeille","Poisson frais, disponibilité variable selon la pêche et la saison","Petit poisson bleu de Méditerranée (Engraulis encrasicolus). Cette fiche concerne l’anchois frais cru, et non les filets salés, marinés ou conservés à l’huile.","Données nutritionnelles à vérifier dans Ciqual 2020 pour l’entrée correspondant à l’anchois commun cru. Aucune valeur chiffrée n’est affichée avant validation de la ligne exacte.","À conserver au réfrigérateur à 4 °C maximum et à consommer rapidement. Respecter la chaîne du froid et les conseils du poissonnier.","Anchois frais cuits à la plancha ; papillote au citron ; salade tiède avec anchois bien cuits."]
+["Miel des Pyrénées-Orientales","Productions apicoles du département","Récoltes variables selon floraison et altitude ; disponible toute l'année","Produit de la ruche dont la couleur et les arômes varient selon les fleurs butinées et les zones de production. Privilégier une origine clairement indiquée.","Données nutritionnelles détaillées en cours de vérification dans la table Ciqual 2020. Aucune valeur chiffrée n’est affichée tant que l’aliment de référence, son état (cru, cuit, égoutté, etc.) et les constituants correspondants ne sont pas confirmés.","Conserver fermé, à température ambiante, à l'abri de l'humidité. La cristallisation est un phénomène naturel.","Petite touche dans un yaourt nature ; miel et fruits cuits ; vinaigrette douce."],
+["Pommes et poires des vergers","Plaine du Roussillon et vergers du département, selon producteurs","Automne et hiver pour de nombreuses variétés ; conservation variable","Fruits à croquer ou à cuisiner, dont les variétés et périodes de disponibilité dépendent des vergers et des méthodes de conservation.","Données nutritionnelles détaillées en cours de vérification dans la table Ciqual 2020. Aucune valeur chiffrée n’est affichée tant que l’aliment de référence, son état (cru, cuit, égoutté, etc.) et les constituants correspondants ne sont pas confirmés.","Conserver au frais, à l'écart des fruits très mûrs si l'on souhaite ralentir leur mûrissement. Vérifier régulièrement les fruits stockés.","Compote pomme-poire ; poire pochée ; quartiers de pomme dans une salade."],
+["Champignons de montagne","Massifs du département, selon espèces et récoltes","Automne principalement, selon météo et altitude","Une diversité d'espèces sauvages et cultivées peut être rencontrée dans les massifs. Ne jamais consommer un champignon sauvage sans identification certaine par un spécialiste compétent.","Données nutritionnelles détaillées en cours de vérification dans la table Ciqual 2020. Aucune valeur chiffrée n’est affichée tant que l’aliment de référence, son état (cru, cuit, égoutté, etc.) et les constituants correspondants ne sont pas confirmés.","Les conserver au frais et les consommer rapidement. Ne pas se fier à une application ou à une photographie pour identifier un champignon sauvage.","Poêlée de champignons cultivés ; omelette aux champignons identifiés ; soupe forestière."]
+];
+const recipes=[
+["Salade tiède de Béa du Roussillon","4 personnes · 25 min","600 g de pommes de terre Béa, 2 c. à s. d'huile d'olive, persil, ciboulette, 1 c. à s. de vinaigre, poivre.","Laver les pommes de terre et les cuire à l'eau ou à la vapeur. Les couper encore tièdes. Mélanger l'huile, le vinaigre et les herbes ; assaisonner et servir tiède.","Végétarien · Allergènes possibles selon ingrédients ajoutés : moutarde dans certaines vinaigrettes."],
+["Velouté de courge et châtaignes","4 personnes · 40 min","600 g de courge, 150 g de châtaignes cuites, 1 oignon, 700 ml d'eau ou bouillon, huile d'olive.","Faire revenir l'oignon. Ajouter la courge en cubes, les châtaignes et le liquide. Cuire jusqu'à tendreté puis mixer. Ajuster la texture.","Végétarien si bouillon adapté · Vérifier les allergènes du bouillon."],
+["Artichauts vapeur au citron","2 personnes · 30–40 min","2 artichauts, 1 citron, 1 c. à s. d'huile d'olive, herbes fraîches.","Rincer les artichauts, raccourcir les feuilles si besoin et cuire à la vapeur jusqu'à tendreté. Servir avec citron, huile et herbes.","Végétalien · Sans allergène majeur ajouté dans la recette de base."],
+["Abricots rôtis au romarin","4 personnes · 20 min","8 abricots, 1 branche de romarin, 1 c. à c. de miel facultative.","Couper les abricots en deux, retirer les noyaux. Déposer dans un plat avec le romarin et un peu d'eau. Rôtir 12 à 15 minutes à 180 °C.","Végétarien · Le miel est facultatif."],
+["Clafoutis aux cerises","6 personnes · 45 min","400 g de cerises, 3 œufs, 80 g de farine, 300 ml de lait, 50 g de sucre, vanille.","Préchauffer le four à 180 °C. Fouetter les œufs, le sucre, la farine et le lait. Verser sur les cerises dans un plat. Cuire environ 35 minutes.","Contient œufs, gluten et lait."],
+["Salade de pommes et noix","2 personnes · 10 min","1 pomme, 1 poire, quelques noix, jeunes pousses, 1 c. à s. d'huile d'olive, vinaigre.","Laver et couper les fruits. Mélanger aux jeunes pousses. Ajouter les noix et une vinaigrette légère.","Végétarien · Contient fruits à coque (noix)."],
+["Anchois frais grillés, citron et persil","2 personnes · 20 min","300 g d'anchois frais préparés, 1 citron, persil, 1 c. à s. d'huile d'olive.","Faire cuire les anchois à la plancha ou dans une poêle chaude jusqu'à cuisson complète. Ajouter citron et persil. Servir avec des légumes de saison.","Contient poisson. Vérifier la fraîcheur et respecter la chaîne du froid."],
+["Poêlée de champignons et persillade","2 personnes · 20 min","300 g de champignons de Paris ou champignons cultivés identifiés, ail, persil, huile d'olive.","Nettoyer les champignons cultivés, les émincer et les faire revenir à feu vif. Ajouter ail et persil en fin de cuisson.","Végétalien · Recette de base sans allergène majeur ajouté. Ne jamais substituer un champignon sauvage non identifié."],
+["Carottes et poireaux rôtis au miel","4 personnes · 35 min","4 carottes, 2 poireaux, 1 c. à c. de miel, huile d'olive, thym.","Laver et couper les légumes. Mélanger avec huile, thym et miel. Rôtir environ 25 à 30 minutes à 190 °C en remuant à mi-cuisson.","Végétarien · Miel facultatif."],
+["Tartinade de pois chiches à l'huile d'olive","4 personnes · 10 min","250 g de pois chiches cuits, 1 c. à s. d'huile d'olive, jus de citron, cumin, eau.","Mixer les pois chiches avec l'huile, le citron, le cumin et un peu d'eau jusqu'à la texture souhaitée. Servir avec des crudités ou du pain.","Végétalien · Contient légumineuses ; vérifier le pain servi en accompagnement."]
+];
 
-  const product = products[id];
+const menuRecipes = [
+ {name:"Velouté de courge et pois chiches",season:["automne","hiver"],diet:"vegan",time:30,cost:"economy",equipment:["Plaques de cuisson","Mixeur"],allergens:[],ingredients:["Courge","Pois chiches cuits","Oignon","Huile d'olive","Cumin"],steps:"Faire revenir l'oignon, ajouter la courge en cubes et de l'eau. Cuire jusqu'à tendreté, ajouter les pois chiches puis mixer partiellement ou totalement.",tags:["courge","légumineuses"]},
+ {name:"Poêlée de poireaux et pommes de terre",season:["automne","hiver"],diet:"vegan",time:25,cost:"economy",equipment:["Plaques de cuisson"],allergens:[],ingredients:["Poireaux","Pommes de terre","Huile d'olive","Ail","Herbes"],steps:"Cuire les pommes de terre en dés. Faire fondre les poireaux émincés avec un peu d'huile, ajouter les pommes de terre et les herbes.",tags:["poireau","pomme de terre"]},
+ {name:"Riz aux légumes de saison",season:["toutes"],diet:"vegan",time:25,cost:"economy",equipment:["Plaques de cuisson"],allergens:[],ingredients:["Riz","Carottes","Courgette ou poireau selon saison","Oignon","Huile d'olive"],steps:"Faire revenir l'oignon et les légumes coupés. Ajouter le riz et l'eau nécessaire, puis cuire selon les indications du paquet.",tags:["riz","légumes"]},
+ {name:"Lentilles mijotées aux carottes",season:["automne","hiver","toutes"],diet:"vegan",time:35,cost:"economy",equipment:["Plaques de cuisson"],allergens:[],ingredients:["Lentilles","Carottes","Oignon","Laurier","Huile d'olive"],steps:"Rincer les lentilles. Les faire cuire avec les carottes, l'oignon et le laurier selon le temps indiqué sur le paquet.",tags:["lentilles","carotte"]},
+ {name:"Omelette aux légumes",season:["printemps","été","automne","hiver"],diet:"vegetarian",time:15,cost:"economy",equipment:["Plaques de cuisson"],allergens:["œufs"],ingredients:["Œufs","Légumes de saison","Herbes","Huile d'olive"],steps:"Faire revenir les légumes émincés. Ajouter les œufs battus et cuire doucement jusqu'à la texture souhaitée.",tags:["œufs","légumes"]},
+ {name:"Pâtes aux légumes et herbes",season:["toutes"],diet:"vegan",time:20,cost:"economy",equipment:["Plaques de cuisson"],allergens:["gluten"],ingredients:["Pâtes","Légumes de saison","Ail","Huile d'olive","Herbes"],steps:"Cuire les pâtes. Faire revenir les légumes et l'ail, puis mélanger avec les pâtes et un peu d'eau de cuisson.",tags:["pâtes","légumes"]},
+ {name:"Salade de pois chiches, pomme et carotte",season:["automne","hiver","printemps"],diet:"vegan",time:15,cost:"economy",equipment:[],allergens:[],ingredients:["Pois chiches cuits","Pomme","Carotte","Citron","Huile d'olive"],steps:"Rincer les pois chiches. Râper la carotte et couper la pomme. Mélanger avec citron et huile d'olive.",tags:["pois chiches","pomme"]},
+ {name:"Gratin de légumes et pommes de terre",season:["automne","hiver"],diet:"vegetarian",time:45,cost:"economy",equipment:["Four"],allergens:["lait"],ingredients:["Pommes de terre","Courge ou poireaux","Lait ou boisson adaptée","Fromage facultatif"],steps:"Disposer les légumes et pommes de terre en tranches dans un plat. Ajouter un peu de lait, éventuellement du fromage, puis cuire au four jusqu'à tendreté.",tags:["gratin","légumes"]},
+ {name:"Poisson au four et légumes",season:["toutes"],diet:"omnivore",time:30,cost:"standard",equipment:["Four"],allergens:["poisson"],ingredients:["Filet de poisson","Carottes ou fenouil","Citron","Huile d'olive","Herbes"],steps:"Déposer le poisson et les légumes dans un plat, arroser de citron et d'huile d'olive, puis cuire au four jusqu'à cuisson complète.",tags:["poisson","légumes"]},
+ {name:"Poulet aux carottes et au thym",season:["automne","hiver","toutes"],diet:"omnivore",time:35,cost:"standard",equipment:["Four","Plaques de cuisson"],allergens:[],ingredients:["Poulet","Carottes","Oignon","Thym","Huile d'olive"],steps:"Faire dorer le poulet, ajouter les carottes et l'oignon, puis cuire à couvert avec un peu d'eau et du thym jusqu'à cuisson complète.",tags:["volaille","carotte"]},
+ {name:"Anchois frais grillés et légumes",season:["printemps","été"],diet:"omnivore",time:20,cost:"standard",equipment:["Plaques de cuisson"],allergens:["poisson"],ingredients:["Anchois frais","Citron","Persil","Légumes de saison","Huile d'olive"],steps:"Faire cuire les anchois frais à la poêle ou à la plancha jusqu’à cuisson complète. Ajouter citron et persil, puis servir avec des légumes de saison.",tags:["anchois frais","poisson"]},
+ {name:"Porridge pomme-cannelle",season:["automne","hiver","toutes"],diet:"vegan",time:10,cost:"economy",equipment:["Plaques de cuisson","Micro-ondes"],allergens:["gluten"],ingredients:["Flocons d'avoine","Pomme","Cannelle","Eau ou boisson végétale"],steps:"Faire cuire les flocons avec de l'eau ou une boisson végétale. Ajouter la pomme en morceaux et la cannelle.",tags:["avoine","pomme"]},
+ {name:"Salade tiède de Béa du Roussillon",season:["printemps","été"],diet:"vegan",time:25,cost:"standard",equipment:["Plaques de cuisson"],allergens:[],ingredients:["Pommes de terre Béa","Huile d'olive","Persil","Ciboulette","Vinaigre"],steps:"Cuire les pommes de terre à l'eau ou à la vapeur, couper tièdes et assaisonner avec huile, vinaigre et herbes.",tags:["Béa du Roussillon","pomme de terre"]},
+ {name:"Velouté de courge et châtaignes",season:["automne","hiver"],diet:"vegan",time:40,cost:"standard",equipment:["Plaques de cuisson","Mixeur"],allergens:[],ingredients:["Courge","Châtaignes cuites","Oignon","Huile d'olive"],steps:"Faire revenir l'oignon, ajouter la courge, les châtaignes et de l'eau. Cuire puis mixer.",tags:["châtaigne du Vallespir","courge"]},
+ {name:"Carottes et poireaux rôtis au miel",season:["automne","hiver"],diet:"vegetarian",time:35,cost:"economy",equipment:["Four"],allergens:[],ingredients:["Carottes","Poireaux","Miel facultatif","Huile d'olive","Thym"],steps:"Couper les légumes, les mélanger avec huile et thym, ajouter un peu de miel si souhaité et rôtir au four.",tags:["carotte","poireau"]},
+ {name:"Tartinade de pois chiches",season:["toutes"],diet:"vegan",time:10,cost:"economy",equipment:["Mixeur"],allergens:[],ingredients:["Pois chiches cuits","Citron","Huile d'olive","Cumin"],steps:"Mixer les pois chiches avec citron, huile et cumin. Détendre avec un peu d'eau si besoin.",tags:["pois chiches"]}
+];
 
-  document.getElementById("details").innerHTML =
+// Quantités indicatives par personne, exprimées en grammes ou millilitres.
+// Elles sont des bases culinaires modulables, pas des prescriptions nutritionnelles.
+const portionQuantities = {
+ "Velouté de courge et pois chiches":[["Courge",200,"g"],["Pois chiches cuits",100,"g"],["Oignon",30,"g"],["Huile d'olive",5,"ml"]],
+ "Poêlée de poireaux et pommes de terre":[["Poireaux",150,"g"],["Pommes de terre",180,"g"],["Huile d'olive",5,"ml"],["Ail",3,"g"]],
+ "Riz aux légumes de saison":[["Riz",75,"g"],["Carottes",80,"g"],["Courgette ou poireau selon saison",100,"g"],["Oignon",30,"g"],["Huile d'olive",5,"ml"]],
+ "Lentilles mijotées aux carottes":[["Lentilles",70,"g"],["Carottes",100,"g"],["Oignon",30,"g"],["Huile d'olive",5,"ml"]],
+ "Omelette aux légumes":[["Œufs",2,"pièce(s)"],["Légumes de saison",150,"g"],["Huile d'olive",5,"ml"]],
+ "Pâtes aux légumes et herbes":[["Pâtes",75,"g"],["Légumes de saison",150,"g"],["Huile d'olive",5,"ml"],["Ail",3,"g"]],
+ "Salade de pois chiches, pomme et carotte":[["Pois chiches cuits",120,"g"],["Pomme",100,"g"],["Carotte",70,"g"],["Huile d'olive",5,"ml"],["Citron",15,"g"]],
+ "Gratin de légumes et pommes de terre":[["Pommes de terre",150,"g"],["Courge ou poireaux",150,"g"],["Lait ou boisson adaptée",60,"ml"],["Fromage facultatif",20,"g"]],
+ "Poisson au four et légumes":[["Filet de poisson",130,"g"],["Carottes ou fenouil",180,"g"],["Citron",15,"g"],["Huile d'olive",5,"ml"]],
+ "Poulet aux carottes et au thym":[["Poulet",130,"g"],["Carottes",180,"g"],["Oignon",30,"g"],["Huile d'olive",5,"ml"]],
+ "Anchois frais grillés et légumes":[["Anchois frais",150,"g"],["Légumes de saison",180,"g"],["Huile d'olive",5,"ml"],["Citron",15,"g"]],
+ "Porridge pomme-cannelle":[["Flocons d'avoine",40,"g"],["Pomme",120,"g"],["Eau ou boisson végétale",180,"ml"]],
+ "Salade tiède de Béa du Roussillon":[["Pommes de terre Béa",200,"g"],["Huile d'olive",8,"ml"],["Vinaigre",5,"ml"]],
+ "Velouté de courge et châtaignes":[["Courge",220,"g"],["Châtaignes cuites",60,"g"],["Oignon",30,"g"],["Huile d'olive",5,"ml"]],
+ "Carottes et poireaux rôtis au miel":[["Carottes",120,"g"],["Poireaux",120,"g"],["Miel facultatif",8,"g"],["Huile d'olive",5,"ml"]],
+ "Tartinade de pois chiches":[["Pois chiches cuits",120,"g"],["Citron",15,"g"],["Huile d'olive",8,"ml"]]
+};
 
-    "<h3>" + product[0] + "</h3><p>" + product[1] + "</p>" +
-
-    "<p><em>Informations générales, à compléter avec des données nutritionnelles vérifiées.</em></p>";
-
+function currentSeasonName(){
+ const m=new Date().getMonth()+1;
+ return m>=3&&m<=5?"printemps":m>=6&&m<=8?"été":m>=9&&m<=11?"automne":"hiver";
+}
+function getMenuCandidates(){
+ const diet=answers.q11||"Je mange de tout";
+ const strictVegan=diet==="Végétalienne";
+ const strictVeg=["Végétarienne","Principalement végétarienne"].includes(diet);
+ const declared=Array.isArray(answers.q14)?answers.q14:[];
+ const allergyUnknown=declared.includes("Autres allergies ou intolérances")||declared.includes("Autre choix alimentaire");
+ const excluded=[];
+ if(declared.includes("Gluten")) excluded.push("gluten");
+ if(declared.includes("Lactose")) excluded.push("lait");
+ if(declared.includes("Fruits à coque")) excluded.push("fruits à coque");
+ const dislike=(answers.q13||"").toLocaleLowerCase("fr");
+ const timeLimit=Number(document.getElementById("menuTime").value||30);
+ const budget=document.getElementById("menuBudget").value;
+ const season=currentSeasonName();
+ let candidates=menuRecipes.filter(r=>{
+  if(!r.season.includes("toutes")&&!r.season.includes(season)) return false;
+  if(strictVegan&&r.diet!=="vegan") return false;
+  if(strictVeg&&r.diet==="omnivore") return false;
+  if(r.time>timeLimit) return false;
+  if(budget==="economy"&&r.cost!=="economy") return false;
+  if(r.allergens.some(a=>excluded.includes(a))) return false;
+  if(dislike && r.ingredients.some(i=>dislike.includes(i.toLocaleLowerCase("fr")))) return false;
+  const equipment=Array.isArray(answers.q20)?answers.q20:[];
+  if(r.equipment.length && equipment.length && !r.equipment.some(e=>equipment.includes(e))) return false;
+  if(equipment.includes("Aucun équipement particulier") && r.equipment.some(e=>["Four","Mixeur","Robot de cuisine","Air fryer"].includes(e))) return false;
+  return true;
+ });
+ return {candidates,allergyUnknown,excluded};
+}
+function generateMenus(){
+ const days=Number(document.getElementById("menuDays").value||7);
+ const {candidates,allergyUnknown,excluded}=getMenuCandidates();
+ const output=document.getElementById("menuOutput");
+ if(!candidates.length){
+  output.innerHTML='<div class="notice" style="margin-top:16px">Je ne trouve pas assez de recettes correspondant à tous les critères sélectionnés. Essayez d’augmenter le temps disponible, de retirer la priorité budget ou de vérifier les équipements renseignés.</div>';
+  return;
+ }
+ const mealSlots=days*2;
+ const selected=Array.from({length:mealSlots},(_,i)=>candidates[i%candidates.length]);
+ const season=currentSeasonName();
+ const dayLabels=["Lundi","Mardi","Mercredi","Jeudi","Vendredi","Samedi","Dimanche"];
+ let cards="";
+ for(let d=0;d<days;d++){
+  const lunch=selected[d*2],dinner=selected[d*2+1];
+  cards+=`<div class="menu-day"><h3>${dayLabels[d]||"Jour "+(d+1)}</h3>
+   <div class="menu-meal"><strong>Déjeuner</strong><div class="menu-recipe">${lunch.name}</div><div class="menu-meta">${lunch.time} min · ${lunch.cost==="economy"?"Budget économique":"Budget standard"}</div><p>${lunch.steps}</p></div>
+   <div class="menu-meal"><strong>Dîner</strong><div class="menu-recipe">${dinner.name}</div><div class="menu-meta">${dinner.time} min · ${dinner.cost==="economy"?"Budget économique":"Budget standard"}</div><p>${dinner.steps}</p></div>
+  </div>`;
+ }
+ const people=Number(document.getElementById("menuPeople").value||2);
+ const totals={};
+ selected.forEach(r=>{
+  (portionQuantities[r.name]||[]).forEach(([ingredient,amount,unit])=>{
+   const key=ingredient+"|"+unit;
+   totals[key]=(totals[key]||0)+amount*people;
+  });
+ });
+ const shopping=Object.entries(totals).map(([key,amount])=>{
+  const [ingredient,unit]=key.split("|");
+  const rounded=unit==="pièce(s)"?Math.round(amount):Math.round(amount/5)*5;
+  return `<li>${esc(ingredient)} : <strong>${rounded} ${unit}</strong></li>`;
+ }).join("");
+ output.innerHTML=`<h3 class="section-title" style="margin-top:22px">Votre proposition de menu · ${season}</h3>
+  <p class="muted">Proposition sur ${days} jours, avec deux idées de repas par jour, pour ${people} personne${people>1?"s":""}. Les quantités de la liste sont des repères culinaires indicatifs calculés à partir des portions choisies.</p>
+  ${cards}
+  <div class="shopping-list"><h3 style="color:var(--wine);margin-top:0">Liste de courses estimative pour ${people} personne${people>1?"s":""}</h3><p class="small">Quantités calculées pour les recettes proposées. Vérifiez vos placards et adaptez selon l'appétit, les accompagnements et les portions souhaitées.</p><ul>${shopping}</ul></div>
+  ${allergyUnknown?'<div class="notice" style="margin-top:14px">Vous avez indiqué une autre allergie, intolérance ou exclusion. Comme sa nature n’est pas précisée dans le questionnaire, les recettes ne peuvent pas être filtrées de façon fiable : vérifiez chaque ingrédient avant toute préparation.</div>':""}
+  ${excluded.length?`<p class="small">Filtres appliqués selon vos réponses : ${excluded.map(esc).join(", ")}. Ce filtrage automatique ne remplace jamais la vérification des étiquettes.</p>`:""}
+  <p class="small">Saison indicative : ${season}. La disponibilité des produits varie selon la météo, les producteurs et les conditions locales. Les menus ne calculent pas de besoins énergétiques et ne remplacent pas un conseil individualisé par un professionnel de santé.</p>
+  <p class="small">Références à consulter pour la validation éditoriale : Anses, Table Ciqual 2020 (composition moyenne des aliments) ; Manger Bouger, calendrier de saison. Les valeurs exactes devront être associées à chaque aliment et à son état précis avant publication.</p>`;
+}
+function openPlanner(){
+ document.getElementById("welcome").hidden=true;
+ document.getElementById("quiz").hidden=true;
+ document.getElementById("library").hidden=true;
+ document.getElementById("result").style.display="none";
+ document.getElementById("planner").hidden=false;
+ document.getElementById("menuOutput").innerHTML="";
+ window.scrollTo({top:0,behavior:"smooth"});
+}
+function openLibrary(){
+ document.getElementById("welcome").hidden=true;
+ document.getElementById("quiz").hidden=true;
+ document.getElementById("result").style.display="none";
+ document.getElementById("planner").hidden=true;
+ document.getElementById("library").hidden=false;
+ buildLibrary();window.scrollTo({top:0,behavior:"smooth"});
 }
 
-showSeason();
+function buildLibrary(){
+ const phtml=products.map((p,i)=>`<details class="advice"><summary><strong>${i+1}. ${p[0]}</strong> <span class="small">· ${p[1]}</span></summary><p><strong>Saison :</strong> ${p[2]}</p><p>${p[3]}</p><p><strong>Données nutritionnelles :</strong> ${p[4]}</p><p><strong>Conservation :</strong> ${p[5]}</p><p><strong>Idées :</strong> ${p[6]}</p></details>`).join("");
+ const rhtml=recipes.map((r,i)=>`<details class="advice"><summary><strong>${i+1}. ${r[0]}</strong> <span class="small">· ${r[1]}</span></summary><p><strong>Ingrédients :</strong> ${r[2]}</p><p><strong>Préparation :</strong> ${r[3]}</p><p><strong>Allergènes et régime :</strong> ${r[4]}</p></details>`).join("");
+ $("libraryContent").innerHTML=`<h3 style="color:var(--wine)">10 fiches produits</h3>${phtml}<h3 style="color:var(--wine);margin-top:24px">10 recettes de départ</h3>${rhtml}<div class="notice"><strong>À valider avant publication :</strong> les valeurs chiffrées des fiches sont des ordres de grandeur pédagogiques, non des valeurs certifiées de produit local. Pour chaque fiche finale, il faudra sélectionner l'aliment exact et son état (cru, cuit, séché, en conserve) dans la table Ciqual 2020. Les allergènes doivent être contrôlés pour chaque ingrédient et chaque marque.</div>`;
+}
+function openLibrary(){ $("welcome").hidden=true;$("quiz").hidden=true;$("result").style.display="none";$("planner").hidden=true;$("library").hidden=false;buildLibrary();window.scrollTo({top:0,behavior:"smooth"});}
+$("openLibrary").onclick=openLibrary;
+$("openPlanner").onclick=openPlanner;
+$("generateMenus").onclick=generateMenus;
+$("backToResult").onclick=()=>{document.getElementById("planner").hidden=true;document.getElementById("result").style.display="block";window.scrollTo({top:0,behavior:"smooth"});};
+$("backHome").onclick=()=>{$("library").hidden=true;$("planner").hidden=true;$("welcome").hidden=false;window.scrollTo({top:0,behavior:"smooth"});};
 
+$("start").onclick=()=>{$("welcome").hidden=true;$("quiz").hidden=false;render();window.scrollTo({top:0,behavior:"smooth"})};
+$("prev").onclick=()=>{if(step>0){step--;render();window.scrollTo({top:0,behavior:"smooth"})}};
+$("next").onclick=()=>{save();if(step<sections.length-1){step++;render();window.scrollTo({top:0,behavior:"smooth"})}else showResult()};
+$("edit").onclick=()=>{$("result").style.display="none";$("quiz").hidden=false;step=0;render();window.scrollTo({top:0,behavior:"smooth"})};
+$("export").onclick=()=>{const blob=new Blob([JSON.stringify({application:"Nutrition au fil des saisons",version:"prototype-7",exportedAt:new Date().toISOString(),answers},null,2)],{type:"application/json"});const a=document.createElement("a");a.href=URL.createObjectURL(blob);a.download="mes-reponses-nutrition-saisons.json";a.click();URL.revokeObjectURL(a.href)};
+$("reset").onclick=()=>{if(confirm("Effacer toutes les réponses enregistrées sur cet appareil ?")){answers={};save();step=0;$("result").style.display="none";$("welcome").hidden=false;window.scrollTo({top:0,behavior:"smooth"})}};
+if(Object.keys(answers).length){$("start").textContent="Reprendre mon questionnaire"}
 </script>
 
-</body>
+<script>
+if ("serviceWorker" in navigator && (location.protocol === "https:" || location.hostname === "localhost")) {
+  window.addEventListener("load", () => {
+    navigator.serviceWorker.register("./sw.js").catch(() => {
+      // L'application reste utilisable même si l'installation hors ligne échoue.
+    });
+  });
+}
+</script>
 
-</html>
+</body></html>

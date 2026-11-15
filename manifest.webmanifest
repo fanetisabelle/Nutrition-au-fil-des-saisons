@@ -1,0 +1,27 @@
+{
+  "id": "./",
+  "name": "Nutrition au fil des saisons",
+  "short_name": "Nutrition saisons",
+  "description": "Mieux manger, naturellement. Produits locaux, saisons et recettes des Pyrénées-Orientales.",
+  "lang": "fr-FR",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "background_color": "#F5F0E8",
+  "theme_color": "#704052",
+  "orientation": "portrait",
+  "icons": [
+    {
+      "src": "./logo-isabelle-fanet-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "./logo-isabelle-fanet-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any"
+    }
+  ]
+}
