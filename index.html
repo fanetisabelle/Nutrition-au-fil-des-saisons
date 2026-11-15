@@ -1,0 +1,299 @@
+
+
+<!DOCTYPE html>
+
+<html lang="fr">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Nutrition au fil des saisons</title>
+
+<style>
+
+* { box-sizing: border-box; }
+
+body {
+
+  margin: 0;
+
+  font-family: Arial, sans-serif;
+
+  background: #f7f5ef;
+
+  color: #344b3b;
+
+}
+
+header {
+
+  background: #47765B;
+
+  color: white;
+
+  text-align: center;
+
+  padding: 35px 15px;
+
+}
+
+header h1 { margin: 0; font-size: 27px; }
+
+header p { margin-bottom: 0; }
+
+main { max-width: 850px; margin: auto; padding: 20px; }
+
+h2 { color: #47765B; }
+
+.intro {
+
+  background: white;
+
+  padding: 20px;
+
+  border-radius: 14px;
+
+  line-height: 1.6;
+
+}
+
+.grid {
+
+  display: grid;
+
+  grid-template-columns: repeat(auto-fit,minmax(140px,1fr));
+
+  gap: 12px;
+
+}
+
+.card {
+
+  background: white;
+
+  border-radius: 14px;
+
+  padding: 20px;
+
+  text-align: center;
+
+  box-shadow: 0 2px 8px #00000010;
+
+}
+
+.card button {
+
+  background: #47765B;
+
+  color: white;
+
+  border: 0;
+
+  border-radius: 8px;
+
+  padding: 10px;
+
+  cursor: pointer;
+
+}
+
+select {
+
+  padding: 12px;
+
+  width: 100%;
+
+  border-radius: 8px;
+
+  border: 1px solid #47765B;
+
+  background: white;
+
+}
+
+#details {
+
+  background: white;
+
+  padding: 20px;
+
+  margin-top: 20px;
+
+  border-radius: 14px;
+
+  line-height: 1.6;
+
+}
+
+footer {
+
+  text-align: center;
+
+  padding: 25px;
+
+  color: #47765B;
+
+}
+
+</style>
+
+</head>
+
+<body>
+
+<header>
+
+  <h1>🌿 Nutrition au fil des saisons</h1>
+
+  <p>Les saveurs et les richesses des Pyrénées-Orientales</p>
+
+</header>
+
+<main>
+
+  <section class="intro">
+
+    <h2>Bienvenue !</h2>
+
+    <p>Découvrez les fruits, légumes et produits locaux de notre territoire.
+
+    Apprenez à mieux connaître leurs qualités nutritionnelles et profitez
+
+    des richesses de chaque saison.</p>
+
+  </section>
+
+  <h2>🍃 Découvrir les saisons</h2>
+
+  <select id="season" onchange="showSeason()">
+
+    <option value="printemps">Printemps</option>
+
+    <option value="ete">Été</option>
+
+    <option value="automne">Automne</option>
+
+    <option value="hiver">Hiver</option>
+
+  </select>
+
+  <div id="details"></div>
+
+  <h2>🥕 Nos produits du terroir</h2>
+
+  <div class="grid">
+
+    <div class="card">
+
+      <h3>🍒 Cerise de Céret</h3>
+
+      <p>Un fruit emblématique du territoire.</p>
+
+      <button onclick="showProduct('cerise')">Découvrir</button>
+
+    </div>
+
+    <div class="card">
+
+      <h3>🍑 Abricot du Roussillon</h3>
+
+      <p>Un fruit ensoleillé et savoureux.</p>
+
+      <button onclick="showProduct('abricot')">Découvrir</button>
+
+    </div>
+
+    <div class="card">
+
+      <h3>🌿 Artichaut</h3>
+
+      <p>Un légume de notre terroir.</p>
+
+      <button onclick="showProduct('artichaut')">Découvrir</button>
+
+    </div>
+
+    <div class="card">
+
+      <h3>🫒 Huile d'olive</h3>
+
+      <p>Un produit phare de la Méditerranée.</p>
+
+      <button onclick="showProduct('olive')">Découvrir</button>
+
+    </div>
+
+  </div>
+
+  <div id="details" aria-live="polite">
+
+    Sélectionnez un produit pour découvrir sa fiche.
+
+  </div>
+
+</main>
+
+<footer>
+
+  Nutrition locale • Saisonnalité • Terroir catalan
+
+</footer>
+
+<script>
+
+const seasons = {
+
+  printemps: "Le printemps met à l'honneur les asperges, les artichauts et les premières récoltes.",
+
+  ete: "L'été célèbre les cerises, les abricots rouges du Roussillon et les fruits gorgés de soleil.",
+
+  automne: "L'automne invite à découvrir les champignons de montagne, les châtaignes et le miel.",
+
+  hiver: "L'hiver permet de profiter des produits méditerranéens et des récoltes de saison."
+
+};
+
+const products = {
+
+  cerise: ["Cerise de Céret", "Fruit riche en eau, contenant des fibres et des composés antioxydants."],
+
+  abricot: ["Abricot rouge du Roussillon", "Source de bêta-carotène, de fibres et de vitamine C."],
+
+  artichaut: ["Artichaut", "Légume riche en fibres, notamment en inuline."],
+
+  olive: ["Huile d'olive", "Source de matières grasses majoritairement mono-insaturées."]
+
+};
+
+function showSeason() {
+
+  const season = document.getElementById("season").value;
+
+  document.getElementById("details").innerHTML =
+
+    "<h3>La saison sélectionnée</h3><p>" + seasons[season] + "</p>";
+
+}
+
+function showProduct(id) {
+
+  const product = products[id];
+
+  document.getElementById("details").innerHTML =
+
+    "<h3>" + product[0] + "</h3><p>" + product[1] + "</p>" +
+
+    "<p><em>Informations générales, à compléter avec des données nutritionnelles vérifiées.</em></p>";
+
+}
+
+showSeason();
+
+</script>
+
+</body>
+
+</html>
