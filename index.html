@@ -76,10 +76,10 @@ footer{text-align:center;color:var(--muted);font-size:.8rem;padding:8px 12px 28p
 </header>
 <main>
  <section class="card intro" id="welcome">
-  <span class="pill">Prototype gratuit · Version 8</span>
+  
   <h2>Apprenons à mieux connaître vos habitudes</h2>
   <p>Ce questionnaire comporte 35 questions réparties en 7 étapes. Il permet de préparer des conseils pratiques autour de vos habitudes, de vos goûts, de votre organisation et des produits de saison.</p>
-  <div class="notice"><strong>Confidentialité :</strong> dans cette version de test, vos réponses restent enregistrées dans le navigateur de cet appareil. Elles ne sont envoyées à aucun serveur. Évitez d'y inscrire des informations médicales détaillées.</div>
+  <div class="notice"><strong>Confidentialité :</strong> vos réponses restent enregistrées dans le navigateur de cet appareil. Elles ne sont envoyées à aucun serveur. Évitez d'y inscrire des informations médicales détaillées.</div>
   <div class="actions"><button class="primary" id="start">Commencer le questionnaire</button><button class="secondary" id="openLibrary">Découvrir les produits et recettes</button></div>
  </section>
  <section class="card" id="quiz" hidden>
@@ -93,12 +93,12 @@ footer{text-align:center;color:var(--muted);font-size:.8rem;padding:8px 12px 28p
    <button class="primary" id="next">Continuer</button>
   </div>
  </section>
- <section class="card" id="library" hidden><span class="pill">Bibliothèque locale · 66</span><h2 class="section-title">Les produits du terroir et les recettes de saison</h2><p class="muted">Une première sélection éditoriale à enrichir et à valider avant publication.</p>
-  <div class="notice">Les valeurs chiffrées sont volontairement masquées tant que chaque aliment n’a pas été rapproché d’une référence Ciqual précise (variété si disponible, cru/cuit, préparation). Cette précaution évite de présenter des estimations comme des données officielles. Source de référence : <a href="https://ciqual.anses.fr/cms/fr/node/19" target="_blank" rel="noopener">Anses – Table Ciqual 2020</a>. Les données réutilisées porteront la mention « Anses. 2025. Table de composition nutritionnelle des aliments Ciqual ».</div><div id="libraryContent"></div><div class="actions"><button class="secondary" id="backHome">Retour à l’accueil</button></div></section>
+ <section class="card" id="library" hidden><span class="pill">Bibliothèque locale · 66</span><h2 class="section-title">Les produits du terroir et les recettes de saison</h2><p class="muted">Une sélection de produits du terroir et de recettes inspirées des saisons des Pyrénées-Orientales.</p>
+  <div class="notice">Les valeurs chiffrées sont volontairement masquées tant que chaque aliment n’a pas été rapproché d’une référence Ciqual précise (variété si disponible, cru/cuit, préparation). Cette précaution évite de présenter des estimations comme des données officielles. Source de référence : <a href="https://ciqual.anses.fr/cms/fr/node/19" target="_blank" rel="noopener">Anses – Table Ciqual 2020</a>. Les données réutilisées porteront la mention « Anses. 2020. Table de composition nutritionnelle des aliments Ciqual ».</div><div id="libraryContent"></div><div class="actions"><button class="secondary" id="backHome">Retour à l’accueil</button></div></section>
  <section class="card" id="planner" hidden>
-  <span class="pill">Suggestions personnalisées · Version 7</span>
+  
   <h2 class="section-title">Composer mes menus</h2>
-  <p class="muted">Des idées de repas à partir de vos réponses, de la saison et de produits faciles à trouver. Vous pouvez ajuster les critères avant de générer vos menus.</p>
+  <p class="muted">Chaque repas associe obligatoirement des légumes, des féculents, une source de protéines (viande, volaille, poisson, œufs ou protéines végétales) et une bonne matière grasse. Les sources de protéines sont variées selon les recettes et les saisons.</p>
   <div class="planner-controls">
    <div><label for="menuDays">Durée du menu</label><select id="menuDays"><option value="3">3 jours</option><option value="5">5 jours</option><option value="7" selected>7 jours</option></select></div>
    <div><label for="menuPeople">Nombre de personnes</label><select id="menuPeople"><option value="1">1 personne</option><option value="2" selected>2 personnes</option><option value="3">3 personnes</option><option value="4">4 personnes</option><option value="5">5 personnes</option><option value="6">6 personnes</option></select></div>
@@ -112,7 +112,7 @@ footer{text-align:center;color:var(--muted);font-size:.8rem;padding:8px 12px 28p
  <section class="card result" id="result">
   <span class="pill">Questionnaire terminé</span>
   <h2>Votre questionnaire est prêt</h2>
-  <p>Vos réponses ont été enregistrées sur cet appareil. Les premières règles de calcul exploratoires sont intégrées ; elles devront être vérifiées avant toute utilisation publique.</p>
+  <p>Vos réponses ont été enregistrées sur cet appareil. Les résultats donnent des repères pratiques à partir des réponses renseignées. Ils ne constituent pas une évaluation médicale.</p>
   <div class="summary-grid" id="summary"></div><div id="personalAdvice" style="margin-top:18px"></div>
   <div class="notice" style="margin-top:16px">Les informations nutritionnelles sont en cours de vérification à partir de la table Ciqual 2020. Aucune valeur chiffrée non validée ne doit être interprétée comme une donnée officielle. Ces fiches sont pédagogiques et ne constituent ni un diagnostic ni une évaluation médicale.</div>
   <div class="actions">
@@ -122,7 +122,7 @@ footer{text-align:center;color:var(--muted);font-size:.8rem;padding:8px 12px 28p
   </div>
  </section>
 </main>
-<footer>Nutrition au fil des saisons · Prototype de travail non médical · Suggestions indicatives · Version 7</footer>
+<footer>Nutrition au fil des saisons · Informations pédagogiques et suggestions indicatives · Ne remplace pas un avis médical.</footer>
 <script>
 const sections = [
 {title:"Mon profil et mon quotidien",desc:"Quelques repères pour comprendre votre rythme de vie.",qs:[
@@ -294,43 +294,34 @@ const recipes=[
 ];
 
 const menuRecipes = [
- {name:"Velouté de courge et pois chiches",season:["automne","hiver"],diet:"vegan",time:30,cost:"economy",equipment:["Plaques de cuisson","Mixeur"],allergens:[],ingredients:["Courge","Pois chiches cuits","Oignon","Huile d'olive","Cumin"],steps:"Faire revenir l'oignon, ajouter la courge en cubes et de l'eau. Cuire jusqu'à tendreté, ajouter les pois chiches puis mixer partiellement ou totalement.",tags:["courge","légumineuses"]},
- {name:"Poêlée de poireaux et pommes de terre",season:["automne","hiver"],diet:"vegan",time:25,cost:"economy",equipment:["Plaques de cuisson"],allergens:[],ingredients:["Poireaux","Pommes de terre","Huile d'olive","Ail","Herbes"],steps:"Cuire les pommes de terre en dés. Faire fondre les poireaux émincés avec un peu d'huile, ajouter les pommes de terre et les herbes.",tags:["poireau","pomme de terre"]},
- {name:"Riz aux légumes de saison",season:["toutes"],diet:"vegan",time:25,cost:"economy",equipment:["Plaques de cuisson"],allergens:[],ingredients:["Riz","Carottes","Courgette ou poireau selon saison","Oignon","Huile d'olive"],steps:"Faire revenir l'oignon et les légumes coupés. Ajouter le riz et l'eau nécessaire, puis cuire selon les indications du paquet.",tags:["riz","légumes"]},
- {name:"Lentilles mijotées aux carottes",season:["automne","hiver","toutes"],diet:"vegan",time:35,cost:"economy",equipment:["Plaques de cuisson"],allergens:[],ingredients:["Lentilles","Carottes","Oignon","Laurier","Huile d'olive"],steps:"Rincer les lentilles. Les faire cuire avec les carottes, l'oignon et le laurier selon le temps indiqué sur le paquet.",tags:["lentilles","carotte"]},
- {name:"Omelette aux légumes",season:["printemps","été","automne","hiver"],diet:"vegetarian",time:15,cost:"economy",equipment:["Plaques de cuisson"],allergens:["œufs"],ingredients:["Œufs","Légumes de saison","Herbes","Huile d'olive"],steps:"Faire revenir les légumes émincés. Ajouter les œufs battus et cuire doucement jusqu'à la texture souhaitée.",tags:["œufs","légumes"]},
- {name:"Pâtes aux légumes et herbes",season:["toutes"],diet:"vegan",time:20,cost:"economy",equipment:["Plaques de cuisson"],allergens:["gluten"],ingredients:["Pâtes","Légumes de saison","Ail","Huile d'olive","Herbes"],steps:"Cuire les pâtes. Faire revenir les légumes et l'ail, puis mélanger avec les pâtes et un peu d'eau de cuisson.",tags:["pâtes","légumes"]},
- {name:"Salade de pois chiches, pomme et carotte",season:["automne","hiver","printemps"],diet:"vegan",time:15,cost:"economy",equipment:[],allergens:[],ingredients:["Pois chiches cuits","Pomme","Carotte","Citron","Huile d'olive"],steps:"Rincer les pois chiches. Râper la carotte et couper la pomme. Mélanger avec citron et huile d'olive.",tags:["pois chiches","pomme"]},
- {name:"Gratin de légumes et pommes de terre",season:["automne","hiver"],diet:"vegetarian",time:45,cost:"economy",equipment:["Four"],allergens:["lait"],ingredients:["Pommes de terre","Courge ou poireaux","Lait ou boisson adaptée","Fromage facultatif"],steps:"Disposer les légumes et pommes de terre en tranches dans un plat. Ajouter un peu de lait, éventuellement du fromage, puis cuire au four jusqu'à tendreté.",tags:["gratin","légumes"]},
- {name:"Poisson au four et légumes",season:["toutes"],diet:"omnivore",time:30,cost:"standard",equipment:["Four"],allergens:["poisson"],ingredients:["Filet de poisson","Carottes ou fenouil","Citron","Huile d'olive","Herbes"],steps:"Déposer le poisson et les légumes dans un plat, arroser de citron et d'huile d'olive, puis cuire au four jusqu'à cuisson complète.",tags:["poisson","légumes"]},
- {name:"Poulet aux carottes et au thym",season:["automne","hiver","toutes"],diet:"omnivore",time:35,cost:"standard",equipment:["Four","Plaques de cuisson"],allergens:[],ingredients:["Poulet","Carottes","Oignon","Thym","Huile d'olive"],steps:"Faire dorer le poulet, ajouter les carottes et l'oignon, puis cuire à couvert avec un peu d'eau et du thym jusqu'à cuisson complète.",tags:["volaille","carotte"]},
- {name:"Anchois frais grillés et légumes",season:["printemps","été"],diet:"omnivore",time:20,cost:"standard",equipment:["Plaques de cuisson"],allergens:["poisson"],ingredients:["Anchois frais","Citron","Persil","Légumes de saison","Huile d'olive"],steps:"Faire cuire les anchois frais à la poêle ou à la plancha jusqu’à cuisson complète. Ajouter citron et persil, puis servir avec des légumes de saison.",tags:["anchois frais","poisson"]},
- {name:"Porridge pomme-cannelle",season:["automne","hiver","toutes"],diet:"vegan",time:10,cost:"economy",equipment:["Plaques de cuisson","Micro-ondes"],allergens:["gluten"],ingredients:["Flocons d'avoine","Pomme","Cannelle","Eau ou boisson végétale"],steps:"Faire cuire les flocons avec de l'eau ou une boisson végétale. Ajouter la pomme en morceaux et la cannelle.",tags:["avoine","pomme"]},
- {name:"Salade tiède de Béa du Roussillon",season:["printemps","été"],diet:"vegan",time:25,cost:"standard",equipment:["Plaques de cuisson"],allergens:[],ingredients:["Pommes de terre Béa","Huile d'olive","Persil","Ciboulette","Vinaigre"],steps:"Cuire les pommes de terre à l'eau ou à la vapeur, couper tièdes et assaisonner avec huile, vinaigre et herbes.",tags:["Béa du Roussillon","pomme de terre"]},
- {name:"Velouté de courge et châtaignes",season:["automne","hiver"],diet:"vegan",time:40,cost:"standard",equipment:["Plaques de cuisson","Mixeur"],allergens:[],ingredients:["Courge","Châtaignes cuites","Oignon","Huile d'olive"],steps:"Faire revenir l'oignon, ajouter la courge, les châtaignes et de l'eau. Cuire puis mixer.",tags:["châtaigne du Vallespir","courge"]},
- {name:"Carottes et poireaux rôtis au miel",season:["automne","hiver"],diet:"vegetarian",time:35,cost:"economy",equipment:["Four"],allergens:[],ingredients:["Carottes","Poireaux","Miel facultatif","Huile d'olive","Thym"],steps:"Couper les légumes, les mélanger avec huile et thym, ajouter un peu de miel si souhaité et rôtir au four.",tags:["carotte","poireau"]},
- {name:"Tartinade de pois chiches",season:["toutes"],diet:"vegan",time:10,cost:"economy",equipment:["Mixeur"],allergens:[],ingredients:["Pois chiches cuits","Citron","Huile d'olive","Cumin"],steps:"Mixer les pois chiches avec citron, huile et cumin. Détendre avec un peu d'eau si besoin.",tags:["pois chiches"]}
+ {name:"Poulet rôti, riz complet et légumes de saison",season:["toutes"],diet:"omnivore",time:35,cost:"standard",equipment:["Four"],allergens:[],ingredients:["Poulet","Riz complet","Carottes","Courgettes ou poireaux","Huile d'olive"],steps:"Cuire le riz. Rôtir le poulet jusqu'à cuisson complète. Faire cuire les légumes à la vapeur ou à la poêle et assaisonner avec l'huile d'olive.",tags:["viande","féculent","légumes","matière grasse"],balanced:true},
+ {name:"Poisson au four, pommes de terre et haricots verts",season:["toutes"],diet:"omnivore",time:35,cost:"standard",equipment:["Four","Plaques de cuisson"],allergens:["poisson"],ingredients:["Filet de poisson","Pommes de terre","Haricots verts","Huile d'olive","Citron"],steps:"Cuire les pommes de terre et les haricots verts. Enfourner le poisson avec citron et huile d'olive jusqu'à cuisson complète.",tags:["poisson","féculent","légumes","matière grasse"],balanced:true},
+ {name:"Boulettes de bœuf, semoule et ratatouille",season:["printemps","été","automne"],diet:"omnivore",time:40,cost:"standard",equipment:["Plaques de cuisson"],allergens:["gluten"],ingredients:["Bœuf haché","Semoule complète","Aubergine","Courgette","Tomate","Huile d'olive"],steps:"Cuire la semoule. Former et cuire les boulettes de bœuf à cœur. Faire mijoter aubergine, courgette et tomate avec l'huile d'olive.",tags:["viande","féculent","légumes","matière grasse"],balanced:true},
+ {name:"Dinde, pâtes complètes et brocoli",season:["toutes"],diet:"omnivore",time:25,cost:"standard",equipment:["Plaques de cuisson"],allergens:["gluten"],ingredients:["Escalope de dinde","Pâtes complètes","Brocoli","Huile d'olive","Ail"],steps:"Cuire les pâtes et le brocoli. Faire cuire la dinde à cœur avec l'ail et l'huile d'olive. Servir ensemble.",tags:["volaille","féculent","légumes","matière grasse"],balanced:true},
+ {name:"Omelette aux épinards, pommes de terre et salade",season:["toutes"],diet:"vegetarian",time:25,cost:"economy",equipment:["Plaques de cuisson"],allergens:["œufs"],ingredients:["Œufs","Pommes de terre","Épinards","Salade verte","Huile de colza"],steps:"Cuire les pommes de terre. Préparer l'omelette aux épinards. Servir avec la salade assaisonnée à l'huile de colza.",tags:["œufs","féculent","légumes","matière grasse"],balanced:true},
+ {name:"Lentilles, riz, carottes et noix",season:["toutes"],diet:"vegan",time:35,cost:"economy",equipment:["Plaques de cuisson"],allergens:["fruits à coque"],ingredients:["Lentilles","Riz","Carottes","Noix","Huile de colza"],steps:"Cuire séparément lentilles et riz. Faire cuire les carottes. Ajouter les noix concassées et un filet d'huile de colza au moment de servir.",tags:["protéine végétale","féculent","légumes","matière grasse"],balanced:true},
+ {name:"Saumon, quinoa et fondue de poireaux",season:["automne","hiver","printemps"],diet:"omnivore",time:30,cost:"standard",equipment:["Four","Plaques de cuisson"],allergens:["poisson"],ingredients:["Saumon","Quinoa","Poireaux","Huile d'olive","Citron"],steps:"Cuire le quinoa. Faire fondre les poireaux avec un peu d'huile. Cuire le saumon à cœur au four et servir avec citron.",tags:["poisson","féculent","légumes","matière grasse"],balanced:true},
+ {name:"Poulet aux pois chiches, boulgour et légumes",season:["toutes"],diet:"omnivore",time:35,cost:"standard",equipment:["Plaques de cuisson"],allergens:["gluten"],ingredients:["Poulet","Pois chiches cuits","Boulgour","Carottes","Courgettes","Huile d'olive"],steps:"Cuire le boulgour. Faire cuire le poulet à cœur avec les légumes, ajouter les pois chiches et l'huile d'olive puis réchauffer ensemble.",tags:["volaille","féculent","légumes","matière grasse"],balanced:true},
+ {name:"Anchois frais, pommes de terre et légumes grillés",season:["printemps","été"],diet:"omnivore",time:25,cost:"standard",equipment:["Plaques de cuisson"],allergens:["poisson"],ingredients:["Anchois frais","Pommes de terre","Poivrons","Courgettes","Huile d'olive","Citron"],steps:"Cuire les pommes de terre. Griller les légumes. Cuire les anchois frais complètement à la poêle ou à la plancha et servir avec citron et huile d'olive.",tags:["poisson","féculent","légumes","matière grasse"],balanced:true},
+ {name:"Tofu, nouilles de sarrasin et légumes croquants",season:["toutes"],diet:"vegan",time:25,cost:"standard",equipment:["Plaques de cuisson"],allergens:["soja"],ingredients:["Tofu","Nouilles de sarrasin","Carottes","Chou","Huile de sésame"],steps:"Cuire les nouilles. Faire dorer le tofu et sauter les légumes. Mélanger avec un filet d'huile de sésame.",tags:["protéine végétale","féculent","légumes","matière grasse"],balanced:true},
+ {name:"Porc filet, polenta et courge rôtie",season:["automne","hiver"],diet:"omnivore",time:35,cost:"standard",equipment:["Four","Plaques de cuisson"],allergens:[],ingredients:["Filet de porc","Polenta","Courge","Oignon","Huile d'olive"],steps:"Cuire la polenta. Rôtir la courge et l'oignon avec l'huile d'olive. Cuire le filet de porc à cœur et servir.",tags:["viande","féculent","légumes","matière grasse"],balanced:true},
+ {name:"Pois chiches, patate douce et épinards",season:["automne","hiver","printemps"],diet:"vegan",time:30,cost:"economy",equipment:["Plaques de cuisson"],allergens:[],ingredients:["Pois chiches cuits","Patate douce","Épinards","Huile d'olive","Cumin"],steps:"Cuire la patate douce en cubes. Faire mijoter les pois chiches avec les épinards, le cumin et l'huile d'olive. Servir avec la patate douce.",tags:["protéine végétale","féculent","légumes","matière grasse"],balanced:true}
 ];
 
-// Quantités indicatives par personne, exprimées en grammes ou millilitres.
-// Elles sont des bases culinaires modulables, pas des prescriptions nutritionnelles.
+// Portions culinaires indicatives par personne ; à adapter à l'appétit et aux besoins.
 const portionQuantities = {
- "Velouté de courge et pois chiches":[["Courge",200,"g"],["Pois chiches cuits",100,"g"],["Oignon",30,"g"],["Huile d'olive",5,"ml"]],
- "Poêlée de poireaux et pommes de terre":[["Poireaux",150,"g"],["Pommes de terre",180,"g"],["Huile d'olive",5,"ml"],["Ail",3,"g"]],
- "Riz aux légumes de saison":[["Riz",75,"g"],["Carottes",80,"g"],["Courgette ou poireau selon saison",100,"g"],["Oignon",30,"g"],["Huile d'olive",5,"ml"]],
- "Lentilles mijotées aux carottes":[["Lentilles",70,"g"],["Carottes",100,"g"],["Oignon",30,"g"],["Huile d'olive",5,"ml"]],
- "Omelette aux légumes":[["Œufs",2,"pièce(s)"],["Légumes de saison",150,"g"],["Huile d'olive",5,"ml"]],
- "Pâtes aux légumes et herbes":[["Pâtes",75,"g"],["Légumes de saison",150,"g"],["Huile d'olive",5,"ml"],["Ail",3,"g"]],
- "Salade de pois chiches, pomme et carotte":[["Pois chiches cuits",120,"g"],["Pomme",100,"g"],["Carotte",70,"g"],["Huile d'olive",5,"ml"],["Citron",15,"g"]],
- "Gratin de légumes et pommes de terre":[["Pommes de terre",150,"g"],["Courge ou poireaux",150,"g"],["Lait ou boisson adaptée",60,"ml"],["Fromage facultatif",20,"g"]],
- "Poisson au four et légumes":[["Filet de poisson",130,"g"],["Carottes ou fenouil",180,"g"],["Citron",15,"g"],["Huile d'olive",5,"ml"]],
- "Poulet aux carottes et au thym":[["Poulet",130,"g"],["Carottes",180,"g"],["Oignon",30,"g"],["Huile d'olive",5,"ml"]],
- "Anchois frais grillés et légumes":[["Anchois frais",150,"g"],["Légumes de saison",180,"g"],["Huile d'olive",5,"ml"],["Citron",15,"g"]],
- "Porridge pomme-cannelle":[["Flocons d'avoine",40,"g"],["Pomme",120,"g"],["Eau ou boisson végétale",180,"ml"]],
- "Salade tiède de Béa du Roussillon":[["Pommes de terre Béa",200,"g"],["Huile d'olive",8,"ml"],["Vinaigre",5,"ml"]],
- "Velouté de courge et châtaignes":[["Courge",220,"g"],["Châtaignes cuites",60,"g"],["Oignon",30,"g"],["Huile d'olive",5,"ml"]],
- "Carottes et poireaux rôtis au miel":[["Carottes",120,"g"],["Poireaux",120,"g"],["Miel facultatif",8,"g"],["Huile d'olive",5,"ml"]],
- "Tartinade de pois chiches":[["Pois chiches cuits",120,"g"],["Citron",15,"g"],["Huile d'olive",8,"ml"]]
+ "Poulet rôti, riz complet et légumes de saison":[["Poulet",130,"g"],["Riz complet",70,"g"],["Carottes",80,"g"],["Courgettes ou poireaux",100,"g"],["Huile d'olive",10,"ml"]],
+ "Poisson au four, pommes de terre et haricots verts":[["Filet de poisson",130,"g"],["Pommes de terre",180,"g"],["Haricots verts",150,"g"],["Huile d'olive",10,"ml"],["Citron",15,"g"]],
+ "Boulettes de bœuf, semoule et ratatouille":[["Bœuf haché",120,"g"],["Semoule complète",70,"g"],["Aubergine",70,"g"],["Courgette",70,"g"],["Tomate",70,"g"],["Huile d'olive",10,"ml"]],
+ "Dinde, pâtes complètes et brocoli":[["Escalope de dinde",130,"g"],["Pâtes complètes",70,"g"],["Brocoli",180,"g"],["Huile d'olive",10,"ml"]],
+ "Omelette aux épinards, pommes de terre et salade":[["Œufs",2,"pièce(s)"],["Pommes de terre",160,"g"],["Épinards",100,"g"],["Salade verte",60,"g"],["Huile de colza",10,"ml"]],
+ "Lentilles, riz, carottes et noix":[["Lentilles",70,"g"],["Riz",50,"g"],["Carottes",120,"g"],["Noix",10,"g"],["Huile de colza",5,"ml"]],
+ "Saumon, quinoa et fondue de poireaux":[["Saumon",130,"g"],["Quinoa",70,"g"],["Poireaux",180,"g"],["Huile d'olive",10,"ml"]],
+ "Poulet aux pois chiches, boulgour et légumes":[["Poulet",100,"g"],["Pois chiches cuits",60,"g"],["Boulgour",60,"g"],["Carottes",80,"g"],["Courgettes",80,"g"],["Huile d'olive",10,"ml"]],
+ "Anchois frais, pommes de terre et légumes grillés":[["Anchois frais",150,"g"],["Pommes de terre",180,"g"],["Poivrons",90,"g"],["Courgettes",90,"g"],["Huile d'olive",10,"ml"]],
+ "Tofu, nouilles de sarrasin et légumes croquants":[["Tofu",130,"g"],["Nouilles de sarrasin",70,"g"],["Carottes",90,"g"],["Chou",90,"g"],["Huile de sésame",10,"ml"]],
+ "Porc filet, polenta et courge rôtie":[["Filet de porc",130,"g"],["Polenta",70,"g"],["Courge",180,"g"],["Huile d'olive",10,"ml"]],
+ "Pois chiches, patate douce et épinards":[["Pois chiches cuits",130,"g"],["Patate douce",160,"g"],["Épinards",100,"g"],["Huile d'olive",10,"ml"]]
 };
 
 function currentSeasonName(){
@@ -352,6 +343,7 @@ function getMenuCandidates(){
  const budget=document.getElementById("menuBudget").value;
  const season=currentSeasonName();
  let candidates=menuRecipes.filter(r=>{
+  if(!r.balanced || !["féculent","légumes","matière grasse"].every(tag=>r.tags.includes(tag)) || !r.tags.some(tag=>["viande","volaille","poisson","œufs","protéine végétale"].includes(tag))) return false;
   if(!r.season.includes("toutes")&&!r.season.includes(season)) return false;
   if(strictVegan&&r.diet!=="vegan") return false;
   if(strictVeg&&r.diet==="omnivore") return false;
@@ -429,7 +421,7 @@ function openLibrary(){
 function buildLibrary(){
  const phtml=products.map((p,i)=>`<details class="advice"><summary><strong>${i+1}. ${p[0]}</strong> <span class="small">· ${p[1]}</span></summary><p><strong>Saison :</strong> ${p[2]}</p><p>${p[3]}</p><p><strong>Données nutritionnelles :</strong> ${p[4]}</p><p><strong>Conservation :</strong> ${p[5]}</p><p><strong>Idées :</strong> ${p[6]}</p></details>`).join("");
  const rhtml=recipes.map((r,i)=>`<details class="advice"><summary><strong>${i+1}. ${r[0]}</strong> <span class="small">· ${r[1]}</span></summary><p><strong>Ingrédients :</strong> ${r[2]}</p><p><strong>Préparation :</strong> ${r[3]}</p><p><strong>Allergènes et régime :</strong> ${r[4]}</p></details>`).join("");
- $("libraryContent").innerHTML=`<h3 style="color:var(--wine)">10 fiches produits</h3>${phtml}<h3 style="color:var(--wine);margin-top:24px">10 recettes de départ</h3>${rhtml}<div class="notice"><strong>À valider avant publication :</strong> les valeurs chiffrées des fiches sont des ordres de grandeur pédagogiques, non des valeurs certifiées de produit local. Pour chaque fiche finale, il faudra sélectionner l'aliment exact et son état (cru, cuit, séché, en conserve) dans la table Ciqual 2020. Les allergènes doivent être contrôlés pour chaque ingrédient et chaque marque.</div>`;
+ $("libraryContent").innerHTML=`<h3 style="color:var(--wine)">10 fiches produits</h3>${phtml}<h3 style="color:var(--wine);margin-top:24px">10 recettes de départ</h3>${rhtml}<div class="notice"><strong>Repères de lecture :</strong> les valeurs chiffrées des fiches sont des ordres de grandeur pédagogiques, non des valeurs certifiées de produit local. Pour chaque fiche finale, il faudra sélectionner l'aliment exact et son état (cru, cuit, séché, en conserve) dans la table Ciqual 2020. Les allergènes doivent être contrôlés pour chaque ingrédient et chaque marque.</div>`;
 }
 function openLibrary(){ $("welcome").hidden=true;$("quiz").hidden=true;$("result").style.display="none";$("planner").hidden=true;$("library").hidden=false;buildLibrary();window.scrollTo({top:0,behavior:"smooth"});}
 $("openLibrary").onclick=openLibrary;
@@ -442,7 +434,7 @@ $("start").onclick=()=>{$("welcome").hidden=true;$("quiz").hidden=false;render()
 $("prev").onclick=()=>{if(step>0){step--;render();window.scrollTo({top:0,behavior:"smooth"})}};
 $("next").onclick=()=>{save();if(step<sections.length-1){step++;render();window.scrollTo({top:0,behavior:"smooth"})}else showResult()};
 $("edit").onclick=()=>{$("result").style.display="none";$("quiz").hidden=false;step=0;render();window.scrollTo({top:0,behavior:"smooth"})};
-$("export").onclick=()=>{const blob=new Blob([JSON.stringify({application:"Nutrition au fil des saisons",version:"prototype-7",exportedAt:new Date().toISOString(),answers},null,2)],{type:"application/json"});const a=document.createElement("a");a.href=URL.createObjectURL(blob);a.download="mes-reponses-nutrition-saisons.json";a.click();URL.revokeObjectURL(a.href)};
+$("export").onclick=()=>{const blob=new Blob([JSON.stringify({application:"Nutrition au fil des saisons",exportedAt:new Date().toISOString(),answers},null,2)],{type:"application/json"});const a=document.createElement("a");a.href=URL.createObjectURL(blob);a.download="mes-reponses-nutrition-saisons.json";a.click();URL.revokeObjectURL(a.href)};
 $("reset").onclick=()=>{if(confirm("Effacer toutes les réponses enregistrées sur cet appareil ?")){answers={};save();step=0;$("result").style.display="none";$("welcome").hidden=false;window.scrollTo({top:0,behavior:"smooth"})}};
 if(Object.keys(answers).length){$("start").textContent="Reprendre mon questionnaire"}
 </script>
