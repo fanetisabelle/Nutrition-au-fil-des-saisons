@@ -22,3 +22,10 @@ Précautions
 
 Mise à jour
 Téléverser les fichiers de ce dossier à la racine du dépôt GitHub, en remplaçant les fichiers portant le même nom. Conserver le dossier .github déjà présent dans le dépôt.
+
+
+Mise à jour v10 – Guide de l’assiette santé
+- Ajout d’une rubrique « Mon assiette santé & mes portions » accessible depuis l’accueil.
+- Présentation visuelle des proportions de l’assiette et des repères de portions à la main.
+- Ajout explicite du pain nordique : une portion correspondant à la paume de la main, comme alternative aux féculents à cuisiner.
+- Incrément de la version du cache hors ligne pour que les navigateurs récupèrent la mise à jour.
