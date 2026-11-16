@@ -127,7 +127,7 @@ footer{text-align:center;color:var(--muted);font-size:.8rem;padding:8px 12px 28p
   </div>
  </section>
  <section class="card" id="library" hidden><span class="pill">Bibliothèque locale · 66</span><h2 class="section-title">Les produits du terroir et les recettes de saison</h2><p class="muted">Une sélection de produits du terroir et de recettes inspirées des saisons des Pyrénées-Orientales.</p>
-  <div class="notice">Les valeurs chiffrées sont volontairement masquées tant que chaque aliment n’a pas été rapproché d’une référence Ciqual précise (variété si disponible, cru/cuit, préparation). Cette précaution évite de présenter des estimations comme des données officielles. Source de référence : <a href="https://ciqual.anses.fr/cms/fr/node/19" target="_blank" rel="noopener">Anses – Table Ciqual 2020</a>. Les données réutilisées porteront la mention « Anses. 2020. Table de composition nutritionnelle des aliments Ciqual ».</div><div id="libraryContent"></div><div class="actions"><button class="secondary" id="backHome">Retour à l’accueil</button></div></section>
+  <div class="notice">Les valeurs chiffrées sont volontairement masquées tant que chaque aliment n’a pas été rapproché d’une référence Ciqual précise (variété si disponible, cru/cuit, préparation). Cette précaution évite de présenter des estimations comme des données officielles. Source de référence : <a href="https://ciqual.anses.fr/cms/fr/node/19" target="_blank" rel="noopener">Anses – Table Ciqual 2025</a>. Les données réutilisées porteront la mention « Anses. 2025. Table de composition nutritionnelle des aliments Ciqual ».</div><div id="libraryContent"></div><div class="actions"><button class="secondary" id="backHome">Retour à l’accueil</button></div></section>
  <section class="card" id="planner" hidden>
   
   <h2 class="section-title">Composer mes menus</h2>
@@ -147,7 +147,7 @@ footer{text-align:center;color:var(--muted);font-size:.8rem;padding:8px 12px 28p
   <h2>Votre questionnaire est prêt</h2>
   <p>Vos réponses ont été enregistrées sur cet appareil. Les résultats donnent des repères pratiques à partir des réponses renseignées. Ils ne constituent pas une évaluation médicale.</p>
   <div class="summary-grid" id="summary"></div><div id="personalAdvice" style="margin-top:18px"></div>
-  <div class="notice" style="margin-top:16px">Les informations nutritionnelles sont en cours de vérification à partir de la table Ciqual 2020. Aucune valeur chiffrée non validée ne doit être interprétée comme une donnée officielle. Ces fiches sont pédagogiques et ne constituent ni un diagnostic ni une évaluation médicale.</div>
+  <div class="notice" style="margin-top:16px">Les informations nutritionnelles sont en cours de vérification à partir de la table Ciqual 2025. Aucune valeur chiffrée non validée ne doit être interprétée comme une donnée officielle. Ces fiches sont pédagogiques et ne constituent ni un diagnostic ni une évaluation médicale.</div>
   <div class="actions">
    <button class="secondary" id="edit">Modifier mes réponses</button>
    <button class="primary" id="export">Télécharger mes réponses</button>
@@ -302,16 +302,16 @@ function showResult(){
 }
 
 const products=[
-["Abricot rouge du Roussillon","Plaine du Roussillon","Fin du printemps et été, selon récolte","Fruit frais à la chair orangée, à consommer nature ou cuisiné. L'abricot rouge du Roussillon bénéficie d'une reconnaissance AOP ; vérifier le cahier des charges et l'origine sur l'étiquetage.","Données nutritionnelles détaillées en cours de vérification dans la table Ciqual 2020. Aucune valeur chiffrée n’est affichée tant que l’aliment de référence, son état (cru, cuit, égoutté, etc.) et les constituants correspondants ne sont pas confirmés.","Choisir un fruit souple mais non abîmé. Conserver quelques jours au frais lorsqu'il est mûr ; le sortir avant dégustation pour développer ses arômes.","Compote sans sucre ajouté ; abricots rôtis au romarin."],
-["Cerise de Céret","Vallespir – secteur de Céret","Printemps, généralement mai-juin, variable selon météo","Fruit emblématique du Vallespir, réputé pour sa précocité. À déguster frais, en salade de fruits ou en préparation maison.","Données nutritionnelles détaillées en cours de vérification dans la table Ciqual 2020. Aucune valeur chiffrée n’est affichée tant que l’aliment de référence, son état (cru, cuit, égoutté, etc.) et les constituants correspondants ne sont pas confirmés.","Garder les queues jusqu'au lavage. Conserver au réfrigérateur et laver juste avant consommation.","Cerises fraîches ; clafoutis maison ; compotée pour accompagner un fromage blanc."],
-["Artichaut du Roussillon","Plaine du Roussillon","Surtout printemps, avec variations locales","Légume-feuille dont on consomme le cœur et la base charnue des bractées. L'IGP Artichaut du Roussillon identifie une production répondant à un cahier des charges.","Données nutritionnelles détaillées en cours de vérification dans la table Ciqual 2020. Aucune valeur chiffrée n’est affichée tant que l’aliment de référence, son état (cru, cuit, égoutté, etc.) et les constituants correspondants ne sont pas confirmés.","Choisir des têtes fermes et lourdes, aux feuilles serrées. Conserver au frais et consommer rapidement après cuisson.","Artichauts vapeur citronnés ; fonds d'artichaut aux herbes ; salade de cœurs d'artichaut."],
-["Pomme de terre Béa du Roussillon","Roussillon","Primeur au printemps et début d'été, selon récolte","Pomme de terre primeur locale bénéficiant d'une AOP. Sa peau fine se prête à une cuisson simple, sans épluchage lorsqu'elle est bien lavée.","Données nutritionnelles détaillées en cours de vérification dans la table Ciqual 2020. Aucune valeur chiffrée n’est affichée tant que l’aliment de référence, son état (cru, cuit, égoutté, etc.) et les constituants correspondants ne sont pas confirmés.","Conserver à l'abri de la lumière, au frais modéré et au sec. La pomme de terre primeur se conserve moins longtemps que les pommes de terre de garde.","Béa vapeur à l'huile d'olive ; salade tiède aux herbes ; pommes de terre rôties."],
-["Châtaigne du Vallespir","Vallespir","Automne","Fruit à coque riche en amidon, traditionnellement présent dans les usages culinaires du Vallespir. À distinguer des fruits à coque oléagineux : sa composition est surtout glucidique.","Données nutritionnelles détaillées en cours de vérification dans la table Ciqual 2020. Aucune valeur chiffrée n’est affichée tant que l’aliment de référence, son état (cru, cuit, égoutté, etc.) et les constituants correspondants ne sont pas confirmés.","Garder les châtaignes fraîches au frais et les utiliser rapidement. Inciser la coque avant cuisson ; bien cuire avant consommation.","Châtaignes grillées ; velouté de potimarron et châtaigne ; purée de châtaignes."],
-["Huile d'olive du Roussillon","Terroirs oléicoles des Pyrénées-Orientales","Récolte des olives en automne-hiver ; huile disponible toute l'année","Matière grasse végétale emblématique du bassin méditerranéen. La qualité dépend de la variété, de la récolte, de l'extraction et des conditions de conservation.","Données nutritionnelles détaillées en cours de vérification dans la table Ciqual 2020. Aucune valeur chiffrée n’est affichée tant que l’aliment de référence, son état (cru, cuit, égoutté, etc.) et les constituants correspondants ne sont pas confirmés.","Conserver à l'abri de la lumière, de la chaleur et de l'air, bouteille bien fermée.","Assaisonnement de légumes ; filet sur une soupe ; cuisson douce adaptée à la recette."],
-["Anchois frais de Collioure","Collioure – Côte Vermeille","Poisson frais, disponibilité variable selon la pêche et la saison","Petit poisson bleu de Méditerranée (Engraulis encrasicolus). Cette fiche concerne l’anchois frais cru, et non les filets salés, marinés ou conservés à l’huile.","Données nutritionnelles à vérifier dans Ciqual 2020 pour l’entrée correspondant à l’anchois commun cru. Aucune valeur chiffrée n’est affichée avant validation de la ligne exacte.","À conserver au réfrigérateur à 4 °C maximum et à consommer rapidement. Respecter la chaîne du froid et les conseils du poissonnier.","Anchois frais cuits à la plancha ; papillote au citron ; salade tiède avec anchois bien cuits."]
-["Miel des Pyrénées-Orientales","Productions apicoles du département","Récoltes variables selon floraison et altitude ; disponible toute l'année","Produit de la ruche dont la couleur et les arômes varient selon les fleurs butinées et les zones de production. Privilégier une origine clairement indiquée.","Données nutritionnelles détaillées en cours de vérification dans la table Ciqual 2020. Aucune valeur chiffrée n’est affichée tant que l’aliment de référence, son état (cru, cuit, égoutté, etc.) et les constituants correspondants ne sont pas confirmés.","Conserver fermé, à température ambiante, à l'abri de l'humidité. La cristallisation est un phénomène naturel.","Petite touche dans un yaourt nature ; miel et fruits cuits ; vinaigrette douce."],
-["Pommes et poires des vergers","Plaine du Roussillon et vergers du département, selon producteurs","Automne et hiver pour de nombreuses variétés ; conservation variable","Fruits à croquer ou à cuisiner, dont les variétés et périodes de disponibilité dépendent des vergers et des méthodes de conservation.","Données nutritionnelles détaillées en cours de vérification dans la table Ciqual 2020. Aucune valeur chiffrée n’est affichée tant que l’aliment de référence, son état (cru, cuit, égoutté, etc.) et les constituants correspondants ne sont pas confirmés.","Conserver au frais, à l'écart des fruits très mûrs si l'on souhaite ralentir leur mûrissement. Vérifier régulièrement les fruits stockés.","Compote pomme-poire ; poire pochée ; quartiers de pomme dans une salade."],
-["Champignons de montagne","Massifs du département, selon espèces et récoltes","Automne principalement, selon météo et altitude","Une diversité d'espèces sauvages et cultivées peut être rencontrée dans les massifs. Ne jamais consommer un champignon sauvage sans identification certaine par un spécialiste compétent.","Données nutritionnelles détaillées en cours de vérification dans la table Ciqual 2020. Aucune valeur chiffrée n’est affichée tant que l’aliment de référence, son état (cru, cuit, égoutté, etc.) et les constituants correspondants ne sont pas confirmés.","Les conserver au frais et les consommer rapidement. Ne pas se fier à une application ou à une photographie pour identifier un champignon sauvage.","Poêlée de champignons cultivés ; omelette aux champignons identifiés ; soupe forestière."]
+["Abricot rouge du Roussillon","Plaine du Roussillon","Fin du printemps et été, selon récolte","Fruit frais à la chair orangée, à consommer nature ou cuisiné. L'abricot rouge du Roussillon bénéficie d'une reconnaissance AOP ; vérifier le cahier des charges et l'origine sur l'étiquetage.","Données nutritionnelles détaillées en cours de vérification dans la table Ciqual 2025. Aucune valeur chiffrée n’est affichée tant que l’aliment de référence, son état (cru, cuit, égoutté, etc.) et les constituants correspondants ne sont pas confirmés.","Choisir un fruit souple mais non abîmé. Conserver quelques jours au frais lorsqu'il est mûr ; le sortir avant dégustation pour développer ses arômes.","Compote sans sucre ajouté ; abricots rôtis au romarin."],
+["Cerise de Céret","Vallespir – secteur de Céret","Printemps, généralement mai-juin, variable selon météo","Fruit emblématique du Vallespir, réputé pour sa précocité. À déguster frais, en salade de fruits ou en préparation maison.","Données nutritionnelles détaillées en cours de vérification dans la table Ciqual 2025. Aucune valeur chiffrée n’est affichée tant que l’aliment de référence, son état (cru, cuit, égoutté, etc.) et les constituants correspondants ne sont pas confirmés.","Garder les queues jusqu'au lavage. Conserver au réfrigérateur et laver juste avant consommation.","Cerises fraîches ; clafoutis maison ; compotée pour accompagner un fromage blanc."],
+["Artichaut du Roussillon","Plaine du Roussillon","Surtout printemps, avec variations locales","Légume-feuille dont on consomme le cœur et la base charnue des bractées. L'IGP Artichaut du Roussillon identifie une production répondant à un cahier des charges.","Données nutritionnelles détaillées en cours de vérification dans la table Ciqual 2025. Aucune valeur chiffrée n’est affichée tant que l’aliment de référence, son état (cru, cuit, égoutté, etc.) et les constituants correspondants ne sont pas confirmés.","Choisir des têtes fermes et lourdes, aux feuilles serrées. Conserver au frais et consommer rapidement après cuisson.","Artichauts vapeur citronnés ; fonds d'artichaut aux herbes ; salade de cœurs d'artichaut."],
+["Pomme de terre Béa du Roussillon","Roussillon","Primeur au printemps et début d'été, selon récolte","Pomme de terre primeur locale bénéficiant d'une AOP. Sa peau fine se prête à une cuisson simple, sans épluchage lorsqu'elle est bien lavée.","Données nutritionnelles détaillées en cours de vérification dans la table Ciqual 2025. Aucune valeur chiffrée n’est affichée tant que l’aliment de référence, son état (cru, cuit, égoutté, etc.) et les constituants correspondants ne sont pas confirmés.","Conserver à l'abri de la lumière, au frais modéré et au sec. La pomme de terre primeur se conserve moins longtemps que les pommes de terre de garde.","Béa vapeur à l'huile d'olive ; salade tiède aux herbes ; pommes de terre rôties."],
+["Châtaigne du Vallespir","Vallespir","Automne","Fruit à coque riche en amidon, traditionnellement présent dans les usages culinaires du Vallespir. À distinguer des fruits à coque oléagineux : sa composition est surtout glucidique.","Données nutritionnelles détaillées en cours de vérification dans la table Ciqual 2025. Aucune valeur chiffrée n’est affichée tant que l’aliment de référence, son état (cru, cuit, égoutté, etc.) et les constituants correspondants ne sont pas confirmés.","Garder les châtaignes fraîches au frais et les utiliser rapidement. Inciser la coque avant cuisson ; bien cuire avant consommation.","Châtaignes grillées ; velouté de potimarron et châtaigne ; purée de châtaignes."],
+["Huile d'olive du Roussillon","Terroirs oléicoles des Pyrénées-Orientales","Récolte des olives en automne-hiver ; huile disponible toute l'année","Matière grasse végétale emblématique du bassin méditerranéen. La qualité dépend de la variété, de la récolte, de l'extraction et des conditions de conservation.","Données nutritionnelles détaillées en cours de vérification dans la table Ciqual 2025. Aucune valeur chiffrée n’est affichée tant que l’aliment de référence, son état (cru, cuit, égoutté, etc.) et les constituants correspondants ne sont pas confirmés.","Conserver à l'abri de la lumière, de la chaleur et de l'air, bouteille bien fermée.","Assaisonnement de légumes ; filet sur une soupe ; cuisson douce adaptée à la recette."],
+["Anchois frais de Collioure","Collioure – Côte Vermeille","Poisson frais, disponibilité variable selon la pêche et la saison","Petit poisson bleu de Méditerranée (Engraulis encrasicolus). Cette fiche concerne l’anchois frais cru, et non les filets salés, marinés ou conservés à l’huile.","Données nutritionnelles à vérifier dans Ciqual 2025 pour l’entrée correspondant à l’anchois commun cru. Aucune valeur chiffrée n’est affichée avant validation de la ligne exacte.","À conserver au réfrigérateur à 4 °C maximum et à consommer rapidement. Respecter la chaîne du froid et les conseils du poissonnier.","Anchois frais cuits à la plancha ; papillote au citron ; salade tiède avec anchois bien cuits."]
+["Miel des Pyrénées-Orientales","Productions apicoles du département","Récoltes variables selon floraison et altitude ; disponible toute l'année","Produit de la ruche dont la couleur et les arômes varient selon les fleurs butinées et les zones de production. Privilégier une origine clairement indiquée.","Données nutritionnelles détaillées en cours de vérification dans la table Ciqual 2025. Aucune valeur chiffrée n’est affichée tant que l’aliment de référence, son état (cru, cuit, égoutté, etc.) et les constituants correspondants ne sont pas confirmés.","Conserver fermé, à température ambiante, à l'abri de l'humidité. La cristallisation est un phénomène naturel.","Petite touche dans un yaourt nature ; miel et fruits cuits ; vinaigrette douce."],
+["Pommes et poires des vergers","Plaine du Roussillon et vergers du département, selon producteurs","Automne et hiver pour de nombreuses variétés ; conservation variable","Fruits à croquer ou à cuisiner, dont les variétés et périodes de disponibilité dépendent des vergers et des méthodes de conservation.","Données nutritionnelles détaillées en cours de vérification dans la table Ciqual 2025. Aucune valeur chiffrée n’est affichée tant que l’aliment de référence, son état (cru, cuit, égoutté, etc.) et les constituants correspondants ne sont pas confirmés.","Conserver au frais, à l'écart des fruits très mûrs si l'on souhaite ralentir leur mûrissement. Vérifier régulièrement les fruits stockés.","Compote pomme-poire ; poire pochée ; quartiers de pomme dans une salade."],
+["Champignons de montagne","Massifs du département, selon espèces et récoltes","Automne principalement, selon météo et altitude","Une diversité d'espèces sauvages et cultivées peut être rencontrée dans les massifs. Ne jamais consommer un champignon sauvage sans identification certaine par un spécialiste compétent.","Données nutritionnelles détaillées en cours de vérification dans la table Ciqual 2025. Aucune valeur chiffrée n’est affichée tant que l’aliment de référence, son état (cru, cuit, égoutté, etc.) et les constituants correspondants ne sont pas confirmés.","Les conserver au frais et les consommer rapidement. Ne pas se fier à une application ou à une photographie pour identifier un champignon sauvage.","Poêlée de champignons cultivés ; omelette aux champignons identifiés ; soupe forestière."]
 ];
 const recipes=[
 ["Salade tiède de Béa du Roussillon","4 personnes · 25 min","600 g de pommes de terre Béa, 2 c. à s. d'huile d'olive, persil, ciboulette, 1 c. à s. de vinaigre, poivre.","Laver les pommes de terre et les cuire à l'eau ou à la vapeur. Les couper encore tièdes. Mélanger l'huile, le vinaigre et les herbes ; assaisonner et servir tiède.","Végétarien · Allergènes possibles selon ingrédients ajoutés : moutarde dans certaines vinaigrettes."],
@@ -338,11 +338,19 @@ const menuRecipes = [
  {name:"Anchois frais, pommes de terre et légumes grillés",season:["printemps","été"],diet:"omnivore",time:25,cost:"standard",equipment:["Plaques de cuisson"],allergens:["poisson"],ingredients:["Anchois frais","Pommes de terre","Poivrons","Courgettes","Huile d'olive","Citron"],steps:"Cuire les pommes de terre. Griller les légumes. Cuire les anchois frais complètement à la poêle ou à la plancha et servir avec citron et huile d'olive.",tags:["poisson","féculent","légumes","matière grasse"],balanced:true},
  {name:"Tofu, nouilles de sarrasin et légumes croquants",season:["toutes"],diet:"vegan",time:25,cost:"standard",equipment:["Plaques de cuisson"],allergens:["soja"],ingredients:["Tofu","Nouilles de sarrasin","Carottes","Chou","Huile de sésame"],steps:"Cuire les nouilles. Faire dorer le tofu et sauter les légumes. Mélanger avec un filet d'huile de sésame.",tags:["protéine végétale","féculent","légumes","matière grasse"],balanced:true},
  {name:"Porc filet, polenta et courge rôtie",season:["automne","hiver"],diet:"omnivore",time:35,cost:"standard",equipment:["Four","Plaques de cuisson"],allergens:[],ingredients:["Filet de porc","Polenta","Courge","Oignon","Huile d'olive"],steps:"Cuire la polenta. Rôtir la courge et l'oignon avec l'huile d'olive. Cuire le filet de porc à cœur et servir.",tags:["viande","féculent","légumes","matière grasse"],balanced:true},
- {name:"Pois chiches, patate douce et épinards",season:["automne","hiver","printemps"],diet:"vegan",time:30,cost:"economy",equipment:["Plaques de cuisson"],allergens:[],ingredients:["Pois chiches cuits","Patate douce","Épinards","Huile d'olive","Cumin"],steps:"Cuire la patate douce en cubes. Faire mijoter les pois chiches avec les épinards, le cumin et l'huile d'olive. Servir avec la patate douce.",tags:["protéine végétale","féculent","légumes","matière grasse"],balanced:true}
+ {name:"Pois chiches, patate douce et épinards",season:["automne","hiver","printemps"],diet:"vegan",time:30,cost:"economy",equipment:["Plaques de cuisson"],allergens:[],ingredients:["Pois chiches cuits","Patate douce","Épinards","Huile d'olive","Cumin"],steps:"Cuire la patate douce en cubes. Faire mijoter les pois chiches avec les épinards, le cumin et l'huile d'olive. Servir avec la patate douce.",tags:["protéine végétale","féculent","légumes","matière grasse"],balanced:true},
+ {name:"Tartine nordique, œuf et crudités",mealType:"breakfast",season:["toutes"],diet:"omnivore",time:10,cost:"economy",equipment:[],allergens:["œufs","gluten"],ingredients:["Pain nordique","Œuf","Tomate","Concombre","Huile d'olive"],steps:"Garnir une tranche de pain nordique d'un œuf dur ou au plat, ajouter tomate et concombre, puis un filet d'huile d'olive. Le pain nordique constitue la portion de féculents du repas.",tags:["œufs","féculent","légumes","matière grasse"],balanced:true},
+ {name:"Bol salé de lentilles, œuf et épinards",mealType:"breakfast",season:["toutes"],diet:"vegetarian",time:15,cost:"economy",equipment:["Plaques de cuisson"],allergens:["œufs"],ingredients:["Lentilles cuites","Œuf","Épinards","Pain complet","Huile de colza"],steps:"Réchauffer les lentilles et les épinards, ajouter un œuf cuit et accompagner d'une petite portion de pain complet. Terminer par un filet d'huile de colza.",tags:["œufs","féculent","légumes","matière grasse"],balanced:true},
+ {name:"Tartine nordique au tofu et légumes croquants",mealType:"breakfast",season:["toutes"],diet:"vegan",time:10,cost:"economy",equipment:[],allergens:["soja","gluten"],ingredients:["Pain nordique","Tofu nature","Tomate","Radis","Huile d'olive"],steps:"Écraser le tofu avec un filet d'huile d'olive et des herbes. Tartiner le pain nordique et ajouter tomate et radis. Le pain remplace les autres féculents du repas.",tags:["protéine végétale","féculent","légumes","matière grasse"],balanced:true},
+ {name:"Galette de riz, œuf et légumes poêlés",mealType:"breakfast",season:["toutes"],diet:"omnivore",time:15,cost:"economy",equipment:["Plaques de cuisson"],allergens:["œufs"],ingredients:["Galettes de riz","Œuf","Épinards","Tomate","Huile d'olive"],steps:"Réchauffer les épinards et la tomate avec un filet d'huile. Ajouter un œuf cuit et servir avec les galettes de riz comme portion de féculents.",tags:["œufs","féculent","légumes","matière grasse"],balanced:true}
 ];
 
 // Portions culinaires indicatives par personne ; à adapter à l'appétit et aux besoins.
 const portionQuantities = {
+ "Tartine nordique, œuf et crudités":[["Pain nordique",60,"g"],["Œuf",1,"pièce(s)"],["Tomate",80,"g"],["Concombre",80,"g"],["Huile d'olive",5,"ml"]],
+ "Bol salé de lentilles, œuf et épinards":[["Lentilles cuites",100,"g"],["Œuf",1,"pièce(s)"],["Épinards",80,"g"],["Pain complet",30,"g"],["Huile de colza",5,"ml"]],
+ "Tartine nordique au tofu et légumes croquants":[["Pain nordique",60,"g"],["Tofu nature",80,"g"],["Tomate",80,"g"],["Radis",50,"g"],["Huile d'olive",5,"ml"]],
+ "Galette de riz, œuf et légumes poêlés":[["Galettes de riz",30,"g"],["Œuf",1,"pièce(s)"],["Épinards",80,"g"],["Tomate",80,"g"],["Huile d'olive",5,"ml"]],
  "Poulet rôti, riz complet et légumes de saison":[["Poulet",130,"g"],["Riz complet",70,"g"],["Carottes",80,"g"],["Courgettes ou poireaux",100,"g"],["Huile d'olive",10,"ml"]],
  "Poisson au four, pommes de terre et haricots verts":[["Filet de poisson",130,"g"],["Pommes de terre",180,"g"],["Haricots verts",150,"g"],["Huile d'olive",10,"ml"],["Citron",15,"g"]],
  "Boulettes de bœuf, semoule et ratatouille":[["Bœuf haché",120,"g"],["Semoule complète",70,"g"],["Aubergine",70,"g"],["Courgette",70,"g"],["Tomate",70,"g"],["Huile d'olive",10,"ml"]],
@@ -361,77 +369,75 @@ function currentSeasonName(){
  const m=new Date().getMonth()+1;
  return m>=3&&m<=5?"printemps":m>=6&&m<=8?"été":m>=9&&m<=11?"automne":"hiver";
 }
-function getMenuCandidates(){
+function normFood(v){return String(v||"").toLocaleLowerCase("fr").normalize("NFD").replace(/[\u0300-\u036f]/g,"").replace(/[’']/g," ").replace(/[^a-z0-9 ]/g," ").replace(/\s+/g," ").trim();}
+function getMenuCandidates(mealType="main"){
  const diet=answers.q11||"Je mange de tout";
  const strictVegan=diet==="Végétalienne";
  const strictVeg=["Végétarienne","Principalement végétarienne"].includes(diet);
  const declared=Array.isArray(answers.q14)?answers.q14:[];
- const allergyUnknown=declared.includes("Autres allergies ou intolérances")||declared.includes("Autre choix alimentaire");
+ const allergyUnknown=declared.includes("Autres allergies ou intolérances")||declared.includes("Autre choix alimentaire")||!!(answers.q14_extra||"").trim();
  const excluded=[];
  if(declared.includes("Gluten")) excluded.push("gluten");
- if(declared.includes("Lactose")) excluded.push("lait");
- if(declared.includes("Fruits à coque")) excluded.push("fruits à coque");
- const dislike=(answers.q13||"").toLocaleLowerCase("fr");
+ if(declared.includes("Lactose")) excluded.push("lactose","yaourt","fromage","beurre","crème","lactosérum","petit-lait");
+ if(declared.includes("Fruits à coque")) excluded.push("fruits a coque","noix","amande","noisette");
+ const freeText=[answers.q13||"",answers.q14_extra||""].join(",");
+ const typed=freeText.split(/[,;\n]+|\bet\b/).map(x=>normFood(x).replace(/^(je n aime pas|je refuse|sans|pas de|je ne mange pas) /,"" )).filter(x=>x.length>=3);
+ const blocked=[...excluded,...typed].flatMap(term=>{const n=normFood(term);return n==="lactose"?["lactose","yaourt","fromage","beurre","crème","lactosérum","petit-lait"]:[n];}).map(normFood).filter(Boolean);
  const timeLimit=Number(document.getElementById("menuTime").value||30);
  const budget=document.getElementById("menuBudget").value;
  const season=currentSeasonName();
  let candidates=menuRecipes.filter(r=>{
+  if((r.mealType||"main")!==mealType) return false;
   if(!r.balanced || !["féculent","légumes","matière grasse"].every(tag=>r.tags.includes(tag)) || !r.tags.some(tag=>["viande","volaille","poisson","œufs","protéine végétale"].includes(tag))) return false;
   if(!r.season.includes("toutes")&&!r.season.includes(season)) return false;
   if(strictVegan&&r.diet!=="vegan") return false;
   if(strictVeg&&r.diet==="omnivore") return false;
   if(r.time>timeLimit) return false;
   if(budget==="economy"&&r.cost!=="economy") return false;
-  if(r.allergens.some(a=>excluded.includes(a))) return false;
-  if(dislike && r.ingredients.some(i=>dislike.includes(i.toLocaleLowerCase("fr")))) return false;
+  const searchable=normFood([r.name,...r.ingredients,...(r.allergens||[])].join(" "));
+  if(blocked.some(term=>term && searchable.includes(term))) return false;
   const equipment=Array.isArray(answers.q20)?answers.q20:[];
   if(r.equipment.length && equipment.length && !r.equipment.some(e=>equipment.includes(e))) return false;
   if(equipment.includes("Aucun équipement particulier") && r.equipment.some(e=>["Four","Mixeur","Robot de cuisine","Air fryer"].includes(e))) return false;
   return true;
  });
- return {candidates,allergyUnknown,excluded};
+ return {candidates,allergyUnknown,excluded:blocked};
 }
 function generateMenus(){
  const days=Number(document.getElementById("menuDays").value||7);
- const {candidates,allergyUnknown,excluded}=getMenuCandidates();
+ const mealAnswer=answers.q5||"3 repas par jour";
+ const includeBreakfast=!mealAnswer.startsWith("2 repas");
+ const mainResult=getMenuCandidates("main"), breakfastResult=includeBreakfast?getMenuCandidates("breakfast"):null;
+ const candidates=mainResult.candidates, breakfastCandidates=breakfastResult?breakfastResult.candidates:[];
+ const allergyUnknown=mainResult.allergyUnknown||(breakfastResult&&breakfastResult.allergyUnknown);
+ const excluded=[...new Set([...mainResult.excluded,...(breakfastResult?breakfastResult.excluded:[])])];
  const output=document.getElementById("menuOutput");
- if(!candidates.length){
-  output.innerHTML='<div class="notice" style="margin-top:16px">Je ne trouve pas assez de recettes correspondant à tous les critères sélectionnés. Essayez d’augmenter le temps disponible, de retirer la priorité budget ou de vérifier les équipements renseignés.</div>';
+ if(!candidates.length || (includeBreakfast&&!breakfastCandidates.length)){
+  output.innerHTML='<div class="notice" style="margin-top:16px">Aucune recette ne correspond à tous les critères pour chaque repas. Vérifiez les exclusions, les préférences, le temps et les équipements. Aucune exclusion ne sera ignorée pour remplir le menu.</div>';
   return;
  }
- const mealSlots=days*2;
- const selected=Array.from({length:mealSlots},(_,i)=>candidates[i%candidates.length]);
- const season=currentSeasonName();
- const dayLabels=["Lundi","Mardi","Mercredi","Jeudi","Vendredi","Samedi","Dimanche"];
+ const selected=Array.from({length:days*2},(_,i)=>candidates[i%candidates.length]);
+ const breakfasts=includeBreakfast?Array.from({length:days},(_,i)=>breakfastCandidates[i%breakfastCandidates.length]):[];
+ const season=currentSeasonName(),dayLabels=["Lundi","Mardi","Mercredi","Jeudi","Vendredi","Samedi","Dimanche"];
  let cards="";
  for(let d=0;d<days;d++){
-  const lunch=selected[d*2],dinner=selected[d*2+1];
+  const lunch=selected[d*2],dinner=selected[d*2+1],breakfast=breakfasts[d];
   cards+=`<div class="menu-day"><h3>${dayLabels[d]||"Jour "+(d+1)}</h3>
+   ${breakfast?`<div class="menu-meal"><strong>Petit-déjeuner</strong><div class="menu-recipe">${breakfast.name}</div><div class="menu-meta">${breakfast.time} min · ${breakfast.cost==="economy"?"Budget économique":"Budget standard"}</div><p>${breakfast.steps}</p></div>`:""}
    <div class="menu-meal"><strong>Déjeuner</strong><div class="menu-recipe">${lunch.name}</div><div class="menu-meta">${lunch.time} min · ${lunch.cost==="economy"?"Budget économique":"Budget standard"}</div><p>${lunch.steps}</p></div>
    <div class="menu-meal"><strong>Dîner</strong><div class="menu-recipe">${dinner.name}</div><div class="menu-meta">${dinner.time} min · ${dinner.cost==="economy"?"Budget économique":"Budget standard"}</div><p>${dinner.steps}</p></div>
   </div>`;
  }
- const people=Number(document.getElementById("menuPeople").value||2);
- const totals={};
- selected.forEach(r=>{
-  (portionQuantities[r.name]||[]).forEach(([ingredient,amount,unit])=>{
-   const key=ingredient+"|"+unit;
-   totals[key]=(totals[key]||0)+amount*people;
-  });
- });
- const shopping=Object.entries(totals).map(([key,amount])=>{
-  const [ingredient,unit]=key.split("|");
-  const rounded=unit==="pièce(s)"?Math.round(amount):Math.round(amount/5)*5;
-  return `<li>${esc(ingredient)} : <strong>${rounded} ${unit}</strong></li>`;
- }).join("");
+ const people=Number(document.getElementById("menuPeople").value||2),totals={};
+ [...selected,...breakfasts].forEach(r=>{(portionQuantities[r.name]||[]).forEach(([ingredient,amount,unit])=>{const key=ingredient+"|"+unit;totals[key]=(totals[key]||0)+amount*people;});});
+ const shopping=Object.entries(totals).map(([key,amount])=>{const [ingredient,unit]=key.split("|");const rounded=unit==="pièce(s)"?Math.round(amount):Math.round(amount/5)*5;return `<li>${esc(ingredient)} : <strong>${rounded} ${unit}</strong></li>`;}).join("");
  output.innerHTML=`<h3 class="section-title" style="margin-top:22px">Votre proposition de menu · ${season}</h3>
-  <p class="muted">Proposition sur ${days} jours, avec deux idées de repas par jour, pour ${people} personne${people>1?"s":""}. Les quantités de la liste sont des repères culinaires indicatifs calculés à partir des portions choisies.</p>
-  ${cards}
-  <div class="shopping-list"><h3 style="color:var(--wine);margin-top:0">Liste de courses estimative pour ${people} personne${people>1?"s":""}</h3><p class="small">Quantités calculées pour les recettes proposées. Vérifiez vos placards et adaptez selon l'appétit, les accompagnements et les portions souhaitées.</p><ul>${shopping}</ul></div>
-  ${allergyUnknown?'<div class="notice" style="margin-top:14px">Vous avez indiqué une autre allergie, intolérance ou exclusion. Comme sa nature n’est pas précisée dans le questionnaire, les recettes ne peuvent pas être filtrées de façon fiable : vérifiez chaque ingrédient avant toute préparation.</div>':""}
-  ${excluded.length?`<p class="small">Filtres appliqués selon vos réponses : ${excluded.map(esc).join(", ")}. Ce filtrage automatique ne remplace jamais la vérification des étiquettes.</p>`:""}
-  <p class="small">Saison indicative : ${season}. La disponibilité des produits varie selon la météo, les producteurs et les conditions locales. Les menus ne calculent pas de besoins énergétiques et ne remplacent pas un conseil individualisé par un professionnel de santé.</p>
-  <p class="small">Références à consulter pour la validation éditoriale : Anses, Table Ciqual 2020 (composition moyenne des aliments) ; Manger Bouger, calendrier de saison. Les valeurs exactes devront être associées à chaque aliment et à son état précis avant publication.</p>`;
+  <p class="muted">Proposition sur ${days} jours, ${includeBreakfast?"avec petit-déjeuner, déjeuner et dîner":"avec déjeuner et dîner"}, pour ${people} personne${people>1?"s":""}. Les quantités de la liste sont des repères culinaires indicatifs calculés à partir des portions choisies.</p>
+  ${cards}<div class="shopping-list"><h3 style="color:var(--wine);margin-top:0">Liste de courses estimative pour ${people} personne${people>1?"s":""}</h3><p class="small">Quantités calculées pour les recettes proposées. Vérifiez vos placards et adaptez selon l'appétit, les accompagnements et les portions souhaitées.</p><ul>${shopping}</ul></div>
+  ${allergyUnknown?'<div class="notice" style="margin-top:14px">Une précision d’allergie ou d’exclusion a été saisie. Les termes renseignés sont filtrés, mais vérifiez impérativement les ingrédients, étiquettes et contaminations croisées.</div>':""}
+  ${excluded.length?`<p class="small">Exclusions prises en compte : ${excluded.map(esc).join(", ")}. Si une recette ne peut pas être filtrée avec certitude, elle n’est pas proposée.</p>`:""}
+  <p class="small">Saison indicative : ${season}. La disponibilité des produits varie selon la météo et les producteurs. Ces menus sont des propositions pédagogiques et ne remplacent pas un avis médical.</p>
+  <p class="small">Référence de composition nutritionnelle : Anses, 2025, Table de composition nutritionnelle des aliments Ciqual (3 484 aliments, 74 constituants). Les valeurs détaillées ne sont affichées que lorsqu'une correspondance exacte aliment/état de préparation est validée. <a href="https://ciqual.anses.fr/cms/fr/node/19" target="_blank" rel="noopener">Consulter Ciqual 2025</a>.</p>`;
 }
 function openPlanner(){
  document.getElementById("welcome").hidden=true;
@@ -455,7 +461,7 @@ function openLibrary(){
 function buildLibrary(){
  const phtml=products.map((p,i)=>`<details class="advice"><summary><strong>${i+1}. ${p[0]}</strong> <span class="small">· ${p[1]}</span></summary><p><strong>Saison :</strong> ${p[2]}</p><p>${p[3]}</p><p><strong>Données nutritionnelles :</strong> ${p[4]}</p><p><strong>Conservation :</strong> ${p[5]}</p><p><strong>Idées :</strong> ${p[6]}</p></details>`).join("");
  const rhtml=recipes.map((r,i)=>`<details class="advice"><summary><strong>${i+1}. ${r[0]}</strong> <span class="small">· ${r[1]}</span></summary><p><strong>Ingrédients :</strong> ${r[2]}</p><p><strong>Préparation :</strong> ${r[3]}</p><p><strong>Allergènes et régime :</strong> ${r[4]}</p></details>`).join("");
- $("libraryContent").innerHTML=`<h3 style="color:var(--wine)">10 fiches produits</h3>${phtml}<h3 style="color:var(--wine);margin-top:24px">10 recettes de départ</h3>${rhtml}<div class="notice"><strong>Repères de lecture :</strong> les valeurs chiffrées des fiches sont des ordres de grandeur pédagogiques, non des valeurs certifiées de produit local. Pour chaque fiche finale, il faudra sélectionner l'aliment exact et son état (cru, cuit, séché, en conserve) dans la table Ciqual 2020. Les allergènes doivent être contrôlés pour chaque ingrédient et chaque marque.</div>`;
+ $("libraryContent").innerHTML=`<h3 style="color:var(--wine)">10 fiches produits</h3>${phtml}<h3 style="color:var(--wine);margin-top:24px">10 recettes de départ</h3>${rhtml}<div class="notice"><strong>Repères de lecture :</strong> les valeurs chiffrées des fiches sont des ordres de grandeur pédagogiques, non des valeurs certifiées de produit local. Pour chaque fiche finale, il faudra sélectionner l'aliment exact et son état (cru, cuit, séché, en conserve) dans la table Ciqual 2025. Les allergènes doivent être contrôlés pour chaque ingrédient et chaque marque.</div>`;
 }
 function openLibrary(){ $("welcome").hidden=true;$("quiz").hidden=true;$("result").style.display="none";$("planner").hidden=true;$("library").hidden=false;buildLibrary();window.scrollTo({top:0,behavior:"smooth"});}
 function openPlateGuide(){

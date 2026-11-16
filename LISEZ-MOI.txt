@@ -16,7 +16,7 @@ Précautions
 - Le site GitHub Pages est public.
 - Les réponses au questionnaire restent enregistrées localement dans le navigateur de l'appareil.
 - Ne pas saisir de données médicales sensibles.
-- Les données nutritionnelles chiffrées restent en attente de validation précise à partir de Ciqual 2020.
+- Les données nutritionnelles chiffrées restent en attente de validation précise à partir de Ciqual 2025.
 - Les menus sont des propositions pédagogiques et ne remplacent pas un avis médical.
 - Vérifier les ingrédients, allergènes et étiquettes avant chaque préparation.
 
@@ -29,3 +29,10 @@ Mise à jour v10 – Guide de l’assiette santé
 - Présentation visuelle des proportions de l’assiette et des repères de portions à la main.
 - Ajout explicite du pain nordique : une portion correspondant à la paume de la main, comme alternative aux féculents à cuisiner.
 - Incrément de la version du cache hors ligne pour que les navigateurs récupèrent la mise à jour.
+
+
+Mise à jour v11 – menus et référence nutritionnelle
+- Les menus suivent le nombre de repas déclaré : 2 repas = déjeuner et dîner ; 3 repas = petit-déjeuner, déjeuner et dîner.
+- Ajout de trois petits-déjeuners salés équilibrés, dont des options avec pain nordique sans cuisson.
+- Les exclusions et aliments refusés saisis en texte libre sont appliqués aux ingrédients et allergènes des recettes ; les recettes incompatibles sont écartées.
+- Référence documentaire mise à jour : Anses, 2025, Table Ciqual (3 484 aliments, 74 constituants). Les valeurs chiffrées restent masquées tant que la correspondance précise aliment/préparation n’est pas validée.
