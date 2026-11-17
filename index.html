@@ -155,7 +155,7 @@ footer{text-align:center;color:var(--muted);font-size:.8rem;padding:8px 12px 28p
   </div>
  </section>
 </main>
-<footer>Nutrition au fil des saisons · Informations pédagogiques et suggestions indicatives · Ne remplace pas un avis médical.</footer>
+<footer>Nutrition au fil des saisons · Version 12 · Informations pédagogiques et suggestions indicatives · Ne remplace pas un avis médical.</footer>
 <script>
 const sections = [
 {title:"Mon profil et mon quotidien",desc:"Quelques repères pour comprendre votre rythme de vie.",qs:[
@@ -370,23 +370,39 @@ function currentSeasonName(){
  return m>=3&&m<=5?"printemps":m>=6&&m<=8?"été":m>=9&&m<=11?"automne":"hiver";
 }
 function normFood(v){return String(v||"").toLocaleLowerCase("fr").normalize("NFD").replace(/[\u0300-\u036f]/g,"").replace(/[’']/g," ").replace(/[^a-z0-9 ]/g," ").replace(/\s+/g," ").trim();}
+const dairyTerms=["lait","lait en poudre","lait concentre","lait fermente","creme","beurre","fromage","yaourt","yoghourt","petit suisse","faisselle","lactoserum","petit lait","caseine","whey","lactose","lait de vache","lait de chevre","lait de brebis"];
+const glutenTerms=["ble","seigle","orge","epeautre","triticale","semoule","boulgour","couscous","pates de ble","farine de ble","chapelure"];
+const nutTerms=["amande","noisette","noix","pistache","cajou","pecan","macadamia","pignon","noix du bresil"];
+function phrasePresent(haystack, phrase){
+ const h=" "+normFood(haystack)+" ", p=normFood(phrase);
+ if(!p) return false;
+ if((" "+h).includes(" "+p+" ")) return true;
+ // Singular/plural and common spelling variations (e.g. câpre/câpres).
+ const words=p.split(" ").map(w=>w.length>4&&w.endsWith("s")?w.slice(0,-1):w);
+ const tokens=normFood(haystack).split(" ").map(w=>w.length>4&&w.endsWith("s")?w.slice(0,-1):w);
+ return words.every((w,i)=>tokens.includes(w)) || (words.length===1&&tokens.some(t=>t.startsWith(words[0])||words[0].startsWith(t)));
+}
+function parseFreeExclusions(raw){
+ return String(raw||"").split(/[,;\\n]+|\\bet\\b|\\bou\\b/i).map(part=>normFood(part)
+  .replace(/^(je n aime pas|je n aime|je refuse de manger|je refuse|je ne mange pas|je ne consomme pas|je ne veux pas de|je ne veux plus de|je suis intolerant(e)? a|allergie a|allergique a|intolerance a|sans|pas de|pas d|ni) /,""))
+  .map(x=>x.replace(/^(les|la|le|des|du|de la|de l|d|un|une) /,"" ).trim()).filter(x=>x.length>=3);
+}
 function getMenuCandidates(mealType="main"){
  const diet=answers.q11||"Je mange de tout";
  const strictVegan=diet==="Végétalienne";
  const strictVeg=["Végétarienne","Principalement végétarienne"].includes(diet);
  const declared=Array.isArray(answers.q14)?answers.q14:[];
  const allergyUnknown=declared.includes("Autres allergies ou intolérances")||declared.includes("Autre choix alimentaire")||!!(answers.q14_extra||"").trim();
- const excluded=[];
- if(declared.includes("Gluten")) excluded.push("gluten");
- if(declared.includes("Lactose")) excluded.push("lactose","yaourt","fromage","beurre","crème","lactosérum","petit-lait");
- if(declared.includes("Fruits à coque")) excluded.push("fruits a coque","noix","amande","noisette");
- const freeText=[answers.q13||"",answers.q14_extra||""].join(",");
- const typed=freeText.split(/[,;\n]+|\bet\b/).map(x=>normFood(x).replace(/^(je n aime pas|je refuse|sans|pas de|je ne mange pas) /,"" )).filter(x=>x.length>=3);
- const blocked=[...excluded,...typed].flatMap(term=>{const n=normFood(term);return n==="lactose"?["lactose","yaourt","fromage","beurre","crème","lactosérum","petit-lait"]:[n];}).map(normFood).filter(Boolean);
+ const blocked=[];
+ if(declared.includes("Gluten")) blocked.push(...glutenTerms,"gluten");
+ if(declared.includes("Lactose")) blocked.push(...dairyTerms);
+ if(declared.includes("Fruits à coque")) blocked.push(...nutTerms,"fruits a coque");
+ blocked.push(...parseFreeExclusions([answers.q13||"",answers.q14_extra||""].join(";")));
+ const uniqueBlocked=[...new Set(blocked.map(normFood).filter(Boolean))];
  const timeLimit=Number(document.getElementById("menuTime").value||30);
  const budget=document.getElementById("menuBudget").value;
  const season=currentSeasonName();
- let candidates=menuRecipes.filter(r=>{
+ const candidates=menuRecipes.filter(r=>{
   if((r.mealType||"main")!==mealType) return false;
   if(!r.balanced || !["féculent","légumes","matière grasse"].every(tag=>r.tags.includes(tag)) || !r.tags.some(tag=>["viande","volaille","poisson","œufs","protéine végétale"].includes(tag))) return false;
   if(!r.season.includes("toutes")&&!r.season.includes(season)) return false;
@@ -394,19 +410,20 @@ function getMenuCandidates(mealType="main"){
   if(strictVeg&&r.diet==="omnivore") return false;
   if(r.time>timeLimit) return false;
   if(budget==="economy"&&r.cost!=="economy") return false;
-  const searchable=normFood([r.name,...r.ingredients,...(r.allergens||[])].join(" "));
-  if(blocked.some(term=>term && searchable.includes(term))) return false;
+  const searchable=[r.name,...r.ingredients,...(r.allergens||[])].join(" ");
+  if(uniqueBlocked.some(term=>phrasePresent(searchable,term))) return false;
   const equipment=Array.isArray(answers.q20)?answers.q20:[];
-  if(r.equipment.length && equipment.length && !r.equipment.some(e=>equipment.includes(e))) return false;
+  // Les équipements cochés décrivent le matériel disponible : ne pas exiger qu'une recette utilise chacun d'eux.
+  // En revanche, si la personne indique ne disposer d'aucun équipement particulier, écarter les recettes qui en dépendent.
   if(equipment.includes("Aucun équipement particulier") && r.equipment.some(e=>["Four","Mixeur","Robot de cuisine","Air fryer"].includes(e))) return false;
   return true;
  });
- return {candidates,allergyUnknown,excluded:blocked};
+ return {candidates,allergyUnknown,excluded:uniqueBlocked};
 }
 function generateMenus(){
  const days=Number(document.getElementById("menuDays").value||7);
  const mealAnswer=answers.q5||"3 repas par jour";
- const includeBreakfast=!mealAnswer.startsWith("2 repas");
+ const includeBreakfast=mealAnswer.startsWith("3 repas") || mealAnswer.startsWith("Plusieurs petits repas") || (mealAnswer.startsWith("Cela varie") && answers.q6!=="Jamais");
  const mainResult=getMenuCandidates("main"), breakfastResult=includeBreakfast?getMenuCandidates("breakfast"):null;
  const candidates=mainResult.candidates, breakfastCandidates=breakfastResult?breakfastResult.candidates:[];
  const allergyUnknown=mainResult.allergyUnknown||(breakfastResult&&breakfastResult.allergyUnknown);
@@ -416,7 +433,12 @@ function generateMenus(){
   output.innerHTML='<div class="notice" style="margin-top:16px">Aucune recette ne correspond à tous les critères pour chaque repas. Vérifiez les exclusions, les préférences, le temps et les équipements. Aucune exclusion ne sera ignorée pour remplir le menu.</div>';
   return;
  }
- const selected=Array.from({length:days*2},(_,i)=>candidates[i%candidates.length]);
+ const selected=[];
+ const mainPool=[...candidates];
+ for(let i=0;i<days*2;i++){
+  const index=i%Math.max(1,mainPool.length);
+  selected.push(mainPool[index]);
+ }
  const breakfasts=includeBreakfast?Array.from({length:days},(_,i)=>breakfastCandidates[i%breakfastCandidates.length]):[];
  const season=currentSeasonName(),dayLabels=["Lundi","Mardi","Mercredi","Jeudi","Vendredi","Samedi","Dimanche"];
  let cards="";

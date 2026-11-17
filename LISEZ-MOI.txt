@@ -36,3 +36,11 @@ Mise à jour v11 – menus et référence nutritionnelle
 - Ajout de trois petits-déjeuners salés équilibrés, dont des options avec pain nordique sans cuisson.
 - Les exclusions et aliments refusés saisis en texte libre sont appliqués aux ingrédients et allergènes des recettes ; les recettes incompatibles sont écartées.
 - Référence documentaire mise à jour : Anses, 2025, Table Ciqual (3 484 aliments, 74 constituants). Les valeurs chiffrées restent masquées tant que la correspondance précise aliment/préparation n’est pas validée.
+
+
+Version 12 – fiabilisation du générateur de menus
+- Filtrage renforcé des exclusions en texte libre (accents, pluriels et formulations courantes).
+- Exclusion élargie des ingrédients laitiers en cas de sélection « Lactose » ; exclusion élargie des sources courantes de gluten et fruits à coque.
+- Trois repas : petit-déjeuner, déjeuner et dîner. Deux repas : déjeuner et dîner. « Cela varie » suit la réponse sur la fréquence du petit-déjeuner.
+- Cache hors ligne v12 ; les pages HTML sont désormais actualisées en priorité depuis le réseau, avec recours au cache en mode hors ligne.
+- Les données chiffrées Ciqual restent volontairement non affichées tant que le rapprochement exact de chaque aliment et de son état de préparation n'est pas validé.
