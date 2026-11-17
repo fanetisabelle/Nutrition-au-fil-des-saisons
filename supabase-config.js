@@ -3,5 +3,5 @@
    Ne jamais placer ici une clé sb_secret ou service_role. */
 window.NFS_SUPABASE_CONFIG = {
   url: "https://kvobxjdkfktjptlryds.supabase.co",
-  publishableKey: "REMPLACER_PAR_VOTRE_CLE_SB_PUBLISHABLE"
+  publishableKey: "sb_publishable_DkYOgT1CSxzea2SVF7ADzg_NnJjZpz0"
 };
