@@ -56,3 +56,5 @@ Version 13 – nouvelle interface et accès annuel
 
 
 Version 15 – 4 fiches finalisées ajoutées à l’onglet Recettes : Chili revisité, Pommes de terre rôties maison, Escalivade du Sud et Châtaigne du Vallespir. Les visuels originaux transmis sont intégrés sans retouche et inclus dans le cache hors ligne.
+
+Correctif : les quatre fiches sont désormais encodées comme entrées dans la liste « Recettes », avec leur visuel original dans chaque fiche. Intitulés conservés exactement : patatoes fait maison, escalivade façon catalane, chili revisité, châtaignes du vallespir.
