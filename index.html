@@ -92,6 +92,8 @@ main{max-width:920px;margin:0 auto;padding:0 0 105px}
 @media(min-width:700px){.hero-photo{height:420px}.hero-copy{padding-top:12px}.hero-copy h1{margin-top:6px}.landing-cta{max-width:720px;margin:-46px auto 0}.how-card{max-width:850px;margin:0 auto}.value-row{max-width:800px;margin:auto}}
 @media(max-width:520px){.topbar{height:112px;padding:12px 14px}.topbar .brand-logo{width:142px;height:96px}.hero-photo{height:270px}.hero-copy h1{margin-top:6px}.hero-copy p{font-size:1rem}.how-steps>div{grid-template-columns:28px 1fr}.how-steps>div b{width:28px;height:28px}.how-steps>div strong{font-size:.78rem}.how-card{padding:15px 12px 18px}.how-card h2{font-size:1.55rem}}
 
+
+.recipe-sheets-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:14px;margin:14px 0 24px}.recipe-sheet{background:#fff;border:1px solid #ead7d9;border-radius:16px;overflow:hidden;box-shadow:0 3px 12px rgba(112,64,82,.08)}.recipe-sheet summary{cursor:pointer;list-style:none;padding:14px 16px;color:var(--wine);font-weight:700}.recipe-sheet summary::-webkit-details-marker{display:none}.recipe-sheet summary:after{content:"＋";float:right;color:var(--wine)}.recipe-sheet[open] summary:after{content:"−"}.recipe-sheet img{display:block;width:100%;height:auto;max-height:900px;object-fit:contain;background:#fff;border-top:1px solid #f1e6e7}.recipe-sheets-intro{margin:8px 0 12px}
 </style>
 </head>
 <body>
@@ -206,7 +208,7 @@ const sections = [
 {id:"q2",t:"Quelle est votre situation actuelle ?",type:"radio",o:["En activité professionnelle","Retraité(e)","Étudiant(e)","Sans activité professionnelle","Autre situation"]},
 {id:"q3",t:"Comment décririez-vous votre rythme quotidien ?",type:"radio",o:["Principalement sédentaire","Alternance de temps assis et de déplacements","Plutôt actif, avec de nombreux déplacements","Très actif physiquement"]},
 {id:"q4",t:"Quelle est la composition de votre foyer ?",type:"two",a:"Nombre de personnes dans le foyer",b:"Nombre de personnes pour lesquelles vous cuisinez"},
-{id:"q5",t:"Combien de repas prenez-vous habituellement ?",type:"radio",o:["2 repas par jour","3 repas par jour","3 repas et une collation","Plusieurs petits repas","Cela varie selon les jours"]}
+{id:"q5",t:"Combien de repas prenez-vous habituellement ?",type:"radio",o:["2 repas par jour","2 repas et un petit-déjeuner","3 repas par jour","3 repas et une collation","Plusieurs petits repas","Cela varie selon les jours"]}
 ]},
 {title:"Mes habitudes alimentaires",desc:"Parlons de vos habitudes, sans jugement.",qs:[
 {id:"q6",t:"À quelle fréquence prenez-vous un petit-déjeuner ?",type:"radio",o:["Tous les jours","Plusieurs fois par semaine","Rarement","Jamais"]},
@@ -474,7 +476,7 @@ function getMenuCandidates(mealType="main"){
 function generateMenus(){
  const days=Number(document.getElementById("menuDays").value||7);
  const mealAnswer=answers.q5||"3 repas par jour";
- const includeBreakfast=mealAnswer.startsWith("3 repas") || mealAnswer.startsWith("Plusieurs petits repas") || (mealAnswer.startsWith("Cela varie") && answers.q6!=="Jamais");
+ const includeBreakfast=mealAnswer.startsWith("2 repas et un petit-déjeuner") || mealAnswer.startsWith("3 repas") || mealAnswer.startsWith("Plusieurs petits repas") || (mealAnswer.startsWith("Cela varie") && answers.q6!=="Jamais");
  const mainResult=getMenuCandidates("main"), breakfastResult=includeBreakfast?getMenuCandidates("breakfast"):null;
  const candidates=mainResult.candidates, breakfastCandidates=breakfastResult?breakfastResult.candidates:[];
  const allergyUnknown=mainResult.allergyUnknown||(breakfastResult&&breakfastResult.allergyUnknown);
@@ -534,7 +536,9 @@ function openLibrary(){
 function buildLibrary(){
  const phtml=products.map((p,i)=>`<details class="advice"><summary><strong>${i+1}. ${p[0]}</strong> <span class="small">· ${p[1]}</span></summary><p><strong>Saison :</strong> ${p[2]}</p><p>${p[3]}</p><p><strong>Données nutritionnelles :</strong> ${p[4]}</p><p><strong>Conservation :</strong> ${p[5]}</p><p><strong>Idées :</strong> ${p[6]}</p></details>`).join("");
  const rhtml=recipes.map((r,i)=>`<details class="advice"><summary><strong>${i+1}. ${r[0]}</strong> <span class="small">· ${r[1]}</span></summary><p><strong>Ingrédients :</strong> ${r[2]}</p><p><strong>Préparation :</strong> ${r[3]}</p><p><strong>Allergènes et régime :</strong> ${r[4]}</p></details>`).join("");
- $("libraryContent").innerHTML=`<h3 style="color:var(--wine)">10 fiches produits</h3>${phtml}<h3 style="color:var(--wine);margin-top:24px">10 recettes de départ</h3>${rhtml}<div class="notice"><strong>Repères de lecture :</strong> les valeurs chiffrées des fiches sont des ordres de grandeur pédagogiques, non des valeurs certifiées de produit local. Pour chaque fiche finale, il faudra sélectionner l'aliment exact et son état (cru, cuit, séché, en conserve) dans la table Ciqual 2025. Les allergènes doivent être contrôlés pour chaque ingrédient et chaque marque.</div>`;
+ const visualSheets=[["Chili revisité","fiche-chili-revisite.png"],["Pommes de terre rôties maison","fiche-pommes-de-terre-roties.png"],["Escalivade du Sud","fiche-escalivade-du-sud.png"],["La châtaigne du Vallespir","fiche-chataigne-vallespir.png"]];
+ const sheetsHtml=visualSheets.map(s=>`<details class="recipe-sheet"><summary>${s[0]}</summary><img src="./${s[1]}" alt="Fiche illustrée : ${s[0]}" loading="lazy"></details>`).join("");
+ $("libraryContent").innerHTML=`<h3 style="color:var(--wine)">4 fiches recettes illustrées</h3><p class="muted recipe-sheets-intro">Touchez une fiche pour afficher son visuel complet.</p><div class="recipe-sheets-grid">${sheetsHtml}</div><h3 style="color:var(--wine);margin-top:24px">10 fiches produits</h3>${phtml}<h3 style="color:var(--wine);margin-top:24px">10 recettes de départ</h3>${rhtml}<div class="notice"><strong>Repères de lecture :</strong> les valeurs chiffrées des fiches sont des ordres de grandeur pédagogiques, non des valeurs certifiées de produit local. Pour chaque fiche finale, il faudra sélectionner l'aliment exact et son état (cru, cuit, séché, en conserve) dans la table Ciqual 2025. Les allergènes doivent être contrôlés pour chaque ingrédient et chaque marque.</div>`;
 }
 function openLibrary(){ $("welcome").hidden=true;$("quiz").hidden=true;$("result").style.display="none";$("planner").hidden=true;$("library").hidden=false;buildLibrary();window.scrollTo({top:0,behavior:"smooth"});}
 function openPlateGuide(){

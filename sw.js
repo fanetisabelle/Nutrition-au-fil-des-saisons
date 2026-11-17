@@ -1,5 +1,5 @@
-const CACHE_NAME = "nutrition-saisons-v14";
-const APP_FILES = ["./", "./index.html", "./manifest.webmanifest", "./logo-isabelle-fanet-192.png", "./logo-isabelle-fanet-512.png", "./apple-touch-icon.png"];
+const CACHE_NAME = "nutrition-saisons-v15-fiches";
+const APP_FILES = ["./", "./index.html", "./manifest.webmanifest", "./logo-isabelle-fanet-192.png", "./logo-isabelle-fanet-512.png", "./apple-touch-icon.png", "./fiche-chili-revisite.png", "./fiche-pommes-de-terre-roties.png", "./fiche-escalivade-du-sud.png", "./fiche-chataigne-vallespir.png"];
 self.addEventListener("install", event => {
   event.waitUntil(caches.open(CACHE_NAME).then(cache => cache.addAll(APP_FILES)));
   self.skipWaiting();

@@ -53,3 +53,6 @@ Version 13 – nouvelle interface et accès annuel
 - Paiement unique de 5 € via le lien Swan fourni pour débloquer l’application pendant un an. Aucun abonnement mensuel ni renouvellement automatique n’est prévu dans cette version.
 - IMPORTANT : le lien Swan est ouvert dans une page externe. Cette version ne reçoit pas de confirmation automatique de la banque ; l’utilisateur déclare le paiement et l’accès local est activé pour un an. La vérification du paiement doit être faite séparément. Cette activation locale n’est pas une protection contre le partage ou la modification côté navigateur. Une intégration serveur avec notification bancaire sera nécessaire pour sécuriser réellement les accès payants.
 - Cache hors ligne incrémenté en v13.
+
+
+Version 15 – 4 fiches finalisées ajoutées à l’onglet Recettes : Chili revisité, Pommes de terre rôties maison, Escalivade du Sud et Châtaigne du Vallespir. Les visuels originaux transmis sont intégrés sans retouche et inclus dans le cache hors ligne.
