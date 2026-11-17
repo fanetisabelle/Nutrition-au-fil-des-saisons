@@ -38,9 +38,18 @@ Mise à jour v11 – menus et référence nutritionnelle
 - Référence documentaire mise à jour : Anses, 2025, Table Ciqual (3 484 aliments, 74 constituants). Les valeurs chiffrées restent masquées tant que la correspondance précise aliment/préparation n’est pas validée.
 
 
-Mise à jour v12 – sécurisation des exclusions et du cache
-- Renforcement de la lecture des aliments refusés saisis en texte libre : accents, singulier/pluriel et formulations courantes.
-- Renforcement de l'exclusion lactose : filtrage des ingrédients et allergènes correspondant au lait et à ses dérivés (dont lactosérum, caséine, crème, beurre, yaourt et fromages).
-- Les recettes incompatibles restent écartées ; si aucun menu ne respecte les critères, l'application affiche qu'aucune proposition ne peut être faite plutôt que d'ignorer une exclusion.
-- Le choix « 3 repas par jour » conserve un petit-déjeuner dans le menu, indépendamment de la réponse sur la fréquence habituelle du petit-déjeuner.
-- Cache hors ligne passé en v12 ; la page HTML est désormais vérifiée en réseau avant d'utiliser sa copie en cache, afin de limiter l'affichage d'une ancienne version.
+Version 12 – fiabilisation du générateur de menus
+- Filtrage renforcé des exclusions en texte libre (accents, pluriels et formulations courantes).
+- Exclusion élargie des ingrédients laitiers en cas de sélection « Lactose » ; exclusion élargie des sources courantes de gluten et fruits à coque.
+- Trois repas : petit-déjeuner, déjeuner et dîner. Deux repas : déjeuner et dîner. « Cela varie » suit la réponse sur la fréquence du petit-déjeuner.
+- Cache hors ligne v12 ; les pages HTML sont désormais actualisées en priorité depuis le réseau, avec recours au cache en mode hors ligne.
+- Les données chiffrées Ciqual restent volontairement non affichées tant que le rapprochement exact de chaque aliment et de son état de préparation n'est pas validé.
+
+
+Version 13 – nouvelle interface et accès annuel
+- Nouvelle page d’accueil inspirée de la maquette fournie, avec logo Isabelle Fanet, visuel méditerranéen, bouton de découverte, engagements et étapes de fonctionnement.
+- Navigation mobile : Accueil, Menus, Recettes, Liste de courses et Mon profil.
+- Questionnaire de 35 questions gratuit.
+- Paiement unique de 5 € via le lien Swan fourni pour débloquer l’application pendant un an. Aucun abonnement mensuel ni renouvellement automatique n’est prévu dans cette version.
+- IMPORTANT : le lien Swan est ouvert dans une page externe. Cette version ne reçoit pas de confirmation automatique de la banque ; l’utilisateur déclare le paiement et l’accès local est activé pour un an. La vérification du paiement doit être faite séparément. Cette activation locale n’est pas une protection contre le partage ou la modification côté navigateur. Une intégration serveur avec notification bancaire sera nécessaire pour sécuriser réellement les accès payants.
+- Cache hors ligne incrémenté en v13.

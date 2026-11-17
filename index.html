@@ -71,22 +71,47 @@ button:disabled{opacity:.4;cursor:not-allowed}
 
 footer{text-align:center;color:var(--muted);font-size:.8rem;padding:8px 12px 28px}
 @media(max-width:520px){header{padding:23px 14px}.actions button{flex:1}.card{border-radius:14px}}
+
+/* Interface d’accueil et navigation – version 13 */
+.topbar{height:126px;background:#fffaf8;color:var(--wine);display:flex;align-items:flex-start;justify-content:space-between;padding:14px 22px;position:relative;z-index:2}
+.topbar .brand-logo{width:170px;height:112px;object-fit:contain;background:transparent;border-radius:0;padding:0;margin:0 auto}
+.top-icon{background:transparent;color:var(--wine);font-size:1.8rem;padding:3px 8px;line-height:1}
+.brand-home{position:absolute;left:50%;transform:translateX(-50%);top:5px}
+main{max-width:920px;margin:0 auto;padding:0 0 105px}
+.landing{background:#fffaf8;overflow:hidden;padding-bottom:22px}
+.hero-copy{text-align:center;padding:8px 18px 0;position:relative;z-index:1}
+.hero-brand{display:none}.hero-brand img{width:110px;height:70px;object-fit:contain}
+.hero-copy h1{font-family:Georgia,serif;font-size:clamp(2.25rem,8vw,4.4rem);line-height:.94;margin:10px 0 14px;color:#28252a;font-weight:700}
+.hero-copy h1 span{display:block;color:#8b153f}.hero-copy h1 em{display:block;font-weight:600;font-size:.77em}
+.hero-copy p{font-weight:650;font-size:clamp(1rem,3.5vw,1.35rem);line-height:1.4;margin:0 auto 14px;color:#1f2024}
+.hero-photo{height:310px;background-image:linear-gradient(180deg,#fffaf800 75%,#fffaf8 100%),url('./hero-mediterranee.jpg');background-size:cover;background-position:center 54%;margin-top:-2px}
+.landing-cta{padding:0 7%;margin-top:-42px;position:relative;z-index:1}.hero-button{width:100%;font-size:1.15rem;padding:15px 20px;box-shadow:0 5px 18px #5a183022}.hero-button span{font-size:1.6rem;margin-left:14px;vertical-align:-2px}
+.value-row{display:flex;align-items:center;justify-content:space-around;gap:8px;padding:22px 10px 26px;text-align:center}.value-row div{display:flex;flex-direction:column;align-items:center;gap:4px;flex:1}.value-row b{width:58px;height:58px;border-radius:50%;background:#f4e4e6;color:#86143e;display:grid;place-items:center;font-size:1.8rem;font-weight:500}.value-row strong{font-size:.98rem}.value-row i{height:48px;width:1px;background:#cdbdc0}
+.how-card{margin:0 16px;background:#f8e9e9;border-radius:22px;padding:17px 18px 22px}.how-card h2{font:italic 700 1.8rem Georgia,serif;color:#8b153f;margin:0 0 16px}.how-steps{display:flex;align-items:center;justify-content:space-between;gap:5px;text-align:center}.how-steps>div{display:grid;grid-template-columns:36px 1fr;align-items:center;gap:4px;flex:1}.how-steps>div b{background:#8b153f;color:white;border-radius:50%;width:32px;height:32px;display:grid;place-items:center}.how-steps>div span{font-size:1.8rem;color:#8b153f}.how-steps>div strong{grid-column:1/3;font-size:.92rem;line-height:1.25}.how-steps>i{font-size:1.7rem;color:#8b153f;font-style:normal}.landing-bottom{text-align:center;padding:18px 18px 0}.landing-bottom p{font-size:.9rem;color:var(--muted)}.text-button{background:transparent;color:var(--wine);text-decoration:underline;padding:5px}
+.payment-card{background:#fff8f0;border:1px solid #f0dfd4;border-radius:16px;padding:18px;margin:18px 0}.payment-card h2{margin-top:10px}.price-line{display:flex;align-items:baseline;gap:12px;margin:8px 0}.price-line strong{font:700 2.7rem Georgia,serif;color:var(--wine)}.price-line span{color:var(--muted)}.payment-link{display:block;text-align:center;text-decoration:none;border-radius:999px;padding:13px 18px;margin:14px 0}.payment-note{margin:10px 0 14px}.bottom-nav{position:fixed;bottom:0;left:0;right:0;z-index:20;background:#fffdfc;border-top:1px solid #eee5e7;box-shadow:0 -4px 18px #40202a0c;display:flex;justify-content:space-around;padding:8px 3px max(8px,env(safe-area-inset-bottom))}.bottom-nav button{background:transparent;color:#766d70;border-radius:0;padding:4px 2px;display:flex;flex-direction:column;align-items:center;gap:2px;font-size:.68rem;font-weight:500;flex:1}.bottom-nav button span{font-size:1.55rem;line-height:1.1}.bottom-nav button.active{color:#8b153f;border-top:3px solid #8b153f}.drawer{position:fixed;inset:0 22% 0 0;z-index:30;background:#fffaf8;box-shadow:0 0 0 100vmax #0006;padding:28px 20px;display:flex;flex-direction:column;gap:15px}.drawer button{background:#f7ebed;color:var(--wine);text-align:left}.drawer .drawer-close{align-self:flex-end;background:transparent}.drawer[hidden]{display:none}
+@media(min-width:700px){.hero-photo{height:420px}.hero-copy{padding-top:12px}.hero-copy h1{margin-top:6px}.landing-cta{max-width:720px;margin:-46px auto 0}.how-card{max-width:850px;margin:0 auto}.value-row{max-width:800px;margin:auto}}
+@media(max-width:520px){.topbar{height:112px;padding:12px 14px}.topbar .brand-logo{width:142px;height:96px}.hero-photo{height:270px}.hero-copy h1{margin-top:6px}.hero-copy p{font-size:1rem}.how-steps>div{grid-template-columns:28px 1fr}.how-steps>div b{width:28px;height:28px}.how-steps>div strong{font-size:.78rem}.how-card{padding:15px 12px 18px}.how-card h2{font-size:1.55rem}}
+
 </style>
 </head>
 <body>
-<header>
- <img class="brand-logo" src="./logo-isabelle-fanet-512.png" alt="Logo Isabelle Fanet">
- <div class="eyebrow">Pyrénées-Orientales · 66</div>
- <h1>Nutrition au fil des saisons</h1>
- <p>Mieux manger, naturellement.</p>
+<header class="topbar">
+ <button class="top-icon" id="menuToggle" aria-label="Ouvrir le menu">☰</button>
+ <a class="brand-home" href="#" id="brandHome" aria-label="Accueil Nutrition au fil des saisons"><img class="brand-logo" src="./logo-isabelle-fanet-512.png" alt="Logo Isabelle Fanet"></a>
+ <button class="top-icon profile-top" id="profileTop" aria-label="Mon profil">♙</button>
 </header>
 <main>
- <section class="card intro" id="welcome">
-  
-  <h2>Apprenons à mieux connaître vos habitudes</h2>
-  <p>Ce questionnaire comporte 35 questions réparties en 7 étapes. Il permet de préparer des conseils pratiques autour de vos habitudes, de vos goûts, de votre organisation et des produits de saison.</p>
-  <div class="notice"><strong>Confidentialité :</strong> vos réponses restent enregistrées dans le navigateur de cet appareil. Elles ne sont envoyées à aucun serveur. Évitez d'y inscrire des informations médicales détaillées.</div>
-  <div class="actions"><button class="primary" id="start">Commencer le questionnaire</button><button class="secondary" id="openLibrary">Découvrir les produits et recettes</button><button class="secondary" id="openPlateGuide">Mon assiette santé &amp; mes portions</button></div>
+ <section class="landing" id="welcome">
+  <div class="hero-copy">
+   <div class="hero-brand"><img src="./logo-isabelle-fanet-1024.png" alt="Logo Isabelle Fanet"></div>
+   <h1><span>Nutrition</span><em>au fil des saisons</em></h1>
+   <p>Des menus personnalisés, équilibrés et de saison,<br>pour manger mieux, naturellement<br>et à votre rythme.</p>
+  </div>
+  <div class="hero-photo" role="img" aria-label="Repas méditerranéen équilibré avec légumes de saison"></div>
+  <div class="landing-cta"><button class="primary hero-button" id="start">Découvrir mon programme <span>→</span></button></div>
+  <div class="value-row"><div><b>♧</b><strong>De saison</strong></div><i></i><div><b>⚖</b><strong>Équilibré</strong></div><i></i><div><b>☷</b><strong>Personnalisé</strong></div></div>
+  <div class="how-card"><h2>Comment ça marche ?</h2><div class="how-steps"><div><b>1</b><span>▤</span><strong>Je découvre<br>mon profil<br>nutritionnel</strong></div><i>›</i><div><b>2</b><span>♨</span><strong>Je reçois<br>un aperçu<br>personnalisé</strong></div><i>›</i><div><b>3</b><span>▦</span><strong>Je construis<br>mon programme<br>complet</strong></div></div></div>
+  <div class="landing-bottom"><p>Votre questionnaire de 35 questions est entièrement gratuit.</p><button class="text-button" id="discoverLibrary">Découvrir les produits locaux et les recettes</button></div>
  </section>
  <section class="card" id="plateGuide" hidden>
   <span class="pill">Guide pratique · Nutrition au fil des saisons</span>
@@ -145,9 +170,19 @@ footer{text-align:center;color:var(--muted);font-size:.8rem;padding:8px 12px 28p
  <section class="card result" id="result">
   <span class="pill">Questionnaire terminé</span>
   <h2>Votre questionnaire est prêt</h2>
-  <p>Vos réponses ont été enregistrées sur cet appareil. Les résultats donnent des repères pratiques à partir des réponses renseignées. Ils ne constituent pas une évaluation médicale.</p>
+  <p>Vos réponses ont été enregistrées sur cet appareil. Le questionnaire est gratuit ; le paiement annuel débloque l’accès aux menus, recettes, liste de courses et profil personnalisés. Les résultats donnent des repères pratiques et ne constituent pas une évaluation médicale.</p>
   <div class="summary-grid" id="summary"></div><div id="personalAdvice" style="margin-top:18px"></div>
   <div class="notice" style="margin-top:16px">Les informations nutritionnelles sont en cours de vérification à partir de la table Ciqual 2025. Aucune valeur chiffrée non validée ne doit être interprétée comme une donnée officielle. Ces fiches sont pédagogiques et ne constituent ni un diagnostic ni une évaluation médicale.</div>
+  <section class="payment-card" id="paymentGate">
+   <span class="pill">Votre questionnaire est gratuit</span>
+   <h2 class="section-title">Débloquez votre programme personnalisé</h2>
+   <div class="price-line"><strong>5 €</strong><span>pour une année complète d’accès</span></div>
+   <p>Après le paiement, vous pourrez consulter vos menus personnalisés, les recettes de saison, votre liste de courses et votre profil.</p>
+   <a class="primary payment-link" id="paySwan" href="https://payment.swan.io/33f09426-7060-4fd9-a548-8a39a0014ad8?lang=fr" target="_blank" rel="noopener">Payer 5 € pour 1 an avec Swan ↗</a>
+   <p class="small payment-note">Cette première version utilise votre lien bancaire Swan. Le paiement n’est pas confirmé automatiquement par l’application : après règlement, revenez ici et utilisez le bouton ci-dessous. L’activation locale est valable un an et devra être vérifiée manuellement.</p>
+   <button class="secondary" id="confirmPayment">J’ai effectué le paiement – activer mon accès annuel</button>
+   <p class="small" id="accessStatus" aria-live="polite"></p>
+  </section>
   <div class="actions">
    <button class="secondary" id="edit">Modifier mes réponses</button>
    <button class="primary" id="export">Télécharger mes réponses</button>
@@ -155,7 +190,15 @@ footer{text-align:center;color:var(--muted);font-size:.8rem;padding:8px 12px 28p
   </div>
  </section>
 </main>
-<footer>Nutrition au fil des saisons · Informations pédagogiques et suggestions indicatives · Ne remplace pas un avis médical.</footer>
+<nav class="bottom-nav" aria-label="Navigation principale">
+ <button class="active" data-tab="home"><span>⌂</span>Accueil</button>
+ <button data-tab="menus"><span>♜</span>Menus</button>
+ <button data-tab="recipes"><span>♧</span>Recettes</button>
+ <button data-tab="shopping"><span>🛒</span>Liste de courses</button>
+ <button data-tab="profile"><span>♙</span>Mon profil</button>
+</nav>
+<div class="drawer" id="drawer" hidden><button data-close-drawer class="drawer-close">✕</button><strong>Nutrition au fil des saisons</strong><button data-tab="home">Accueil</button><button data-tab="menus">Mes menus</button><button data-tab="recipes">Recettes et produits locaux</button><button data-tab="shopping">Liste de courses</button><button data-tab="profile">Mon profil</button></div>
+<footer>Nutrition au fil des saisons · Version 13 · Informations pédagogiques et suggestions indicatives · Ne remplace pas un avis médical.</footer>
 <script>
 const sections = [
 {title:"Mon profil et mon quotidien",desc:"Quelques repères pour comprendre votre rythme de vie.",qs:[
@@ -370,26 +413,22 @@ function currentSeasonName(){
  return m>=3&&m<=5?"printemps":m>=6&&m<=8?"été":m>=9&&m<=11?"automne":"hiver";
 }
 function normFood(v){return String(v||"").toLocaleLowerCase("fr").normalize("NFD").replace(/[\u0300-\u036f]/g,"").replace(/[’']/g," ").replace(/[^a-z0-9 ]/g," ").replace(/\s+/g," ").trim();}
-const DAIRY_EXCLUSIONS=["lait","laits","lactose","lactoserum","petit lait","whey","caseine","caséine","creme","crème","beurre","yaourt","yogourt","fromage","lait en poudre","lait concentre","lait concentre sucre","lait de vache","lait de chevre","lait de brebis"];
-function foodTermVariants(value){
- const n=normFood(value); if(!n)return [];
- const variants=new Set([n]);
- // Singulier/pluriel simple : câpre/câpres, noix/noix, amandes/amande.
- if(n.endsWith("s")&&n.length>3)variants.add(n.slice(0,-1)); else if(n.length>3)variants.add(n+"s");
- if(["capre","capres"].includes(n)){variants.add("capre");variants.add("capres");}
- return [...variants];
+const dairyTerms=["lait","lait en poudre","lait concentre","lait fermente","creme","beurre","fromage","yaourt","yoghourt","petit suisse","faisselle","lactoserum","petit lait","caseine","whey","lactose","lait de vache","lait de chevre","lait de brebis"];
+const glutenTerms=["ble","seigle","orge","epeautre","triticale","semoule","boulgour","couscous","pates de ble","farine de ble","chapelure"];
+const nutTerms=["amande","noisette","noix","pistache","cajou","pecan","macadamia","pignon","noix du bresil"];
+function phrasePresent(haystack, phrase){
+ const h=" "+normFood(haystack)+" ", p=normFood(phrase);
+ if(!p) return false;
+ if((" "+h).includes(" "+p+" ")) return true;
+ // Singular/plural and common spelling variations (e.g. câpre/câpres).
+ const words=p.split(" ").map(w=>w.length>4&&w.endsWith("s")?w.slice(0,-1):w);
+ const tokens=normFood(haystack).split(" ").map(w=>w.length>4&&w.endsWith("s")?w.slice(0,-1):w);
+ return words.every((w,i)=>tokens.includes(w)) || (words.length===1&&tokens.some(t=>t.startsWith(words[0])||words[0].startsWith(t)));
 }
-function parseFoodExclusions(text){
- return String(text||"").split(/[,;\n]+|\bet\b|\bainsi que\b/i).map(part=>{
-  let n=normFood(part);
-  n=n.replace(/^(je n aime pas|je n aime|je refuse|je ne veux pas|je ne mange pas|je suis allergique a|allergie a|intolerance a|sans|pas de|pas d|je ne consomme pas)\s+/i,"");
-  n=n.replace(/^(les|des|du|de la|de l|le|la|l|un|une)\s+/,"").trim();
-  return n;
- }).filter(x=>x.length>=3&&!/^(aucun|aucune|rien|non)$/.test(x));
-}
-function foodIsBlocked(searchable,term){
- const hay=" "+normFood(searchable)+" ";
- return foodTermVariants(term).some(v=>hay.includes(" "+v+" "));
+function parseFreeExclusions(raw){
+ return String(raw||"").split(/[,;\\n]+|\\bet\\b|\\bou\\b/i).map(part=>normFood(part)
+  .replace(/^(je n aime pas|je n aime|je refuse de manger|je refuse|je ne mange pas|je ne consomme pas|je ne veux pas de|je ne veux plus de|je suis intolerant(e)? a|allergie a|allergique a|intolerance a|sans|pas de|pas d|ni) /,""))
+  .map(x=>x.replace(/^(les|la|le|des|du|de la|de l|d|un|une) /,"" ).trim()).filter(x=>x.length>=3);
 }
 function getMenuCandidates(mealType="main"){
  const diet=answers.q11||"Je mange de tout";
@@ -397,42 +436,37 @@ function getMenuCandidates(mealType="main"){
  const strictVeg=["Végétarienne","Principalement végétarienne"].includes(diet);
  const declared=Array.isArray(answers.q14)?answers.q14:[];
  const allergyUnknown=declared.includes("Autres allergies ou intolérances")||declared.includes("Autre choix alimentaire")||!!(answers.q14_extra||"").trim();
- const blockedTerms=[];
- if(declared.includes("Gluten"))blockedTerms.push("gluten");
- if(declared.includes("Lactose"))blockedTerms.push(...DAIRY_EXCLUSIONS);
- if(declared.includes("Fruits à coque"))blockedTerms.push("fruits a coque","noix","amande","noisette","pistache"," noix de pecan");
- const typedExclusions=parseFoodExclusions([answers.q13||"",answers.q14_extra||""].join(","));
- typedExclusions.forEach(term=>{
-  if(["lactose","produits laitiers","produit laitier","lait et derives"].includes(term))blockedTerms.push(...DAIRY_EXCLUSIONS);
-  else if(["fruits a coque","fruits coque"].includes(term))blockedTerms.push("noix","amande","noisette","pistache","pecan");
-  else blockedTerms.push(term);
- });
- const blocked=[...new Set(blockedTerms.flatMap(foodTermVariants))];
+ const blocked=[];
+ if(declared.includes("Gluten")) blocked.push(...glutenTerms,"gluten");
+ if(declared.includes("Lactose")) blocked.push(...dairyTerms);
+ if(declared.includes("Fruits à coque")) blocked.push(...nutTerms,"fruits a coque");
+ blocked.push(...parseFreeExclusions([answers.q13||"",answers.q14_extra||""].join(";")));
+ const uniqueBlocked=[...new Set(blocked.map(normFood).filter(Boolean))];
  const timeLimit=Number(document.getElementById("menuTime").value||30);
  const budget=document.getElementById("menuBudget").value;
  const season=currentSeasonName();
- const equipment=Array.isArray(answers.q20)?answers.q20:[];
  const candidates=menuRecipes.filter(r=>{
-  if((r.mealType||"main")!==mealType)return false;
-  if(!r.balanced||!["féculent","légumes","matière grasse"].every(tag=>r.tags.includes(tag))||!r.tags.some(tag=>["viande","volaille","poisson","œufs","protéine végétale"].includes(tag)))return false;
-  if(!r.season.includes("toutes")&&!r.season.includes(season))return false;
-  if(strictVegan&&r.diet!=="vegan")return false;
-  if(strictVeg&&r.diet==="omnivore")return false;
-  if(r.time>timeLimit)return false;
-  if(budget==="economy"&&r.cost!=="economy")return false;
+  if((r.mealType||"main")!==mealType) return false;
+  if(!r.balanced || !["féculent","légumes","matière grasse"].every(tag=>r.tags.includes(tag)) || !r.tags.some(tag=>["viande","volaille","poisson","œufs","protéine végétale"].includes(tag))) return false;
+  if(!r.season.includes("toutes")&&!r.season.includes(season)) return false;
+  if(strictVegan&&r.diet!=="vegan") return false;
+  if(strictVeg&&r.diet==="omnivore") return false;
+  if(r.time>timeLimit) return false;
+  if(budget==="economy"&&r.cost!=="economy") return false;
   const searchable=[r.name,...r.ingredients,...(r.allergens||[])].join(" ");
-  if(blocked.some(term=>foodIsBlocked(searchable,term)))return false;
-  if(r.equipment.length&&equipment.length&&!r.equipment.some(e=>equipment.includes(e)))return false;
-  if(equipment.includes("Aucun équipement particulier")&&r.equipment.some(e=>["Four","Mixeur","Robot de cuisine","Air fryer","Plaques de cuisson"].includes(e)))return false;
+  if(uniqueBlocked.some(term=>phrasePresent(searchable,term))) return false;
+  const equipment=Array.isArray(answers.q20)?answers.q20:[];
+  // Les équipements cochés décrivent le matériel disponible : ne pas exiger qu'une recette utilise chacun d'eux.
+  // En revanche, si la personne indique ne disposer d'aucun équipement particulier, écarter les recettes qui en dépendent.
+  if(equipment.includes("Aucun équipement particulier") && r.equipment.some(e=>["Four","Mixeur","Robot de cuisine","Air fryer"].includes(e))) return false;
   return true;
  });
- return {candidates,allergyUnknown,excluded:blocked};
+ return {candidates,allergyUnknown,excluded:uniqueBlocked};
 }
 function generateMenus(){
  const days=Number(document.getElementById("menuDays").value||7);
  const mealAnswer=answers.q5||"3 repas par jour";
- const normalizedMealAnswer=normFood(mealAnswer);
- const includeBreakfast=!normalizedMealAnswer.startsWith("2 repas");
+ const includeBreakfast=mealAnswer.startsWith("3 repas") || mealAnswer.startsWith("Plusieurs petits repas") || (mealAnswer.startsWith("Cela varie") && answers.q6!=="Jamais");
  const mainResult=getMenuCandidates("main"), breakfastResult=includeBreakfast?getMenuCandidates("breakfast"):null;
  const candidates=mainResult.candidates, breakfastCandidates=breakfastResult?breakfastResult.candidates:[];
  const allergyUnknown=mainResult.allergyUnknown||(breakfastResult&&breakfastResult.allergyUnknown);
@@ -442,7 +476,12 @@ function generateMenus(){
   output.innerHTML='<div class="notice" style="margin-top:16px">Aucune recette ne correspond à tous les critères pour chaque repas. Vérifiez les exclusions, les préférences, le temps et les équipements. Aucune exclusion ne sera ignorée pour remplir le menu.</div>';
   return;
  }
- const selected=Array.from({length:days*2},(_,i)=>candidates[i%candidates.length]);
+ const selected=[];
+ const mainPool=[...candidates];
+ for(let i=0;i<days*2;i++){
+  const index=i%Math.max(1,mainPool.length);
+  selected.push(mainPool[index]);
+ }
  const breakfasts=includeBreakfast?Array.from({length:days},(_,i)=>breakfastCandidates[i%breakfastCandidates.length]):[];
  const season=currentSeasonName(),dayLabels=["Lundi","Mardi","Mercredi","Jeudi","Vendredi","Samedi","Dimanche"];
  let cards="";
@@ -511,6 +550,28 @@ $("edit").onclick=()=>{$("result").style.display="none";$("quiz").hidden=false;s
 $("export").onclick=()=>{const blob=new Blob([JSON.stringify({application:"Nutrition au fil des saisons",exportedAt:new Date().toISOString(),answers},null,2)],{type:"application/json"});const a=document.createElement("a");a.href=URL.createObjectURL(blob);a.download="mes-reponses-nutrition-saisons.json";a.click();URL.revokeObjectURL(a.href)};
 $("reset").onclick=()=>{if(confirm("Effacer toutes les réponses enregistrées sur cet appareil ?")){answers={};save();step=0;$("result").style.display="none";$("welcome").hidden=false;window.scrollTo({top:0,behavior:"smooth"})}};
 if(Object.keys(answers).length){$("start").textContent="Reprendre mon questionnaire"}
+
+// Accès de première version : ouverture du lien Swan puis déclaration du paiement.
+// La confirmation automatique nécessitera une intégration serveur/webhook bancaire.
+const PAYMENT_URL="https://payment.swan.io/33f09426-7060-4fd9-a548-8a39a0014ad8?lang=fr";
+const ACCESS_KEY="nfs_v13_access_until";
+function hasAccess(){const until=Number(localStorage.getItem(ACCESS_KEY)||0);return Date.now()<until;}
+function grantLocalAccess(){localStorage.setItem(ACCESS_KEY,String(Date.now()+365*24*60*60*1000));updateAccessUI();}
+function updateAccessUI(){const ok=hasAccess();const gate=document.getElementById("paymentGate");if(gate){gate.classList.toggle("access-granted",ok);gate.querySelector("#accessStatus").textContent=ok?"Accès activé sur cet appareil jusqu’au "+new Date(Number(localStorage.getItem(ACCESS_KEY))).toLocaleDateString("fr-FR"):"";}document.querySelectorAll('.bottom-nav [data-tab]').forEach(b=>{if(b.dataset.tab!=="home")b.classList.toggle("locked",!ok);});}
+function showOnly(id){["welcome","quiz","plateGuide","library","planner"].forEach(x=>{const el=document.getElementById(x);if(el)el.hidden=x!==id;});document.getElementById("result").style.display=id==="result"?"block":"none";window.scrollTo({top:0,behavior:"smooth"});}
+function requireAccess(){if(!hasAccess()){document.getElementById("result").style.display="block";document.getElementById("paymentGate").scrollIntoView({behavior:"smooth",block:"center"});return false;}return true;}
+document.getElementById("confirmPayment").addEventListener("click",()=>{if(confirm("Confirmez-vous avoir réglé les 5 € sur la page sécurisée Swan ? Cette version ne peut pas vérifier automatiquement le paiement.")){grantLocalAccess();alert("Accès activé sur cet appareil pour 1 an. La preuve de paiement doit être vérifiée séparément.");}});
+document.getElementById("paySwan").href=PAYMENT_URL;
+document.getElementById("menuToggle").onclick=()=>document.getElementById("drawer").hidden=false;
+document.querySelector("[data-close-drawer]").onclick=()=>document.getElementById("drawer").hidden=true;
+document.getElementById("brandHome").onclick=e=>{e.preventDefault();showOnly("welcome");};
+document.getElementById("profileTop").onclick=()=>{if(requireAccess()){document.getElementById("drawer").hidden=true;document.getElementById("result").style.display="block";window.scrollTo({top:0,behavior:"smooth"});}};
+document.getElementById("discoverLibrary").onclick=()=>{if(requireAccess())openLibrary();else document.getElementById("welcome").hidden=true;};
+document.querySelectorAll(".bottom-nav [data-tab], .drawer [data-tab]").forEach(btn=>btn.addEventListener("click",()=>{const tab=btn.dataset.tab;document.getElementById("drawer").hidden=true;if(tab!=="home"&&!requireAccess())return;document.querySelectorAll(".bottom-nav button").forEach(x=>x.classList.toggle("active",x.dataset.tab===tab));if(tab==="home")showOnly("welcome");if(tab==="menus")openPlanner();if(tab==="recipes")openLibrary();if(tab==="shopping"){const out=document.getElementById("menuOutput");if(out&&out.innerHTML.trim()){openPlanner();out.scrollIntoView({behavior:"smooth"});}else{openPlanner();alert("Générez d’abord vos menus pour créer votre liste de courses.");}}if(tab==="profile"){document.getElementById("result").style.display="block";["welcome","quiz","plateGuide","library","planner"].forEach(x=>document.getElementById(x).hidden=true);window.scrollTo({top:0,behavior:"smooth"});}}));
+const originalOpenPlanner=openPlanner;openPlanner=function(){if(!requireAccess())return;originalOpenPlanner();};
+const originalOpenLibrary=openLibrary;openLibrary=function(){if(!requireAccess())return;originalOpenLibrary();};
+const originalOpenPlateGuide=openPlateGuide;openPlateGuide=function(){if(!requireAccess())return;originalOpenPlateGuide();};
+updateAccessUI();
 </script>
 
 <script>
