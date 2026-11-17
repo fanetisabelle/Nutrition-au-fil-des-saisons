@@ -60,3 +60,13 @@ Version 15 – 4 fiches finalisées ajoutées à l’onglet Recettes : Chili rev
 Correctif : les quatre fiches sont désormais encodées comme entrées dans la liste « Recettes », avec leur visuel original dans chaque fiche. Intitulés conservés exactement : patatoes fait maison, escalivade façon catalane, chili revisité, châtaignes du vallespir.
 
 Version 16 : chaque recette de l'onglet « Recettes » est présentée sous forme de fiche repliée et clairement cliquable. Touchez le titre « Ouvrir la fiche » pour déployer la photo, les ingrédients, les quantités, la préparation et les informations de régime/allergènes. Les noms des quatre fiches demandées sont conservés.
+
+
+Version 17 – Administration des recettes avec Supabase
+- Ajout d'un accès « Administration privée » dans le menu.
+- Connexion réservée à fanetisabelle25@gmail.com via Supabase Auth.
+- Ajout, modification, publication/dépublication et suppression de recettes dans la table Supabase `public.recettes`.
+- Import initial des recettes du site uniquement lorsque la table est vide, sans doublons.
+- Les visiteurs continuent à consulter les recettes publiées ; les écritures sont protégées par les politiques RLS de Supabase.
+- Configuration du projet à compléter dans `supabase-config.js` avec la clé `sb_publishable_` uniquement. Ne jamais placer une clé `sb_secret_` ou `service_role` dans le code public.
+- Le paiement Swan et son activation locale restent inchangés et ne constituent pas encore un contrôle d'abonnement sécurisé côté serveur.

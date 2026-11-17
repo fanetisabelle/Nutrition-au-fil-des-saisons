@@ -107,6 +107,25 @@ main{max-width:920px;margin:0 auto;padding:0 0 105px}
 .recipe-entry .recipe-body p{line-height:1.55}
 .recipe-entry .recipe-body strong{color:var(--wine)}
 
+/* Administration privée — intégration Supabase v17 */
+.admin-card{border:1px solid #e8d9de;background:#fff;border-radius:16px;padding:18px;margin:16px 0}
+.admin-card h3{color:var(--wine);margin:0 0 12px}
+.admin-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:12px}
+.admin-field{display:flex;flex-direction:column;gap:5px;margin:9px 0}
+.admin-field label{font-size:.9rem;font-weight:650;color:var(--wine)}
+.admin-field input,.admin-field textarea,.admin-field select{width:100%;border:1px solid #d9cdd1;border-radius:10px;padding:11px;font:inherit;color:var(--ink);background:white}
+.admin-field textarea{min-height:100px}
+.admin-status{padding:10px 12px;border-radius:10px;background:#f7eff1;color:var(--wine);margin:10px 0;font-size:.9rem}
+.admin-status.error{background:#fff0ee;color:#8b2525}
+.admin-list-item{display:flex;align-items:center;justify-content:space-between;gap:12px;border:1px solid #eee5e7;border-radius:12px;padding:12px;margin:8px 0;background:#fff;flex-wrap:wrap}
+.admin-list-item strong{color:var(--wine)}
+.admin-list-actions{display:flex;gap:7px;flex-wrap:wrap}
+.admin-list-actions button{padding:8px 12px;font-size:.85rem}
+.admin-inline{display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+.admin-inline input[type=checkbox]{width:auto;accent-color:var(--wine)}
+.admin-login{max-width:520px;margin:12px auto}
+.admin-login input{width:100%;border:1px solid #d9cdd1;border-radius:10px;padding:12px;font:inherit}
+@media(max-width:520px){.admin-list-item{align-items:flex-start}.admin-list-actions{width:100%}.admin-list-actions button{flex:1}}
 </style>
 </head>
 <body>
@@ -168,6 +187,49 @@ main{max-width:920px;margin:0 auto;padding:0 0 105px}
  </section>
  <section class="card" id="library" hidden><span class="pill">Bibliothèque locale · 66</span><h2 class="section-title">Les produits du terroir et les recettes de saison</h2><p class="muted">Une sélection de produits du terroir et de recettes inspirées des saisons des Pyrénées-Orientales.</p>
   <div class="notice">Les valeurs chiffrées sont volontairement masquées tant que chaque aliment n’a pas été rapproché d’une référence Ciqual précise (variété si disponible, cru/cuit, préparation). Cette précaution évite de présenter des estimations comme des données officielles. Source de référence : <a href="https://ciqual.anses.fr/cms/fr/node/19" target="_blank" rel="noopener">Anses – Table Ciqual 2025</a>. Les données réutilisées porteront la mention « Anses. 2025. Table de composition nutritionnelle des aliments Ciqual ».</div><div id="libraryContent"></div><div class="actions"><button class="secondary" id="backHome">Retour à l’accueil</button></div></section>
+ <section class="card" id="adminPanel" hidden>
+  <span class="pill">Espace privé · Administratrice</span>
+  <h2 class="section-title">Administration de l’application</h2>
+  <p class="muted">Gestion des recettes enregistrées dans Supabase. Les droits de modification sont également contrôlés par la base de données.</p>
+  <div id="adminConfigWarning" class="notice" hidden>La connexion Supabase n’est pas encore configurée. Renseigne l’URL du projet et la clé publiable dans <strong>supabase-config.js</strong>, puis redéploie le site.</div>
+  <div id="adminLogin" class="admin-card admin-login">
+   <h3>Connexion administrateur</h3>
+   <form id="adminLoginForm">
+    <div class="admin-field"><label for="adminEmail">Adresse e-mail</label><input id="adminEmail" type="email" value="fanetisabelle25@gmail.com" readonly autocomplete="username"></div>
+    <div class="admin-field"><label for="adminPassword">Mot de passe</label><input id="adminPassword" type="password" required autocomplete="current-password" placeholder="Mot de passe Supabase"></div>
+    <button class="primary" type="submit" id="adminLoginButton">Se connecter</button>
+   </form>
+   <p id="adminLoginStatus" class="admin-status" aria-live="polite">Accès réservé à l’adresse administratrice.</p>
+  </div>
+  <div id="adminWorkspace" hidden>
+   <div class="admin-card">
+    <div class="admin-inline" style="justify-content:space-between"><h3 style="margin:0">Mes recettes</h3><button class="quiet" type="button" id="adminLogout">Se déconnecter</button></div>
+    <p class="small" id="adminWelcome"></p>
+    <div class="actions" style="justify-content:flex-start"><button class="secondary" type="button" id="adminImportRecipes">Importer les recettes déjà présentes dans le site</button><button class="quiet" type="button" id="adminRefreshRecipes">Actualiser la liste</button></div>
+    <p class="small">L’import ne se fait que si la table est vide : il évite les doublons.</p>
+    <p id="adminDataStatus" class="admin-status" aria-live="polite"></p>
+   </div>
+   <div class="admin-card">
+    <h3 id="recipeFormTitle">Ajouter une recette</h3>
+    <form id="recipeEditorForm">
+     <input type="hidden" id="recipeId">
+     <div class="admin-field"><label for="recipeTitle">Titre</label><input id="recipeTitle" required maxlength="180"></div>
+     <div class="admin-grid">
+      <div class="admin-field"><label for="recipeDescription">Accroche / informations</label><input id="recipeDescription" maxlength="500"></div>
+      <div class="admin-field"><label for="recipeSeason">Saison</label><input id="recipeSeason" placeholder="Ex. automne"></div>
+      <div class="admin-field"><label for="recipeCategory">Catégorie</label><input id="recipeCategory" placeholder="Recette ou fiche produit"></div>
+     </div>
+     <div class="admin-field"><label for="recipeIngredients">Ingrédients</label><textarea id="recipeIngredients" placeholder="Liste des ingrédients et quantités"></textarea></div>
+     <div class="admin-field"><label for="recipePreparation">Préparation / description</label><textarea id="recipePreparation" placeholder="Étapes de préparation ou texte de la fiche"></textarea></div>
+     <div class="admin-field"><label for="recipeImage">Image (chemin du fichier ou URL publique)</label><input id="recipeImage" placeholder="Ex. ./fiche-chili-revisite.png"></div>
+     <div class="admin-inline"><label for="recipePublished">Visible publiquement</label><input id="recipePublished" type="checkbox" checked></div>
+     <div class="actions" style="justify-content:flex-start"><button class="primary" type="submit" id="recipeSaveButton">Enregistrer la recette</button><button class="secondary" type="button" id="recipeCancelEdit">Annuler</button></div>
+    </form>
+   </div>
+   <div class="admin-card"><h3>Recettes enregistrées</h3><div id="adminRecipeList"></div></div>
+  </div>
+  <div class="actions"><button class="secondary" id="adminBackHome" type="button">Retour à l’accueil</button></div>
+ </section>
  <section class="card" id="planner" hidden>
   
   <h2 class="section-title">Composer mes menus</h2>
@@ -212,8 +274,10 @@ main{max-width:920px;margin:0 auto;padding:0 0 105px}
  <button data-tab="shopping" aria-label="Liste de courses"><span class="nav-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 8h18l-2 12H5L3 8zM8 8l4-5 4 5M9 12v4M15 12v4"/></svg></span><span class="nav-label">Courses</span></button>
  <button data-tab="profile" aria-label="Mon profil"><span class="nav-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="8" r="4"/><path d="M4 21a8 8 0 0 1 16 0"/></svg></span><span class="nav-label">Profil</span></button>
 </nav>
-<div class="drawer" id="drawer" hidden><button data-close-drawer class="drawer-close">✕</button><strong>Nutrition au fil des saisons</strong><button data-tab="home">Accueil</button><button data-tab="menus">Mes menus</button><button data-tab="recipes">Recettes et produits locaux</button><button data-tab="shopping">Liste de courses</button><button data-tab="profile">Mon profil</button></div>
-<footer>Nutrition au fil des saisons · Version 15 · Navigation modernisée · Informations pédagogiques et suggestions indicatives · Ne remplace pas un avis médical.</footer>
+<div class="drawer" id="drawer" hidden><button data-close-drawer class="drawer-close">✕</button><strong>Nutrition au fil des saisons</strong><button data-tab="home">Accueil</button><button data-tab="menus">Mes menus</button><button data-tab="recipes">Recettes et produits locaux</button><button data-tab="shopping">Liste de courses</button><button data-tab="profile">Mon profil</button><button data-tab="admin">Administration privée</button></div>
+<footer>Nutrition au fil des saisons · Version 17 · Administration Supabase · Informations pédagogiques et suggestions indicatives · Ne remplace pas un avis médical.</footer>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="./supabase-config.js"></script>
 <script>
 const sections = [
 {title:"Mon profil et mon quotidien",desc:"Quelques repères pour comprendre votre rythme de vie.",qs:[
@@ -553,7 +617,8 @@ function openLibrary(){
 
 function buildLibrary(){
  const phtml=products.map((p,i)=>`<details class="advice"><summary><strong>${i+1}. ${p[0]}</strong> <span class="small">· ${p[1]}</span></summary><p><strong>Saison :</strong> ${p[2]}</p><p>${p[3]}</p><p><strong>Données nutritionnelles :</strong> ${p[4]}</p><p><strong>Conservation :</strong> ${p[5]}</p><p><strong>Idées :</strong> ${p[6]}</p></details>`).join("");
- const rhtml=recipes.map((r,i)=>`<details class="recipe-entry"><summary><span>${i+1}. ${r[0]}<span class="recipe-open-label">Ouvrir la fiche · ${r[1]}</span></span></summary><div class="recipe-body">${r[5]?`<img src="./${r[5]}" alt="Fiche illustrée : ${r[0]}" loading="lazy">`:""}<p><strong>Ingrédients :</strong> ${r[2]}</p><p><strong>Préparation :</strong> ${r[3]}</p><p><strong>Allergènes et régime :</strong> ${r[4]}</p></div></details>`).join("");
+ const recipeSource=Array.isArray(window.NFS_REMOTE_RECIPES)?window.NFS_REMOTE_RECIPES:recipes;
+ const rhtml=recipeSource.map((r,i)=>`<details class="recipe-entry"><summary><span>${i+1}. ${esc(r[0])}<span class="recipe-open-label">Ouvrir la fiche · ${esc(r[1]||"")}</span></span></summary><div class="recipe-body">${r[5]?`<img src="${esc(r[5].startsWith("http")?r[5]:r[5].startsWith("./")?r[5]:"./"+r[5])}" alt="Fiche illustrée : ${esc(r[0])}" loading="lazy">`:""}<p><strong>Ingrédients :</strong> ${esc(r[2]||"")}</p><p><strong>Préparation :</strong> ${esc(r[3]||"")}</p><p><strong>Allergènes et régime :</strong> ${esc(r[4]||"")}</p></div></details>`).join("");
 
 
  $("libraryContent").innerHTML=`<h3 style="color:var(--wine)">Fiches produits</h3>${phtml}<h3 style="color:var(--wine);margin-top:24px">Recettes</h3>${rhtml}<div class="notice"><strong>Repères de lecture :</strong> les valeurs chiffrées des fiches sont des ordres de grandeur pédagogiques, non des valeurs certifiées de produit local. Pour chaque fiche finale, il faudra sélectionner l'aliment exact et son état (cru, cuit, séché, en conserve) dans la table Ciqual 2025. Les allergènes doivent être contrôlés pour chaque ingrédient et chaque marque.</div>`;
@@ -586,7 +651,7 @@ const ACCESS_KEY="nfs_v13_access_until";
 function hasAccess(){const until=Number(localStorage.getItem(ACCESS_KEY)||0);return Date.now()<until;}
 function grantLocalAccess(){localStorage.setItem(ACCESS_KEY,String(Date.now()+365*24*60*60*1000));updateAccessUI();}
 function updateAccessUI(){const ok=hasAccess();const gate=document.getElementById("paymentGate");if(gate){gate.classList.toggle("access-granted",ok);gate.querySelector("#accessStatus").textContent=ok?"Accès activé sur cet appareil jusqu’au "+new Date(Number(localStorage.getItem(ACCESS_KEY))).toLocaleDateString("fr-FR"):"";}document.querySelectorAll('.bottom-nav [data-tab]').forEach(b=>{if(b.dataset.tab!=="home")b.classList.toggle("locked",!ok);});}
-function showOnly(id){["welcome","quiz","plateGuide","library","planner"].forEach(x=>{const el=document.getElementById(x);if(el)el.hidden=x!==id;});document.getElementById("result").style.display=id==="result"?"block":"none";window.scrollTo({top:0,behavior:"smooth"});}
+function showOnly(id){["welcome","quiz","plateGuide","library","planner","adminPanel"].forEach(x=>{const el=document.getElementById(x);if(el)el.hidden=x!==id;});document.getElementById("result").style.display=id==="result"?"block":"none";window.scrollTo({top:0,behavior:"smooth"});}
 function requireAccess(){if(!hasAccess()){document.getElementById("result").style.display="block";document.getElementById("paymentGate").scrollIntoView({behavior:"smooth",block:"center"});return false;}return true;}
 document.getElementById("confirmPayment").addEventListener("click",()=>{if(confirm("Confirmez-vous avoir réglé les 5 € sur la page sécurisée Swan ? Cette version ne peut pas vérifier automatiquement le paiement.")){grantLocalAccess();alert("Accès activé sur cet appareil pour 1 an. La preuve de paiement doit être vérifiée séparément.");}});
 document.getElementById("paySwan").href=PAYMENT_URL;
@@ -595,11 +660,134 @@ document.querySelector("[data-close-drawer]").onclick=()=>document.getElementByI
 document.getElementById("brandHome").onclick=e=>{e.preventDefault();showOnly("welcome");};
 document.getElementById("profileTop").onclick=()=>{if(requireAccess()){document.getElementById("drawer").hidden=true;document.getElementById("result").style.display="block";window.scrollTo({top:0,behavior:"smooth"});}};
 document.getElementById("discoverLibrary").onclick=()=>{if(requireAccess())openLibrary();else document.getElementById("welcome").hidden=true;};
-document.querySelectorAll(".bottom-nav [data-tab], .drawer [data-tab]").forEach(btn=>btn.addEventListener("click",()=>{const tab=btn.dataset.tab;document.getElementById("drawer").hidden=true;if(tab!=="home"&&!requireAccess())return;document.querySelectorAll(".bottom-nav button").forEach(x=>x.classList.toggle("active",x.dataset.tab===tab));if(tab==="home")showOnly("welcome");if(tab==="menus")openPlanner();if(tab==="recipes")openLibrary();if(tab==="shopping"){const out=document.getElementById("menuOutput");if(out&&out.innerHTML.trim()){openPlanner();out.scrollIntoView({behavior:"smooth"});}else{openPlanner();alert("Générez d’abord vos menus pour créer votre liste de courses.");}}if(tab==="profile"){document.getElementById("result").style.display="block";["welcome","quiz","plateGuide","library","planner"].forEach(x=>document.getElementById(x).hidden=true);window.scrollTo({top:0,behavior:"smooth"});}}));
+document.querySelectorAll(".bottom-nav [data-tab], .drawer [data-tab]").forEach(btn=>btn.addEventListener("click",()=>{const tab=btn.dataset.tab;document.getElementById("drawer").hidden=true;if(tab!=="home"&&tab!=="admin"&&!requireAccess())return;document.querySelectorAll(".bottom-nav button").forEach(x=>x.classList.toggle("active",x.dataset.tab===tab));if(tab==="home")showOnly("welcome");if(tab==="admin")openAdminPanel();if(tab==="menus")openPlanner();if(tab==="recipes")openLibrary();if(tab==="shopping"){const out=document.getElementById("menuOutput");if(out&&out.innerHTML.trim()){openPlanner();out.scrollIntoView({behavior:"smooth"});}else{openPlanner();alert("Générez d’abord vos menus pour créer votre liste de courses.");}}if(tab==="profile"){document.getElementById("result").style.display="block";["welcome","quiz","plateGuide","library","planner","adminPanel"].forEach(x=>document.getElementById(x).hidden=true);window.scrollTo({top:0,behavior:"smooth"});}}));
 const originalOpenPlanner=openPlanner;openPlanner=function(){if(!requireAccess())return;originalOpenPlanner();};
 const originalOpenLibrary=openLibrary;openLibrary=function(){if(!requireAccess())return;originalOpenLibrary();};
 const originalOpenPlateGuide=openPlateGuide;openPlateGuide=function(){if(!requireAccess())return;originalOpenPlateGuide();};
 updateAccessUI();
+
+// --- Administration Supabase ---
+const NFS_ADMIN_EMAIL = "fanetisabelle25@gmail.com";
+const NFS_CONFIG = window.NFS_SUPABASE_CONFIG || {};
+let nfsSupabase = null;
+window.NFS_REMOTE_RECIPES = null;
+let nfsAdminRows = [];
+const nfsAdminStatus = (id, message, isError=false) => {
+  const el=document.getElementById(id); if(!el) return;
+  el.textContent=message; el.classList.toggle("error",!!isError);
+};
+function nfsConfigReady(){return !!(window.supabase?.createClient && NFS_CONFIG.url && NFS_CONFIG.publishableKey && !String(NFS_CONFIG.publishableKey).includes("REMPLACER"));}
+if(nfsConfigReady()) nfsSupabase=window.supabase.createClient(NFS_CONFIG.url,NFS_CONFIG.publishableKey,{auth:{persistSession:true,autoRefreshToken:true,detectSessionInUrl:true}});
+function openAdminPanel(){
+  showOnly("adminPanel");
+  document.getElementById("adminConfigWarning").hidden=!!nfsSupabase;
+  document.getElementById("adminLogin").hidden=!nfsSupabase;
+}
+function nfsRowToRecipeArray(row){
+  const ingredients=typeof row.ingredients==="string"?row.ingredients:Array.isArray(row.ingredients)?row.ingredients.join("\n"):row.ingredients?JSON.stringify(row.ingredients):"";
+  const meta=[row.saison,row.categorie].filter(Boolean).join(" · ");
+  const allergens=[row.categorie,row.saison].filter(Boolean).join(" · ");
+  return [row.titre||"Recette",row.description||meta,ingredients,row.preparation||"",allergens,row.image_url||""];
+}
+async function nfsRefreshPublicRecipes(){
+  if(!nfsSupabase)return;
+  try{
+    const {data,error}=await nfsSupabase.from("recettes").select("id,titre,description,ingredients,preparation,saison,categorie,image_url,publie,created_at").eq("publie",true).order("created_at",{ascending:true});
+    if(error)throw error;
+    if(data){window.NFS_REMOTE_RECIPES=data.map(nfsRowToRecipeArray);if(!document.getElementById("library").hidden)buildLibrary();}
+  }catch(err){console.warn("Chargement Supabase impossible; le contenu intégré reste affiché.",err);}
+}
+async function nfsLoadAdminRecipes(){
+  if(!nfsSupabase)return;
+  nfsAdminStatus("adminDataStatus","Chargement des recettes…");
+  const {data,error}=await nfsSupabase.from("recettes").select("*").order("created_at",{ascending:true});
+  if(error){nfsAdminStatus("adminDataStatus","Erreur de chargement : "+error.message,true);return;}
+  nfsAdminRows=data||[];
+  nfsAdminStatus("adminDataStatus",`${nfsAdminRows.length} recette(s) dans la base Supabase.`);
+  const list=document.getElementById("adminRecipeList");
+  if(!nfsAdminRows.length){list.innerHTML='<p class="muted">Aucune recette dans la base. Clique sur « Importer les recettes déjà présentes dans le site » pour reprendre les fiches existantes.</p>';return;}
+  list.innerHTML=nfsAdminRows.map(row=>`<div class="admin-list-item"><div><strong>${esc(row.titre||"Sans titre")}</strong><div class="small">${esc(row.categorie||"Recette")} · ${row.publie?"Publiée":"Brouillon"}</div></div><div class="admin-list-actions"><button class="secondary" type="button" data-edit-recipe="${esc(row.id)}">Modifier</button><button class="quiet" type="button" data-delete-recipe="${esc(row.id)}">Supprimer</button></div></div>`).join("");
+  list.querySelectorAll("[data-edit-recipe]").forEach(btn=>btn.addEventListener("click",()=>nfsEditRecipe(btn.dataset.editRecipe)));
+  list.querySelectorAll("[data-delete-recipe]").forEach(btn=>btn.addEventListener("click",()=>nfsDeleteRecipe(btn.dataset.deleteRecipe)));
+}
+async function nfsImportExistingRecipes(){
+  if(!nfsSupabase)return;
+  const btn=document.getElementById("adminImportRecipes");btn.disabled=true;
+  try{
+    const {data,error}=await nfsSupabase.from("recettes").select("id").limit(1);
+    if(error)throw error;
+    if(data&&data.length){nfsAdminStatus("adminDataStatus","La table contient déjà des recettes : aucun import effectué pour éviter les doublons.");await nfsLoadAdminRecipes();return;}
+    const payload=recipes.map(r=>({titre:r[0],description:r[1]||"",ingredients:r[2]||"",preparation:r[3]||"",saison:"",categorie:/châtaignes du vallespir/i.test(r[0])?"Fiche produit":"Recette",image_url:r[5]?(r[5].startsWith("./")?r[5]:"./"+r[5]):null,publie:true}));
+    const {error:insertError}=await nfsSupabase.from("recettes").insert(payload);
+    if(insertError)throw insertError;
+    nfsAdminStatus("adminDataStatus",`${payload.length} recettes existantes importées dans Supabase.`);
+    await nfsLoadAdminRecipes();await nfsRefreshPublicRecipes();
+  }catch(err){nfsAdminStatus("adminDataStatus","Import impossible : "+err.message,true);}
+  finally{btn.disabled=false;}
+}
+function nfsEditRecipe(id){
+  const row=nfsAdminRows.find(x=>x.id===id);if(!row)return;
+  document.getElementById("recipeId").value=row.id;
+  document.getElementById("recipeTitle").value=row.titre||"";
+  document.getElementById("recipeDescription").value=row.description||"";
+  document.getElementById("recipeSeason").value=row.saison||"";
+  document.getElementById("recipeCategory").value=row.categorie||"Recette";
+  document.getElementById("recipeIngredients").value=typeof row.ingredients==="string"?row.ingredients:Array.isArray(row.ingredients)?row.ingredients.join("\n"):JSON.stringify(row.ingredients||"");
+  document.getElementById("recipePreparation").value=row.preparation||"";
+  document.getElementById("recipeImage").value=row.image_url||"";
+  document.getElementById("recipePublished").checked=!!row.publie;
+  document.getElementById("recipeFormTitle").textContent="Modifier une recette";
+  document.getElementById("recipeSaveButton").textContent="Enregistrer les modifications";
+  document.getElementById("recipeFormTitle").scrollIntoView({behavior:"smooth",block:"center"});
+}
+function nfsResetRecipeForm(){document.getElementById("recipeEditorForm").reset();document.getElementById("recipeId").value="";document.getElementById("recipePublished").checked=true;document.getElementById("recipeFormTitle").textContent="Ajouter une recette";document.getElementById("recipeSaveButton").textContent="Enregistrer la recette";}
+async function nfsDeleteRecipe(id){
+  const row=nfsAdminRows.find(x=>x.id===id);if(!row||!confirm(`Supprimer la recette « ${row.titre} » ?`))return;
+  const {error}=await nfsSupabase.from("recettes").delete().eq("id",id);
+  if(error){nfsAdminStatus("adminDataStatus","Suppression impossible : "+error.message,true);return;}
+  await nfsLoadAdminRecipes();await nfsRefreshPublicRecipes();
+}
+async function nfsHandleSession(session){
+  const login=document.getElementById("adminLogin"),workspace=document.getElementById("adminWorkspace");
+  const user=session?.user;
+  if(user&&String(user.email||"").toLowerCase()===NFS_ADMIN_EMAIL){
+    login.hidden=true;workspace.hidden=false;document.getElementById("adminWelcome").textContent="Connectée en tant que "+user.email+". Les droits de modification sont aussi contrôlés par Supabase.";
+    await nfsLoadAdminRecipes();
+  }else{
+    workspace.hidden=true;login.hidden=!nfsSupabase;
+    if(user){await nfsSupabase.auth.signOut();nfsAdminStatus("adminLoginStatus","Cette adresse n’est pas autorisée pour l’administration.",true);}
+  }
+}
+if(nfsSupabase){
+  nfsSupabase.auth.getSession().then(({data})=>nfsHandleSession(data.session));
+  nfsSupabase.auth.onAuthStateChange((_event,session)=>{setTimeout(()=>nfsHandleSession(session),0);});
+}
+document.getElementById("adminLoginForm").addEventListener("submit",async e=>{
+  e.preventDefault();if(!nfsSupabase)return;
+  const button=document.getElementById("adminLoginButton");button.disabled=true;nfsAdminStatus("adminLoginStatus","Connexion en cours…");
+  const password=document.getElementById("adminPassword").value;
+  const {data,error}=await nfsSupabase.auth.signInWithPassword({email:NFS_ADMIN_EMAIL,password});
+  button.disabled=false;
+  if(error){nfsAdminStatus("adminLoginStatus","Connexion refusée : "+error.message,true);return;}
+  document.getElementById("adminPassword").value="";
+  if(data.user?.email?.toLowerCase()!==NFS_ADMIN_EMAIL){await nfsSupabase.auth.signOut();nfsAdminStatus("adminLoginStatus","Adresse non autorisée.",true);}
+});
+document.getElementById("adminLogout").addEventListener("click",async()=>{if(nfsSupabase)await nfsSupabase.auth.signOut();nfsResetRecipeForm();});
+document.getElementById("adminImportRecipes").addEventListener("click",nfsImportExistingRecipes);
+document.getElementById("adminRefreshRecipes").addEventListener("click",nfsLoadAdminRecipes);
+document.getElementById("recipeCancelEdit").addEventListener("click",nfsResetRecipeForm);
+document.getElementById("adminBackHome").addEventListener("click",()=>showOnly("welcome"));
+document.getElementById("recipeEditorForm").addEventListener("submit",async e=>{
+  e.preventDefault();if(!nfsSupabase)return;
+  const id=document.getElementById("recipeId").value;
+  const payload={titre:document.getElementById("recipeTitle").value.trim(),description:document.getElementById("recipeDescription").value.trim(),saison:document.getElementById("recipeSeason").value.trim(),categorie:document.getElementById("recipeCategory").value.trim()||"Recette",ingredients:document.getElementById("recipeIngredients").value.trim(),preparation:document.getElementById("recipePreparation").value.trim(),image_url:document.getElementById("recipeImage").value.trim()||null,publie:document.getElementById("recipePublished").checked,updated_at:new Date().toISOString()};
+  const button=document.getElementById("recipeSaveButton");button.disabled=true;
+  const result=id?await nfsSupabase.from("recettes").update(payload).eq("id",id):await nfsSupabase.from("recettes").insert(payload);
+  button.disabled=false;
+  if(result.error){nfsAdminStatus("adminDataStatus","Enregistrement impossible : "+result.error.message,true);return;}
+  nfsResetRecipeForm();nfsAdminStatus("adminDataStatus",id?"Recette modifiée.":"Recette ajoutée.");await nfsLoadAdminRecipes();await nfsRefreshPublicRecipes();
+});
+nfsRefreshPublicRecipes();
 </script>
 
 <script>
