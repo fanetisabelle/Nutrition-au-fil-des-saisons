@@ -198,7 +198,7 @@ main{max-width:920px;margin:0 auto;padding:0 0 105px}
  <button data-tab="profile"><span>♙</span>Mon profil</button>
 </nav>
 <div class="drawer" id="drawer" hidden><button data-close-drawer class="drawer-close">✕</button><strong>Nutrition au fil des saisons</strong><button data-tab="home">Accueil</button><button data-tab="menus">Mes menus</button><button data-tab="recipes">Recettes et produits locaux</button><button data-tab="shopping">Liste de courses</button><button data-tab="profile">Mon profil</button></div>
-<footer>Nutrition au fil des saisons · Version 13 · Informations pédagogiques et suggestions indicatives · Ne remplace pas un avis médical.</footer>
+<footer>Nutrition au fil des saisons · Version 14 · Informations pédagogiques et suggestions indicatives · Ne remplace pas un avis médical.</footer>
 <script>
 const sections = [
 {title:"Mon profil et mon quotidien",desc:"Quelques repères pour comprendre votre rythme de vie.",qs:[
@@ -251,9 +251,17 @@ const sections = [
 {id:"q35",t:"Qu'aimeriez-vous absolument trouver dans cette application ?",type:"textarea",ph:"Votre réponse…"}
 ]}
 ];
-let step=0, answers=JSON.parse(localStorage.getItem("nfs_answers")||"{}");
+let step=0, answers={};
+try {
+ const stored=localStorage.getItem("nfs_answers");
+ const parsed=stored?JSON.parse(stored):{};
+ if(parsed && typeof parsed==="object" && !Array.isArray(parsed)) answers=parsed;
+} catch(error) {
+ // Une ancienne sauvegarde illisible ne doit jamais bloquer le questionnaire.
+ try { localStorage.removeItem("nfs_answers"); } catch(_) {}
+}
 const $=id=>document.getElementById(id);
-function save(){localStorage.setItem("nfs_answers",JSON.stringify(answers))}
+function save(){try{localStorage.setItem("nfs_answers",JSON.stringify(answers));}catch(error){console.warn("Sauvegarde locale indisponible",error);}}
 function esc(s){return String(s).replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]))}
 function render(){
  const sec=sections[step];$("sectionTitle").textContent=sec.title;$("sectionDesc").textContent=sec.desc;
@@ -533,11 +541,9 @@ function openPlateGuide(){
  $("welcome").hidden=true;$("quiz").hidden=true;$("library").hidden=true;$("planner").hidden=true;$("result").style.display="none";
  $("plateGuide").hidden=false;window.scrollTo({top:0,behavior:"smooth"});
 }
-$("openPlateGuide").onclick=openPlateGuide;
 $("backPlateHome").onclick=()=>{$("plateGuide").hidden=true;$("welcome").hidden=false;window.scrollTo({top:0,behavior:"smooth"});};
 $("plateToPlanner").onclick=openPlanner;
 
-$("openLibrary").onclick=openLibrary;
 $("openPlanner").onclick=openPlanner;
 $("generateMenus").onclick=generateMenus;
 $("backToResult").onclick=()=>{document.getElementById("planner").hidden=true;document.getElementById("result").style.display="block";window.scrollTo({top:0,behavior:"smooth"});};
